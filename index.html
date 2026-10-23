@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101116">
+<title>Axo 02 · Design Catalog</title>
+<style>
+:root{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color-scheme:dark;--bg:#0b0c10;--rail:#111218;--surface:#15161d;--surface-2:#1b1d25;--border:#292b36;--ink:#f6f5fb;--muted:#9395a6;--soft:#777989;--accent:#aa8cff;--accent-bg:rgba(170,140,255,.12);--shadow:0 18px 54px rgba(0,0,0,.12)}
+:root[data-theme="light"]{color-scheme:light;--bg:#f7f7f9;--rail:#fff;--surface:#fff;--surface-2:#f1f0f5;--border:#e5e5ec;--ink:#181822;--muted:#737584;--soft:#9899a3;--accent:#7250d5;--accent-bg:rgba(114,80,213,.09);--shadow:0 18px 54px rgba(29,25,56,.045)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);transition:background .2s,color .2s}button{font:inherit}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}.app{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:100vh}.sidebar{background:var(--rail);border-right:1px solid var(--border);display:flex;flex-direction:column;min-height:100vh;position:sticky;top:0;height:100vh}.brand{height:98px;padding:28px 25px 20px;display:flex;align-items:center;gap:13px;border-bottom:1px solid var(--border)}.brandmark{height:40px;width:40px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(140deg,#7c5eea,#4d5deb);font-size:23px;font-weight:800;color:#fff;letter-spacing:-2px;padding-right:2px}.brandname{font-size:19px;font-weight:730;letter-spacing:-.8px}.brand-sub{color:var(--muted);font-size:11px;margin-top:3px;letter-spacing:.6px;text-transform:uppercase}.nav{padding:24px 13px;overflow-y:auto;flex:1}.nav-group{font-size:10px;letter-spacing:1.65px;text-transform:uppercase;color:var(--soft);margin:8px 13px 13px;font-weight:700}.nav a{height:43px;display:flex;align-items:center;gap:12px;border-radius:11px;padding:0 13px;color:var(--muted);font-size:13.5px;font-weight:510;margin-bottom:3px;transition:color .16s,background .16s}.nav a:hover{background:var(--surface-2);color:var(--ink)}.nav a.active{background:var(--accent-bg);color:var(--accent);font-weight:630}.nav a .symbol{font-size:17px;width:20px;text-align:center;opacity:.92}.sidebar-bottom{padding:22px 25px;border-top:1px solid var(--border);font-size:11px;color:var(--soft)}.main{min-width:0}.topbar{height:98px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(25px,4.3vw,76px)}.crumb{font-size:13px;color:var(--muted)}.crumb b{color:var(--ink);font-weight:600}.controls{display:flex;align-items:center;gap:13px}.mode-label{color:var(--muted);font-size:12px}.theme-toggle{height:40px;width:75px;display:flex;align-items:center;justify-content:space-between;gap:4px;padding:5px;background:var(--surface-2);border:1px solid var(--border);border-radius:999px;cursor:pointer;color:var(--muted)}.theme-toggle .option{display:grid;place-items:center;width:29px;height:29px;border-radius:50%;font-size:16px;transition:background .15s,color .15s}.theme-toggle .option.on{background:var(--accent);color:#fff;box-shadow:0 2px 9px #0002}.content{max-width:1200px;margin:0 auto;padding:clamp(30px,5vw,75px) clamp(25px,4.3vw,76px)}.eyebrow{font-size:11px;font-weight:750;letter-spacing:1.8px;text-transform:uppercase;color:var(--accent);margin-bottom:15px}.title{font-size:clamp(35px,4vw,56px);font-weight:720;letter-spacing:-2.2px;line-height:1.08;margin:0 0 15px}.description{color:var(--muted);font-size:15px;max-width:620px;line-height:1.75;margin:0}.rule{border:0;border-top:1px solid var(--border);margin:42px 0 28px}.canvas{min-height:365px;border:1px dashed var(--border);border-radius:20px;display:flex;align-items:center;justify-content:center;text-align:center;padding:36px;background:var(--surface);box-shadow:var(--shadow)}.empty-icon{width:58px;height:58px;margin:0 auto 20px;border-radius:18px;border:1px solid var(--border);display:grid;place-items:center;color:var(--accent);font-size:26px;background:var(--accent-bg)}.empty-title{font-size:18px;font-weight:650;letter-spacing:-.35px}.empty-desc{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.65}.foot{display:flex;justify-content:space-between;gap:12px;color:var(--soft);font-size:12px;margin-top:19px}.mobile-menu{display:none}.sidebar-overlay{display:none}@media(max-width:790px){.app{display:block}.sidebar{position:fixed;z-index:9;left:0;top:0;width:265px;transform:translateX(-105%);transition:transform .2s;box-shadow:var(--shadow)}.sidebar.open{transform:translateX(0)}.sidebar-overlay.show{display:block;position:fixed;inset:0;z-index:8;background:#0008}.topbar{height:75px;padding:0 22px}.mobile-menu{display:grid;place-items:center;background:none;border:1px solid var(--border);border-radius:10px;color:var(--ink);height:36px;width:36px;margin-right:12px;font-size:20px}.left-top{display:flex;align-items:center}.content{padding:38px 24px}.canvas{min-height:350px}.mode-label{display:none}.title{letter-spacing:-1.5px}.foot{font-size:11px}}
+</style>
+</head>
+<body>
+<div class="sidebar-overlay" id="overlay"></div>
+<div class="app">
+<aside class="sidebar" id="sidebar">
+<div class="brand"><div class="brandmark">a<span style="font-weight:300">·</span></div><div><div class="brandname">Axo 02</div><div class="brand-sub">Design Catalog</div></div></div>
+<nav class="nav" id="nav" aria-label="Sekce katalogu">
+<div class="nav-group">Katalog</div>
+<a href="#foundations" data-section="foundations"><span class="symbol">◈</span> Foundations</a>
+<a href="#buttons" data-section="buttons"><span class="symbol">▣</span> Tlačítka</a>
+<a href="#navigation" data-section="navigation"><span class="symbol">☷</span> Navigace</a>
+<a href="#inputs" data-section="inputs"><span class="symbol">▤</span> Inputy a formuláře</a>
+<a href="#cards" data-section="cards"><span class="symbol">▥</span> Karty</a>
+<a href="#overlays" data-section="overlays"><span class="symbol">▢</span> Dialogs a popovers</a>
+<a href="#feedback" data-section="feedback"><span class="symbol">◎</span> Feedback a status</a>
+<a href="#logo" data-section="logo"><span class="symbol">◇</span> Logo</a>
+<a href="#brand" data-section="brand"><span class="symbol">✳</span> Brand</a>
+<a href="#loaders" data-section="loaders"><span class="symbol">◌</span> Loaders</a>
+<a href="#other" data-section="other"><span class="symbol">⊞</span> Další prvky</a>
+</nav><div class="sidebar-bottom">AXO 02 · Design first, build later.</div>
+</aside>
+<main class="main"><header class="topbar"><div class="left-top"><button class="mobile-menu" id="menu" aria-label="Otevřít navigaci">☰</button><span class="crumb">Katalog <span aria-hidden="true"> / </span> <b id="crumb">Foundations</b></span></div><div class="controls"><span class="mode-label" id="modeLabel">Tmavý režim</span><button class="theme-toggle" id="themeToggle" type="button" aria-label="Přepnout světlý a tmavý režim" aria-pressed="false"><span class="option" id="lightIcon" aria-hidden="true">☀</span><span class="option" id="darkIcon" aria-hidden="true">☾</span></button></div></header>
+<div class="content"><div class="eyebrow" id="count">01 / 11 · Design Catalog</div><h1 class="title" id="heading">Foundations</h1><p class="description" id="desc"></p><hr class="rule"><section class="canvas" aria-label="Prázdný prostor pro komponenty"><div><div class="empty-icon">＋</div><div class="empty-title">Zatím prázdno</div><div class="empty-desc">Tady postupně vznikne obsah této sekce.<br>Žádné staré komponenty nebyly přeneseny.</div></div></section><div class="foot"><span>Nový začátek. Čistý prostor.</span><span id="footerSection">Foundations</span></div></div>
+</main></div>
+<script>
+const sections=[
+["foundations","Foundations","Základní stavební prvky designu: barvy, typografie, rozestupy, radius, stíny, povrchy a jejich role."],
+["buttons","Tlačítka","Prostor pro rodiny tlačítek, jejich varianty, velikosti a interakční stavy."],
+["navigation","Navigace","Prostor pro navigační prvky, hlavičky, menu, záložky a jejich chování."],
+["inputs","Inputy a formuláře","Prostor pro textová pole, výběry, přepínače, checkboxy a další formulářové prvky."],
+["cards","Karty","Prostor pro jednotlivé typy karet, jejich strukturu, materiály a stavy."],
+["overlays","Dialogs a popovers","Prostor pro dialogová okna, popovers, dropdowny a kontextové vrstvy."],
+["feedback","Feedback a status","Prostor pro upozornění, validace, stavové indikátory, notifikace a progress."],
+["logo","Logo","Prostor pro návrhy loga, značek, ikonických symbolů a jejich variant."],
+["brand","Brand","Prostor pro vizuální identitu, značkové motivy, výrazové principy a grafické prvky."],
+["loaders","Loaders","Prostor pro indikátory načítání, skeletony a přechodové stavy."],
+["other","Další prvky","Prostor pro další komponenty, které v průběhu návrhu doplníme."]
+];
+const root=document.documentElement, toggle=document.getElementById("themeToggle");
+function setTheme(theme){root.dataset.theme=theme;document.getElementById("lightIcon").classList.toggle("on",theme==="light");document.getElementById("darkIcon").classList.toggle("on",theme==="dark");document.getElementById("modeLabel").textContent=theme==="dark"?"Tmavý režim":"Světlý režim";toggle.setAttribute("aria-pressed",String(theme==="light"));try{localStorage.setItem("axo02-theme",theme)}catch(e){}}
+let saved;try{saved=localStorage.getItem("axo02-theme")}catch(e){}
+setTheme(saved==="light"||saved==="dark"?saved:(matchMedia("(prefers-color-scheme:light)").matches?"light":"dark"));
+toggle.addEventListener("click",()=>setTheme(root.dataset.theme==="dark"?"light":"dark"));
+function render(){let key=decodeURIComponent(location.hash.slice(1));let index=sections.findIndex(s=>s[0]===key);if(index<0)index=0;let s=sections[index];document.getElementById("heading").textContent=s[1];document.getElementById("desc").textContent=s[2];document.getElementById("crumb").textContent=s[1];document.getElementById("footerSection").textContent=s[1];document.getElementById("count").textContent=String(index+1).padStart(2,"0")+" / "+sections.length+" · Design Catalog";document.querySelectorAll("[data-section]").forEach(a=>{let current=a.dataset.section===s[0];a.classList.toggle("active",current);current?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current")});document.getElementById("sidebar").classList.remove("open");document.getElementById("overlay").classList.remove("show");document.title=s[1]+" · Axo 02"}
+addEventListener("hashchange",render);render();
+const sidebar=document.getElementById("sidebar"),overlay=document.getElementById("overlay");document.getElementById("menu").onclick=()=>{sidebar.classList.add("open");overlay.classList.add("show")};overlay.onclick=()=>{sidebar.classList.remove("open");overlay.classList.remove("show")};document.addEventListener("keydown",e=>{if(e.key==="Escape")overlay.click()});
+</script></body></html>
