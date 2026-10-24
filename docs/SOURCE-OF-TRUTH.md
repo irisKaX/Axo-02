@@ -218,6 +218,12 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 - **Implementace:** sdílený `renderButton(config)` v `components/button.js` podporuje koncept `animated-border`, CSS vlastní `components/button.css` u dalších Primary konceptů. Hrana využívá rotující pseudo-element `::before` s průhlednými úseky `conic-gradient`, vnitřní plochu `::after`, vlastní text nad oběma vrstvami a periodu 2,5 s **nepřetržitě**, nikoli jen při hoveru. `@property` se již nepoužívá. Barvy zůstávají `--accent` a `--detail-magenta`; bez další knihovny nebo duplicitního rendereru. Respektuje reduced motion.
 - **CSS zásada:** žádné override vrstvy, žádné `!important` a žádná změna ostatních Button stylů.
 
+### Sdílený hover Secondary / Pill Tabs (24. 10. 2026)
+
+- Podle schválené Compact Pagination převzaly **Secondary** textové i kulaté ikonové Button S při hoveru pozadí `--accent-bg` a border `--border-hover`. Default, focus, pressed, disabled a ostatní varianty zachované. Hover filtr Secondary je vypnutý, aby se zachovaly přesné tokenové barvy.
+- **Pill Tabs:** při hoveru neaktivní položky používají stejnou barevnou kombinaci; aktivní záložka zůstává ve svém selected stylu. **Underline Tabs** nadále používají pouze fialový text a podtržení bez hover pozadí.
+- Změněna pouze původní stavová pravidla v `components/button.css` a `components/navigation-extras.css`, bez CSS override vrstvy či dalších tokenů.
+
 ## 6. Pravidla spolupráce a vývoje
 
 1. **Design-first:** nejdřív konkrétní zadání, rychlá vizuální úprava, publikace katalogu, zpětná vazba.
