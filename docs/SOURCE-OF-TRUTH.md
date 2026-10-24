@@ -156,6 +156,12 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 - Kanonické styly pro tyto nové prvky žijí v `components/navigation-extras.css`, chování v `components/navigation-extras.js`; `index.html` je pouze načítá a zobrazuje v sekci Navigace. Žádné CSS override vrstvy.
 - Stránkování zůstává oddělené v `components/pagination.css` a `components/pagination.js`.
 
+### Tlačítka · Reveal Fill (návrh ke schválení, 24. 10. 2026)
+
+- V sekci Tlačítka přibyla jediná izolovaná interaktivní ukázka **Primary · Reveal Fill**. Jde o návrh hoveru, **není schválenou výchozí podobou Primary**.
+- Výchozí podklad využívá `--accent-bg`, hover plynule odhaluje existující `--gradient-3` za 400 ms. Zachována velikost S, kapslový radius, focus a reduced motion.
+- Styly jsou součástí jediného původního bloku ukázky v `index.html`; stávající `.axo-btn` a ostatní varianty jsou nedotčené. Žádné CSS override vrstvy.
+
 ## 6. Pravidla spolupráce a vývoje
 
 1. **Design-first:** nejdřív konkrétní zadání, rychlá vizuální úprava, publikace katalogu, zpětná vazba.
