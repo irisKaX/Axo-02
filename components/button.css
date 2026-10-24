@@ -388,7 +388,7 @@
   to {--axo-border-angle:360deg}
 }
 @media(prefers-reduced-motion:reduce) {
-  .animated-border::before {animation:none!important}
+  .animated-border:not(:disabled):is(:hover,:focus-visible)::before {animation:none}
 }
 /* Catalog composition; no independent button implementations. */
 .btn-section {
