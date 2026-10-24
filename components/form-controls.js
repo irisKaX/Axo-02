@@ -18,6 +18,19 @@ function axoSelectClose(){const b=document.getElementById("axo-format"),m=docume
 document.addEventListener("click",e=>{
 const b=e.target.closest("#axo-format"),o=e.target.closest("[data-format]"),m=document.getElementById("axo-format-list");if(!m)return;
 if(b){m.hidden=!m.hidden;b.setAttribute("aria-expanded",String(!m.hidden));return}
-if(o){document.getElementById("axo-format-value").textContent=o.dataset.format;document.getElementById("axo-format-state").textContent="Vybráno: "+o.dataset.format;m.querySelectorAll("[data-format]").forEach(x=>x.setAttribute("aria-selected",String(x===o)));axoSelectClose();b?.focus();return}
+if(o){document.getElementById("axo-format-value").textContent=o.dataset.format;document.getElementById("axo-format-state").textContent="Vybráno: "+o.dataset.format;m.querySelectorAll("[data-format]").forEach(x=>x.setAttribute("aria-selected",String(x===o)));axoSelectClose();document.getElementById("axo-format").focus();return}
 if(!e.target.closest("#axo-format-list"))axoSelectClose()
+});
+
+document.addEventListener("keydown",e=>{
+const m=document.getElementById("axo-format-list");if(!m)return;
+const trigger=e.target.closest("#axo-format"),option=e.target.closest("#axo-format-list [data-format]");
+if(trigger&&["ArrowDown","ArrowUp"].includes(e.key)){e.preventDefault();m.hidden=false;trigger.setAttribute("aria-expanded","true");m.querySelector('[aria-selected="true"]').focus();return}
+if(m.hidden)return;
+if(e.key==="Escape"){e.preventDefault();axoSelectClose();document.getElementById("axo-format").focus();return}
+if(!option)return;
+const opts=[...m.querySelectorAll("[data-format]")],i=opts.indexOf(option);
+if(e.key==="ArrowDown"||e.key==="ArrowUp"){e.preventDefault();opts[(i+(e.key==="ArrowDown"?1:-1)+opts.length)%opts.length].focus()}
+if(e.key==="Enter"||e.key===" "){e.preventDefault();option.click()}
+if(e.key==="Tab")axoSelectClose()
 });
