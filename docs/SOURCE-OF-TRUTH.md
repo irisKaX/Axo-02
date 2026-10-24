@@ -103,7 +103,7 @@ Oficiální zdroje: https://github.com/hugeicons/hugeicons a https://hugeicons.c
 
 ### CSS Cleanup & Code Quality · 24. 10. 2026
 
-Kompletní kontrola zahrnula základní CSS, media queries, obě témata, Foundations, tlačítka, navigaci i inline styly v HTML a JS šablonách. Nálezy počítáme jako **9 skupin: 7 vyčištěných a 2 ponechané interakční odchylky**; jednotlivé počty deklarací níže nejsou počtem samostatných vizuálních chyb.
+Kompletní kontrola zahrnula základní CSS, media queries, obě témata, Foundations, tlačítka, navigaci i inline styly v HTML a JS šablonách. Nálezy počítáme jako **9 skupin: 7 vyčištěných při prvním úklidu a 2 interakční odchylky opravené následnou cílenou opravou**; jednotlivé počty deklarací níže nejsou počtem samostatných vizuálních chyb.
 
 **Provedený úklid bez záměrné změny designu:**
 
@@ -117,14 +117,18 @@ Kompletní kontrola zahrnula základní CSS, media queries, obě témata, Founda
 
 **Záměrně zachováno:** opakované `.sidebar` a `.foot` upravují mobilní layout, `.axo-btn .spinner` respektuje reduced motion a `.axo-btn--circle .spinner` skutečně potřebuje jiné rozměry. Specifické SVG rozměry akčních tlačítek jsou oprávněnou variantou. Dynamické swatche, gradienty, typografické parametry, spacing, radius, border/shadow a velikosti ikon zůstávají inline. Také několik jednorázových místních rozestupů a obalů ukázek zůstává inline; jejich nahrazení samostatnými třídami by zde přidávalo další systém bez zjednodušení. Dokumentační tokeny bez přímého použití v komponentách nejsou mrtvé styly: zůstávají součástí Foundations. Statická kontrola nenašla opakované vlastnosti uvnitř jednoho pravidla; všech 83 kořenových tokenů má neprázdnou vypočtenou hodnotu.
 
-**Ponechané problémy — status `ISSUES REMAINING`:**
+**Final CSS Cleanup Fix · status `CLEAN` (24. 10. 2026):**
 
-- Destructive hover pravidlo se stejnou specificitou jako obecný pressed stav přichází později. Při současném `:hover` a `:active` proto vyhrává `brightness(1.05)`, zatímco samostatná demo ukázka Pressed používá `brightness(.9)`.
-- Hover selektory Outline/Ghost nemají podmínku `:not(:disabled)`, takže disabled tlačítkům mění pozadí. Také disabled Foundations demo zachovává hover barvu (jeho transformaci disabled pravidlo správně ruší).
+Dvě odchylky z výchozího commitu `5f3d3eb2aefc1efd5caabd97d8c0e0a382238ca2` jsou opravené:
 
-Tyto odchylky předcházejí úklidu. Jejich oprava by měnila vykreslené interakční stavy, proto podle požadavku zachovat vzhled zůstávají beze změny. Nejsou zakryté novým přepisem. **Trvalé pravidlo proti CSS override vrstvám nadále platí.**
+- **Destructive Hover vs. Pressed:** destructive hover měl stejnou specificitu jako obecný active stav, ale následoval až po něm. Jeho existující pravidlo je nyní u společného hover pravidla, před pressed pravidlem. Enabled destructive má nadále červený podklad, hover `brightness(1.05)` a červený focus přes `--focus-error`; při stisku vyhrává `brightness(.9)` a posun o 1 px. Ostatní enabled varianty si ponechávají své hodnoty.
+- **Disabled Hover:** původní Outline/Ghost hover selektory, simulační `.demo-hover`/`.demo-pressed` selektory tlačítek a Foundations hover/active selektory nyní obsahují `:not(:disabled)`. Enabled efekty zůstávají funkční, disabled zachovává barvu, opacity i pozici. Skutečný atribut `disabled` a HTML/JS šablony zůstaly beze změny.
 
-Ověření úklidu: dočasné porovnání v Chromium prošlo bez rozdílů ve sledovaných vizuálních CSS vlastnostech, rozměrech a kořenových tokenech před/po úklidu. Zahrnulo dark/light, Foundations, Tlačítka a prázdnou sekci, šířky 1440/981/980/791/790/561/560/390 px, hover, focus-visible, pressed, disabled, loading i reduced motion. Přechody byly dokončeny a spinner porovnán ve stejné fázi; nejde o pixelový audit. Funkční kontrola prošla pro render všech variant, přepnutí a obnovení tématu, červený destructive focus, disabled/loading i mobilní menu, Escape a zavření menu po navigaci. Konzole bez JavaScriptových výjimek. Dvě ponechané interakční odchylky byly potvrzeny na původní i upravené verzi. Prohlédnuty aktuální mobilní light Foundations a desktopové dark Tlačítka; ve zkontrolovaném rozsahu nebyla zjištěna nová viditelná regrese. `git diff --check` prošel. Nevznikla testovací infrastruktura, screenshotová baseline, framework ani nový release workflow. Nejde o úplný audit přístupnosti nebo všech prohlížečů.
+Cílené ověření v Chromium nejprve reprodukovalo obě chyby a po opravě prošlo v dark/light: skutečná sekvence myši Hover → Pressed → Hover → Default u textového i kruhového destructive, červený focus, disabled + hover/active u všech pěti variant v obou tvarech a disabled Foundations. Ověřeno i potlačení demonstračních hover/pressed tříd při současném `disabled` a zachování enabled stavů ostatních variant. Bez JavaScriptových výjimek; `git diff --check` prošel. Kořenové tokeny i HTML/JS šablony jsou totožné s výchozím commitem. V rozsahu těchto dvou oprav nezůstává známý problém. Bez nové testovací infrastruktury, screenshotové baseline nebo celoprojektového auditu.
+
+**Trvalé pravidlo proti CSS override vrstvám nadále platí:** upraveny původní selektory a pořadí existujícího pravidla, žádná nová opravná vrstva, duplicitní selektor ani `!important`.
+
+Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnání v Chromium prošlo bez rozdílů ve sledovaných vizuálních CSS vlastnostech, rozměrech a kořenových tokenech před/po úklidu. Zahrnulo dark/light, Foundations, Tlačítka a prázdnou sekci, šířky 1440/981/980/791/790/561/560/390 px, hover, focus-visible, pressed, disabled, loading i reduced motion. Přechody byly dokončeny a spinner porovnán ve stejné fázi; nejde o pixelový audit. Funkční kontrola prošla pro render všech variant, přepnutí a obnovení tématu, červený destructive focus, disabled/loading i mobilní menu, Escape a zavření menu po navigaci. Konzole bez JavaScriptových výjimek. Dvě ponechané interakční odchylky byly potvrzeny na původní i upravené verzi. Prohlédnuty aktuální mobilní light Foundations a desktopové dark Tlačítka; ve zkontrolovaném rozsahu nebyla zjištěna nová viditelná regrese. `git diff --check` prošel. Nevznikla testovací infrastruktura, screenshotová baseline, framework ani nový release workflow. Nejde o úplný audit přístupnosti nebo všech prohlížečů.
 
 ## 6. Pravidla spolupráce a vývoje
 
