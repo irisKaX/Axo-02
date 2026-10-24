@@ -231,7 +231,7 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 ### Tool Form Controls V1 · první návrhy (24. 10. 2026)
 
 - Sekce **Inputy a formuláře** zahrnuje nové živé ukázky **Select / Dropdown**, **Checkbox / Radio** a **Switch / Toggle** pro pracovní nástroje. Není to přihlašovací ani registrační formulář.
-- **Select:** nativní `select` s výběrem exportního formátu (WebP, PNG, JPEG, AVIF) a stavem disabled; zachována systémová klávesnice.
+- **Select:** vlastní dropdown v designu Axo 02, centrovaná SVG šipka, vlastní nabídka formátů WebP / PNG / JPEG / AVIF, hover, selected, focus a disabled. Ovládání myší a klávesnicí (šipky, Enter, Escape), bez nativního systémového menu. Aktualizace 24. 10. 2026; čeká na vizuální potvrzení.
 - **Checkbox / Radio:** nezávislé přepínače zahrnutí podstránek a assetů, exkluzivní volba Fráze / Asset ID / Regulární výraz; stav disabled.
 - **Switch:** vizuální přepínač s nativním `input type="checkbox" role="switch"`, focus a disabled.
 - Ukázky jsou funkční lokálně a vypisují zvolený stav, ale **nespouštějí reálné nástroje**. Vizuální schválení uživatelem zatím neproběhlo.
