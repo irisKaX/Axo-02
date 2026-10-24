@@ -28,7 +28,7 @@
 | Foundations | **Rozpracováno, funkční** | Palety, role, stavové barvy, O2 modrá, gradienty, Geist, typography/spacing/radius scale, borders/shadows, interactions, motion, opacity/blur, layout/layers, iconography, Accessibility, Breakpoints a Iconography Rules |
 | Tlačítka | **Button System V1, funkční ukázky** | Button Variants, Button Formats, Action Examples a Hover Concepts; jeden renderer a základ, velikost S, pět variant, tři formáty a šest stavů |
 | Navigace | **Rozpracováno** | Pagination (Numbered/Compact/Table), Tabs (Pill/Underline) a Breadcrumbs (plná/kompaktní ukázka). Další navigační komponenty zatím nejsou vytvořené. |
-| Inputy a formuláře | **Rozpracováno** | URL input s kopírováním a demonstračním výběrem karet; Search input s nepřetržitým animovaným borderem ve stylu Primary 03 |
+| Inputy a formuláře | **Rozpracováno** | URL Input, Search Input, nové návrhy Select, Checkbox/Radio a Switch |
 | Karty | **Prázdná sekce** | Návrh teprve vznikne |
 | Dialogs a popovers | **Prázdná sekce** | Návrh teprve vznikne |
 | Feedback a status | **Prázdná sekce** | Návrh teprve vznikne |
@@ -227,6 +227,15 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 ### Akční tlačítka · sjednocení Secondary (24. 10. 2026)
 
 - Akce **Otevřít** a **Upravit** byly původně nakonfigurovány jako `outline`, proto vizuálně neodpovídaly Stáhnout, Nahrát a Kopírovat. Obě akce nyní používají `secondary` ve společném seznamu `actions` v `components/button.js`. Textové i kulaté formáty automaticky sdílejí stejný styl a hover. Žádné CSS změny ani override vrstvy.
+
+### Tool Form Controls V1 · první návrhy (24. 10. 2026)
+
+- Sekce **Inputy a formuláře** zahrnuje nové živé ukázky **Select / Dropdown**, **Checkbox / Radio** a **Switch / Toggle** pro pracovní nástroje. Není to přihlašovací ani registrační formulář.
+- **Select:** nativní `select` s výběrem exportního formátu (WebP, PNG, JPEG, AVIF) a stavem disabled; zachována systémová klávesnice.
+- **Checkbox / Radio:** nezávislé přepínače zahrnutí podstránek a assetů, exkluzivní volba Fráze / Asset ID / Regulární výraz; stav disabled.
+- **Switch:** vizuální přepínač s nativním `input type="checkbox" role="switch"`, focus a disabled.
+- Ukázky jsou funkční lokálně a vypisují zvolený stav, ale **nespouštějí reálné nástroje**. Vizuální schválení uživatelem zatím neproběhlo.
+- **Vlastnictví stylů:** pouze první a jediné definice v `components/form-controls.css`; interakce v `components/form-controls.js`, integrace v `index.html`. Globální dark/light, sémantické tokeny, žádné override vrstvy ani `!important`. Respektuje reduced motion.
 
 ### Inputs V1 · délka, klidnější hover a psaný placeholder (24. 10. 2026)
 
