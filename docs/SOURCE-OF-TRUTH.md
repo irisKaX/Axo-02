@@ -1,6 +1,6 @@
 # Axo 02 · Source of Truth
 
-> **Stav:** aktivní designový katalog. **Aktualizováno:** 24. 10. 2026.  
+> **Stav:** aktivní designový katalog. **Aktualizováno:** 25. 10. 2026.
 > **Závaznost:** Tento soubor je průběžný zdroj pravdy pro Axo 02. Po každé funkční, designové nebo architektonické změně aktualizovat příslušnou část ve stejném zadání a commitu, nebo bezprostředně navazujícím commitu. GitHub historie zachovává minulost; zde je vždy pouze aktuální stav.
 
 ## 1. Projekt a odkazy
@@ -32,7 +32,7 @@
 | Karty | **Prázdná sekce** | Návrh teprve vznikne |
 | Dialogs a popovers | **Schváleno V1** | Confirm Dialog, Information Dialog a Action Popover, vizuálně schváleno uživatelkou |
 | Feedback a status | **Rozpracováno** | Inline Notices, Progress / Processing, Status Badges, Empty State a Toast, interaktivní návrhy |
-| Logo | **Prázdná sekce** | Návrh teprve vznikne |
+| Logo | **V1 · Návrh ke schválení** | Jeden kruhový znak: originální bílá PNG hlava, stálý tmavý střed, rotující gradient; velikosti, Dark / Light a Animated / Static |
 | Brand | **Prázdná sekce** | Návrh teprve vznikne |
 | Loaders | **Prázdná sekce** | Návrh teprve vznikne |
 | Další prvky | **Prázdná sekce** | Podle potřeby |
@@ -282,6 +282,18 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 - Interakce používají lokální demonstrační data, nespouštějí žádné skenování ani ukládání. Dialogs & Popovers V1 uživatelka výslovně schválila.
 - Nové soubory: `components/feedback.css` (jediné kanonické definice stylů) a `components/feedback.js` (ukázky a lokální stavy), napojené do `#feedback` v `index.html`. Tlačítka zůstávají přes jediný sdílený `renderButton()`.
 - Stavy používají barevné role Foundations; dark/light a reduced motion, bez CSS override vrstev a `!important`. **Vizuální schválení Feedback V1 ještě neproběhlo.**
+
+## Logo V1 · Animated Orbital Identity (25. 10. 2026)
+
+- **Stav: V1 · Návrh ke schválení.** Značka je pouze v existující sekci `#logo`, nenahrazuje dosavadní značku v sidebaru ani jiné části katalogu.
+- **Originální asset:** `assets/axo-head.png`, přímo z dodaného ZIPu, 1774×887 px, RGBA s průhledností. Bajty jsou shodné s originálem (SHA-256 `75785d2783fdcab6394efa7d16975ebd5d75acc1890b9d9c229a8658982b1703`). Bez překreslení, retuše, ořezu, převodu nebo zásahu do proporcí, očí, úsměvu či žaber. PNG se při vykreslení pouze proporcionálně zmenšuje přes `<img>`.
+- **Jedna komponenta:** `renderLogo({size:120,animated:true,label:"Axo 02"})` v `components/logo.js`, kanonické styly `components/logo.css`. `size` je kladná číselná velikost v px, předaná lokálním `--axo-logo-size`; `animated:false` nechá stejný znak statický. Komponenta funguje i mimo katalogové obaly. Přístupné jméno nese vnější `role=img`, vnitřní PNG je dekorativní s prázdným alt.
+- **Konstrukce:** kruhový samostatný pseudo-element s gradientem, nehybný kruhový střed o 92 % rozměru a nehybné vystředěné PNG o 88 % šířky středu s přirozeným poměrem stran 2:1. Logo nemá vnější čtvercovou plochu, stíny, glow, 3D ani nové obrysy hlavy.
+- **Barvy:** gradient používá výhradně `--accent` (dark `#8C00FF`, light existující `#8839EF`), `--detail-magenta` (`#D10062`) a `--o2-blue` (`#0050FF`). Střed je v obou tématech pevně `#1e1e2e`, tedy existující tmavá hodnota Background z Foundations; nezávisí na světlé hodnotě `--bg`. Žádné nové globální barevné tokeny nebo změna palety. Srovnávací prezentační plochy používají existující dark/light Background a Text hodnoty.
+- **Motion:** pouze gradientní pseudo-element se nepřetržitě otáčí o 360° za 6 s, lineárně. Střed a hlava nemají transformaci ani animaci; bez blikání, pulzování nebo zrychlování. `prefers-reduced-motion:reduce` všechny oběhy vypne, explicitní Static je bez animace vždy.
+- **Katalogové ukázky:** 01 · Logo Default (120 px), 02 · Logo Sizes (32 / 48 / 64 / 96 / 120 px), 03 · Dark / Light (stejné logo na obou plochách), 04 · Motion (Animated a Static). Jde o deset instancí jediné komponenty, nikoli různé návrhy loga.
+- **Ověření:** v Chromium prošly dark/light na šířkách 1440 a 320 px, načtení a přirozené rozměry originálního PNG u všech instancí, kruhový tvar, požadované velikosti a centrování bez deformace. Ověřena změna transformace okraje v čase při stabilní poloze hlavy, šestisekundová lineární smyčka, statická varianta, tmavý střed v obou tématech, reduced motion a použití komponenty mimo galerii. Mobil bez horizontálního overflow, bez JavaScriptových výjimek. Soubor podávaný přes HTTP je bajtově shodný s PNG ze ZIPu. `node --check` a `git diff --check` prošly; cílená vizuální kontrola desktop/mobil, bez screenshotové baseline či nového testovacího systému.
+- **Izolace:** v `index.html` přibylo pouze načtení CSS/JS a obsluha/popis sekce Logo. Zbytek indexu je oproti výchozímu `main` nezměněný; Buttons, Navigation, Inputs, Feedback a Foundations se neupravovaly. Nové definice jsou pouze v jediném komponentovém CSS, bez override vrstev, duplicitních základů, `!important`, nových závislostí či build systému.
 
 ## 6. Pravidla spolupráce a vývoje
 

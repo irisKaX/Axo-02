@@ -1,0 +1,119 @@
+/* Axo 02 Logo V1: immutable PNG, fixed dark core, rotating rim only. */
+.axo-logo {
+  position:relative;
+  display:inline-grid;
+  place-items:center;
+  width:var(--axo-logo-size,120px);
+  height:var(--axo-logo-size,120px);
+  aspect-ratio:1 / 1;
+  flex:none;
+  border-radius:50%;
+  vertical-align:middle;
+  isolation:isolate;
+}
+.axo-logo::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  background:conic-gradient(var(--accent),var(--detail-magenta) 120deg,var(--o2-blue) 240deg,var(--accent) 360deg);
+}
+.axo-logo[data-animated="true"]::before {
+  animation:axo-logo-orbit 6s linear infinite;
+}
+.axo-logo-core {
+  position:relative;
+  display:grid;
+  place-items:center;
+  width:92%;
+  height:92%;
+  border-radius:50%;
+  /* Fixed dark Foundation --bg value; the logo core never switches to light. */
+  background:#1e1e2e;
+}
+.axo-logo-head {
+  display:block;
+  width:88%;
+  height:auto;
+  max-width:none;
+  object-fit:contain;
+}
+@keyframes axo-logo-orbit {
+  to {transform:rotate(360deg)}
+}
+@media(prefers-reduced-motion:reduce) {
+  .axo-logo[data-animated="true"]::before {animation:none}
+}
+
+/* Presentation belongs to the Logo section, not to the reusable mark. */
+.logo-gallery {
+  display:grid;
+  gap:var(--space-6);
+}
+.logo-card {
+  display:grid;
+  gap:var(--space-6);
+  padding:var(--space-6);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  background:var(--surface);
+  min-width:0;
+}
+.logo-card h2 {
+  margin:0 0 var(--space-2);
+  font-size:17px;
+}
+.logo-card p {
+  margin:0;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
+.logo-stage {
+  --logo-stage-bg:var(--surface-2);
+  --logo-stage-ink:var(--muted);
+  display:grid;
+  place-items:center;
+  min-height:208px;
+  padding:var(--space-6);
+  border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  background:var(--logo-stage-bg);
+  color:var(--logo-stage-ink);
+}
+.logo-stage--dark {
+  --logo-stage-bg:#1e1e2e;
+  --logo-stage-ink:#cdd6f4;
+}
+.logo-stage--light {
+  --logo-stage-bg:#eff1f5;
+  --logo-stage-ink:#4c4f69;
+}
+.logo-sample {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:var(--space-3);
+  margin:0;
+}
+.logo-sample figcaption {
+  font-size:12px;
+  line-height:1.5;
+}
+.logo-sizes {
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:var(--space-6);
+  color:var(--muted);
+  padding:var(--space-4) 0;
+}
+.logo-comparison {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));
+  gap:var(--space-4);
+}
+@media(max-width:560px) {
+  .logo-card {padding:var(--space-4)}
+}
