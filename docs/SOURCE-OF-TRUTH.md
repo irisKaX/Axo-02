@@ -206,9 +206,9 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 ### Primary 03 · Animated Border (24. 10. 2026)
 
 - **Stav:** nová samostatná interaktivní ukázka v sekci Primary Styles, návrh ke schválení. Nezaměňovat s výchozím Primary 01 ani schválenou Primary 02 / Reveal Fill.
-- **Reference:** https://21st.dev/community/components/s/button?preview=%2F%40shadcnspace%2Fcomponents%2Fbutton-33 . Konkrétní live preview nešlo při implementaci spolehlivě načíst, takže aktuální chování je naše **interpretace animovaného borderu**, nikoli přesná kopie externí komponenty.
+- **Reference:** https://21st.dev/community/components/s/button?preview=%2F%40shadcnspace%2Fcomponents%2Fbutton-33 . Uživatelka následně dodala přímo React zdroj reference. Současná vanilla CSS implementace přebírá jeho princip nepřetržitě rotujícího gradientu s průhlednými úseky a vnitřní krycí plochou; nejde o instalovanou React komponentu.
 - **Barvy:** `--accent` dark `#8C00FF` + nová `--detail-magenta: #D10062`; nová barva je ve Foundations v dark i light. Zbylá paleta beze změn. Detail Magenta je doplňkový akcent, **nenahrazuje stavovou Error**.
-- **Implementace:** sdílený `renderButton(config)` v `components/button.js` podporuje koncept `animated-border`, CSS vlastní `components/button.css` u dalších Primary konceptů. Animovaná dvoubarevná hrana používá conic gradient a CSS `@property`; bez dalších knihoven nebo duplicitního button rendereru. Respektuje reduced motion.
+- **Implementace:** sdílený `renderButton(config)` v `components/button.js` podporuje koncept `animated-border`, CSS vlastní `components/button.css` u dalších Primary konceptů. Hrana využívá rotující pseudo-element `::before` s průhlednými úseky `conic-gradient`, vnitřní plochu `::after`, vlastní text nad oběma vrstvami a periodu 2,5 s **nepřetržitě**, nikoli jen při hoveru. `@property` se již nepoužívá. Barvy zůstávají `--accent` a `--detail-magenta`; bez další knihovny nebo duplicitního rendereru. Respektuje reduced motion.
 - **CSS zásada:** žádné override vrstvy, žádné `!important` a žádná změna ostatních Button stylů.
 
 ## 6. Pravidla spolupráce a vývoje
