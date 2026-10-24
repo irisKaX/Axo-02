@@ -161,6 +161,11 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 
 - Screenshot konce stránky ukazoval pravděpodobně otevřenou plovoucí nabídku Table Pagination mimo původní komponentu. Při scrollování stránky nebo viewportu se nyní výběr počtu řádků zavře místo toho, aby dál plaval nad jinou částí stránky. Zachované otevření, volba, klávesnice i ostatní navigační prvky. Změna pouze v původních event listenerech `components/pagination.js`, bez CSS override vrstev. Přímé vizuální ověření veřejného deploymentu neproběhlo.
 
+### Notebook Dock · skutečná magnification jako React Bits (25. 10. 2026)
+
+- Předchozí řešení stále nebylo podobné referenci: jen roztahovalo slot a škálovalo tlačítka. Nyní se skutečně animuje **velikost dlaždic i šířka jejich layoutu** podle vzdálenosti kurzoru, s Gaussovým poklesem pro sousední položky a tlumenou spring fyzikou přes requestAnimationFrame. Výchozí rozměr 50 px, maximální cíl 70 px, vliv cca 105 px, gap 10 px; na mobilních šířkách základ 40 px. Nejde o převzetí React komponenty, projekt zůstává bez knihoven.
+- Animace, layout i reduced motion upraveny přímo v `components/dock.css` a `components/dock.js`, bez CSS override vrstev. Tooltipy, badge, vybraný stav a stávající demo navigace zachovány. Výsledek čeká na vizuální potvrzení.
+
 ### Notebook Dock · úprava rozestupů (25. 10. 2026)
 
 - Podle screenshotu a reference React Bits bylo zvětšování ikon příliš namačkané. Zvětšeny mezery i vnitřní padding v původní definici `components/dock.css`.
