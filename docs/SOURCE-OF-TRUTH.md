@@ -164,12 +164,11 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 
 ### Akční tlačítka · Animovaný koš (24. 10. 2026)
 
-- **Oprava:** U varianty `Smazat vše` byl v animovaném SVG ponechán samostatný diagonální tah z původní ikony, který vizuálně připomínal druhé víko. Odstraněn přímo ze zdrojové SVG definice; `Smazat` a `Smazat vše` nyní používají shodnou skupinu jediného animovaného víka. Tlačítka mají odlišné přístupné názvy, avšak aktuálně stejný symbol; případné budoucí vizuální rozlišení řešit novým schváleným návrhem.
-
-
-- Kulatá ikonová tlačítka **Smazat** a **Smazat vše** používají vlastní SVG se samostatnou skupinou víka. Při hoveru nebo keyboard focusu se víko pootočí o 35° (300 ms), při opuštění vrátí zpět.
-- Zachován rozměr S (34×34), Destructive barva i focus token; u `prefers-reduced-motion` se přechod vypne. Textové varianty a ostatní ikony se nemění.
-- Styl je přímo u akčních tlačítek v `index.html`, bez duplicitních CSS override pravidel. SVG je vlastní inline implementace, ne import Hugeicons.
+- **Textová Smazat / Smazat vše:** obě používají shodný čistý statický symbol z `actionPaths.trash`. Z původní statické varianty `trashAll` odstraněn nadbytečný diagonální tah připomínající druhé víko; samostatná duplicitní definice už není potřeba. Textová tlačítka nemají animovanou skupinu víka. Přístupné názvy zůstávají odlišné, barva a SVG velikost 15 px se nezměnily.
+- **Kulatá Smazat / Smazat vše:** vlastní SVG s jedinou skupinou víka, stejné tělo koše a velikost SVG 16 px uvnitř tlačítka 34×34 px. Původní `fill-box/right center` otáčel víko kolem středu jeho pravého bounding boxu, nikoli skutečného pantu; při 35° horní tahy opouštěly SVG viewBox a ořezávaly se. Víko má nyní symetrické konce x=4 a x=20 a skutečný pant (20,6) určený pomocí `transform-box:view-box` a `transform-origin:20px 6px`. Otevírá se jemně o **14° za 300 ms**, bez zmenšení celé ikony, nového obalu nebo overflow hacku.
+- Hover a keyboard focus otevírají víko, po opuštění těchto stavů se zavírá. Disabled víko neotevírá. Destructive červený focus, původní button stavy a `prefers-reduced-motion` zůstávají: reduced motion vypíná přechod, stav se mění bez plynulého pohybu.
+- Cíleně ověřeno v Chromium v dark/light: obě textové ikony jsou statické a čisté; oba kruhy mají 34×34 px v default/hover/focus/pressed i disabled. Vzorkování SVG cest včetně tloušťky tahu v koncových stavech i během otevírání ověřilo, že neopouštějí viewBox ani kruh tlačítka. Skutečný pohyb myši ověřil otevření i zavření. Zkontrolován červený focus, disabled a reduced motion, prohlédnut zvětšený aktuální vzhled v obou tématech. Bez JavaScriptových výjimek; `git diff --check` prošel. Bez screenshotové baseline či nové testovací infrastruktury.
+- Opraveny pouze původní SVG definice a existující CSS pravidla u akčních tlačítek v `index.html`; ostatní komponenty a Foundations tokeny zůstaly beze změny. Žádné CSS override vrstvy, duplicitní styly ani `!important`. SVG je vlastní inline implementace, nikoli import Hugeicons.
 
 ## 6. Pravidla spolupráce a vývoje
 
