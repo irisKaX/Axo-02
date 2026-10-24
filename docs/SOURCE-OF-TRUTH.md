@@ -25,7 +25,7 @@
 
 | Sekce | Stav | Obsah |
 | --- | --- | --- |
-| Foundations | **Rozpracováno, funkční** | Palety, role, stavové barvy, O2 modrá, gradienty, Geist, typography/spacing/radius scale, borders/shadows, interactions, motion, opacity/blur, layout/layers, iconography |
+| Foundations | **Rozpracováno, funkční** | Palety, role, stavové barvy, O2 modrá, gradienty, Geist, typography/spacing/radius scale, borders/shadows, interactions, motion, opacity/blur, layout/layers, iconography, Accessibility, Breakpoints a Iconography Rules |
 | Tlačítka | **Rozpracováno, funkční ukázky** | Velikost S, klasické kapslové a kruhové ikonové; Primary, Secondary, Outline, Ghost, Destructive; Default, Hover, Focus, Pressed, Disabled, Loading; deset akčních tlačítek |
 | Navigace | **Prázdná sekce** | Návrh teprve vznikne |
 | Inputy a formuláře | **Prázdná sekce** | Návrh teprve vznikne |
@@ -75,6 +75,15 @@ Oficiální zdroje: https://github.com/hugeicons/hugeicons a https://hugeicons.c
 
 **Budoucí krok, nikoliv aktuální implementace:** pokud a až přejdeme na React, zvážit instalaci `@hugeicons/react` + `@hugeicons/core-free-icons` a nahrazení provizorních SVG podle konkrétních ikon. Nepřidávat React jen kvůli ikonám. Pokud se přímo převezmou MIT SVG, uložit předepsané licenční oznámení.
 
+### Foundations V1 · Accessibility, Breakpoints, Iconography Rules (24. 10. 2026)
+
+**Stav: doplněno jako návrhové zásady v existujícím katalogu**, nikoliv formální certifikace nebo dokončená implementace všech budoucích komponent.
+
+- **Accessibility (cíl WCAG 2.2 AA):** běžný text minimálně 4,5:1, velký text 3:1, relevantní netextové hranice a indikátory 3:1; viditelný klávesnicový focus, kontextové barvy pro error/warning/success, ovladatelnost klávesnicí, reduced motion. WCAG 2.2 AA má požadavek na cíle nejméně 24×24 CSS px nebo odpovídající prostorové výjimky; pro pohodlné dotykové ovládání **doporučujeme 44×44 px**. Současná S tlačítka mají 34px vizuální výšku, což samo o sobě nepotvrzuje splnění celé přístupnosti.
+- **Breakpoints:** návrhové rozdělení Mobile 0–599, Tablet 600–1023, Laptop 1024–1439, Desktop 1440+ px. **Nejde o jednotné implementované breakpoints celé aplikace**. Dosud skutečné CSS: navigace katalogu pod 790 px, button grid pod 980 a 560 px. Budoucí obrazovky stavět mobile-first, flexibilní a bez nechtěného horizontálního overflow.
+- **Iconography Rules:** Hugeicons Free Stroke Rounded je zvolený budoucí směr. V katalogu jsou prozatím vlastní inline SVG; 24×24 viewBox, velikosti 16/20/24 px, currentColor, zaoblené konce/spoje, pracovní stroke 1.8. Dekorativní ikona aria-hidden, ikonové tlačítko popsané aria-label. Nemíchat nahodile ikonové rodiny. React a Hugeicons npm balíčky **nejsou nainstalované**.
+- Vše přidáno přímo do stávající sekce Foundations, bez nového frameworku, katalogu nebo povinné screenshotové gate. **Foundations V1 = dostatečný návrhový základ**, další pravidla rozvíjet dle skutečných komponent.
+
 ## 5. Tlačítka · aktuální stav
 
 - Velikost **S**, cca 34px výška; běžná tlačítka **pill**, ikonová **circle**.
@@ -97,7 +106,7 @@ Oficiální zdroje: https://github.com/hugeicons/hugeicons a https://hugeicons.c
 
 ## 7. První budoucí kroky
 
-- Dopracovat Foundations jen podle potřeby konkrétních komponent; připravované oblasti text role, accessibility a pravidla ikon.
+- Foundations V1 jsou návrhově připravené; jejich pravidla dále upřesňovat pouze podle reálných komponent a přístupnost průběžně ověřovat.
 - Pokračovat v návrzích tlačítek a poté navigace, inputů, karet a overlays.
 - Výběr skutečných SVG z Hugeicons Free a podmínky MIT jsou budoucí implementační krok.
 - React/TypeScript/Vite nejsou aktuální povinnost ani dokončená práce.
