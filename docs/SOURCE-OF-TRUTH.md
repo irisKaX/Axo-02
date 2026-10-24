@@ -151,6 +151,12 @@ Cílené ověření v Chromium nejprve reprodukovalo obě chyby a po opravě pro
 
 Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnání v Chromium prošlo bez rozdílů ve sledovaných vizuálních CSS vlastnostech, rozměrech a kořenových tokenech před/po úklidu. Zahrnulo dark/light, Foundations, Tlačítka a prázdnou sekci, šířky 1440/981/980/791/790/561/560/390 px, hover, focus-visible, pressed, disabled, loading i reduced motion. Přechody byly dokončeny a spinner porovnán ve stejné fázi; nejde o pixelový audit. Funkční kontrola prošla pro render všech variant, přepnutí a obnovení tématu, červený destructive focus, disabled/loading i mobilní menu, Escape a zavření menu po navigaci. Konzole bez JavaScriptových výjimek. Dvě ponechané interakční odchylky byly potvrzeny na původní i upravené verzi. Prohlédnuty aktuální mobilní light Foundations a desktopové dark Tlačítka; ve zkontrolovaném rozsahu nebyla zjištěna nová viditelná regrese. `git diff --check` prošel. Nevznikla testovací infrastruktura, screenshotová baseline, framework ani nový release workflow. Nejde o úplný audit přístupnosti nebo všech prohlížečů.
 
+### Table Pagination · oprava plovoucího menu (25. 10. 2026)
+
+- Předchozí oprava zavírání menu při scrollování nestačila; uživatelka stále viděla útvar pod patičkou. V Navigaci už bylo správné odebrání `.canvas`, nejde o příčinu problému.
+- Nabídka počtu řádků nyní nepoužívá `popover="manual"` ani top layer. Jde o běžné pevně pozicované menu s atributem `hidden`, které při uzavření nebo výměně obsahu skutečně zmizí. Přímo ve stávající CSS definici je stav `.page-size-list[hidden]{display:none}`. Zůstává výběr počtu řádků, rozestupy, klávesnice a zavírání při scrollování.
+- Změny pouze v `components/pagination.js`, `components/pagination.css` a aktualizaci verzí assetů v `index.html`. Žádné CSS override vrstvy. Veřejné vizuální ověření není k dispozici.
+
 ### Oprava Table Pagination popover při scrollování (25. 10. 2026)
 
 - Screenshot konce stránky ukazoval pravděpodobně otevřenou plovoucí nabídku Table Pagination mimo původní komponentu. Při scrollování stránky nebo viewportu se nyní výběr počtu řádků zavře místo toho, aby dál plaval nad jinou částí stránky. Zachované otevření, volba, klávesnice i ostatní navigační prvky. Změna pouze v původních event listenerech `components/pagination.js`, bez CSS override vrstev. Přímé vizuální ověření veřejného deploymentu neproběhlo.
