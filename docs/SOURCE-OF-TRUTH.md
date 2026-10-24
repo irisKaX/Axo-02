@@ -162,6 +162,12 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 - Výchozí podklad využívá `--accent-bg`, hover plynule odhaluje existující `--gradient-2` za 400 ms; tlačítko nemá border (focus outline zůstává). Zachována velikost S, kapslový radius, focus a reduced motion.
 - Styly jsou součástí jediného původního bloku ukázky v `index.html`; stávající `.axo-btn` a ostatní varianty jsou nedotčené. Žádné CSS override vrstvy.
 
+### Hover animace kulatých akčních ikon (24. 10. 2026)
+
+- Jen kulatá ikonová tlačítka: Stáhnout posun dolů 2 px, Nahrát nahoru 2 px, Uložit rotace 8°, Přidat rotace 90°, Otevřít diagonální posun 2 px, Skrýt rotace −8° a jemné ztlumení, Kopírovat posun doprava 2 px, Upravit rotace 12°.
+- Kulaté Smazat a Smazat vše zachovávají pouze dříve schválenou animaci víka; textové varianty se nemění. Tooltipy a přístupné popisky se zachovávají.
+- Příslušné hover/focus selektory jsou v jediném stávajícím bloku CSS akčních tlačítek v `index.html`, rozlišení podle `data-action`. Bez CSS override vrstvy. Animace využívají `--duration-normal` / `--ease-standard` a respektují reduced motion.
+
 ### Tooltip u ikonových akčních tlačítek (24. 10. 2026)
 
 - Všech deset kulatých akčních tlačítek má jednotný tooltip s názvem akce, který se zobrazuje při hoveru i keyboard focusu. Pro Smazat / Smazat vše zůstávají ikony i animace beze změn.
