@@ -13,38 +13,49 @@ const dockItems=[["home","Přehled"],["search","Hledat"],["notes","Poznámky"],[
 let dockSelected="notes";
 function dockIcon(id){return '<svg viewBox="0 0 24 24" aria-hidden="true">'+dockPaths[id]+'</svg>'}
 function renderDock(){
+ if(dockFrame)cancelAnimationFrame(dockFrame);dockFrame=0;dockMouseX=null;dockStates=[];
  const host=document.getElementById("dock-catalog");if(!host)return;
  host.innerHTML='<div class="dock-catalog"><section class="dock-demo-card"><div><h2>10 · Notebook Dock</h2><p>Plovoucí ikonová navigace pro budoucí Notebook. Jemný macOS magnification efekt, aktivní položka, tooltipy a stavové indikátory.</p></div><div class="dock-stage"><nav class="axo-dock" aria-label="Notebook Dock demo">'+
  dockItems.map(([id,label],i)=> (id==="trash"?'<span class="axo-dock-divider" aria-hidden="true"></span>':'')+
  '<div class="axo-dock-item"><button type="button" class="axo-dock-button" data-dock-id="'+id+'" aria-label="'+label+'" aria-pressed="'+(id===dockSelected)+'" aria-describedby="dock-tip-'+id+'">'+dockIcon(id)+(id==="tasks"?'<span class="axo-dock-count" aria-hidden="true">3</span>':id==="notes"?'<span class="axo-dock-notification" aria-hidden="true"></span>':'')+'</button><span class="axo-dock-indicator" aria-hidden="true"></span><span class="axo-dock-tooltip" id="dock-tip-'+id+'" role="tooltip">'+label+'</span></div>').join('')+
  '</nav></div><div class="dock-demo-status" id="dock-status" aria-live="polite">Aktivní: Poznámky. Demo nemění skutečnou navigaci aplikace.</div></section></div>';
 }
-function dockMagnify(event){
- const dock=event.target.closest(".axo-dock");
- if(!dock||matchMedia("(prefers-reduced-motion: reduce)").matches)return;
- dock.querySelectorAll(".axo-dock-item").forEach(item=>{
-  const button=item.querySelector(".axo-dock-button");
+/* React Bits-inspired distance magnification, vanilla JS spring, no dependencies. */
+let dockFrame=0,dockMouseX=null,dockStates=[];
+function dockBase(){return matchMedia("(max-width:650px)").matches?40:50}
+function dockSetPointer(event){
+ const dock=event.target.closest(".axo-dock");if(!dock||event.pointerType!=="mouse")return;
+ dockMouseX=event.clientX;
+ if(!dockFrame)dockFrame=requestAnimationFrame(dockAnimate);
+}
+function dockAnimate(){
+ const dock=document.querySelector(".axo-dock");
+ if(!dock||!dock.isConnected){dockFrame=0;dockStates=[];dockMouseX=null;return}
+ const items=[...dock.querySelectorAll(".axo-dock-item")],base=dockBase();
+ const reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;
+ let active=false;
+ items.forEach((item,i)=>{
+  const previous=dockStates[i]||{value:base,velocity:0};
+  dockStates[i]=previous;
   const rect=item.getBoundingClientRect();
-  const distance=Math.abs(event.clientX-(rect.left+rect.width/2));
-  const weight=Math.max(0,1-distance/145);
-  const narrow=matchMedia("(max-width:650px)").matches;
-  const base=narrow?44:60;
-  item.style.setProperty("--dock-slot",(base+weight*(narrow?9:21))+"px");
-  button.style.setProperty("--dock-scale",String(1+weight*.13));
-  button.style.setProperty("--dock-lift",(weight*9)+"px");
+  const center=rect.left+rect.width/2;
+  const distance=dockMouseX===null?Infinity:Math.abs(dockMouseX-center);
+  const bell=Math.exp(-Math.pow(distance/105,2)*1.25);
+  const desired=(reduced?base:base+20*bell);
+  const force=(desired-previous.value)*.19;
+  previous.velocity=(previous.velocity+force)*.68;
+  previous.value+=previous.velocity;
+  if(Math.abs(previous.value-desired)>.08||Math.abs(previous.velocity)>.08)active=true;
+  item.style.setProperty("--dock-size",previous.value.toFixed(2)+"px");
  });
+ if(active||dockMouseX!==null)dockFrame=requestAnimationFrame(dockAnimate);
+ else dockFrame=0;
 }
-function resetDock(dock){
- if(!dock)return;
- dock.querySelectorAll(".axo-dock-item").forEach(item=>{
-  item.style.removeProperty("--dock-slot");
-  const button=item.querySelector(".axo-dock-button");
-  button.style.removeProperty("--dock-scale");
-  button.style.removeProperty("--dock-lift");
- });
-}
-document.addEventListener("pointermove",event=>{if(event.pointerType==="mouse")dockMagnify(event)});
-document.addEventListener("pointerout",event=>{const dock=event.target.closest(".axo-dock");if(dock&&!dock.contains(event.relatedTarget))resetDock(dock)});
+document.addEventListener("pointermove",dockSetPointer);
+document.addEventListener("pointerout",event=>{
+ const dock=event.target.closest(".axo-dock");
+ if(dock&&!dock.contains(event.relatedTarget)){dockMouseX=null;if(!dockFrame)dockFrame=requestAnimationFrame(dockAnimate)}
+});
 document.addEventListener("click",event=>{
  const button=event.target.closest("[data-dock-id]");if(!button)return;
  dockSelected=button.dataset.dockId;
