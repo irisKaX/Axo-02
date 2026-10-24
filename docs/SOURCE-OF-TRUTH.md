@@ -14,7 +14,7 @@
 
 ## 2. Skutečná technologie (nyní)
 
-- **HTML + CSS + vanilla JavaScript**, hlavní implementace v `index.html`.
+- **HTML + CSS + vanilla JavaScript**. `index.html` skládá katalog; Button má kanonické zdroje v `components/button.js` a `components/button.css`. Navigační komponenty mají své malé samostatné soubory.
 - **Bez Reactu, Vite, TypeScriptu, npm závislostí a bundleru.** React ekosystém **není nainstalovaný**.
 - **Globální dark/light:** proměnné v `:root` a `:root[data-theme="light"]`; změna režimu přepíná katalog i jeho komponenty; volba se ukládá do `localStorage`.
 - **Písmo:** Geist načítaný přes Google Fonts, systémové fallbacky.
@@ -26,7 +26,7 @@
 | Sekce | Stav | Obsah |
 | --- | --- | --- |
 | Foundations | **Rozpracováno, funkční** | Palety, role, stavové barvy, O2 modrá, gradienty, Geist, typography/spacing/radius scale, borders/shadows, interactions, motion, opacity/blur, layout/layers, iconography, Accessibility, Breakpoints a Iconography Rules |
-| Tlačítka | **Rozpracováno, funkční ukázky** | Velikost S, klasické kapslové a kruhové ikonové; Primary, Secondary, Outline, Ghost, Destructive; Default, Hover, Focus, Pressed, Disabled, Loading; deset akčních tlačítek |
+| Tlačítka | **Button System V1, funkční ukázky** | Button Variants, Button Formats, Action Examples a Hover Concepts; jeden renderer a základ, velikost S, pět variant, tři formáty a šest stavů |
 | Navigace | **Rozpracováno** | Pagination (Numbered/Compact/Table), Tabs (Pill/Underline) a Breadcrumbs (plná/kompaktní ukázka). Další navigační komponenty zatím nejsou vytvořené. |
 | Inputy a formuláře | **Prázdná sekce** | Návrh teprve vznikne |
 | Karty | **Prázdná sekce** | Návrh teprve vznikne |
@@ -69,7 +69,7 @@
 **Vybraný budoucí ikonový směr:** **Hugeicons Free, Stroke Rounded**. Bezplatná sada `@hugeicons/core-free-icons` má MIT licenci; komerční použití i redistribuce jsou možné se zachováním licenčního oznámení. **Pro ikony Pro tato licence neplatí.**  
 Oficiální zdroje: https://github.com/hugeicons/hugeicons a https://hugeicons.com/docs/faqs/license-questions .
 
-**Skutečný stav dnes:** několik **vlastních inline SVG** v `index.html`. Nejsou importované z balíčku Hugeicons, proto je neoznačovat jako oficiální Hugeicons SVG. Foundations zobrazuje malý výběr jejich reálných ukázek. V akčních tlačítkách používáme stejné ikony.
+**Skutečný stav dnes:** několik **vlastních inline SVG** definovaných v `components/button.js`, které katalog používá i ve Foundations. Nejsou importované z balíčku Hugeicons, proto je neoznačovat jako oficiální Hugeicons SVG. Foundations zobrazuje malý výběr jejich reálných ukázek. V akčních tlačítkách používáme stejné ikony.
 
 **Designový záměr:** 24×24 viewBox, velikosti použití 16 / 20 / 24 px, zaoblené line caps/joins, `currentColor`, přístupný popisek `aria-label` u čistě ikonových tlačítek.
 
@@ -84,7 +84,7 @@ Oficiální zdroje: https://github.com/hugeicons/hugeicons a https://hugeicons.c
 - **Iconography Rules:** Hugeicons Free Stroke Rounded je zvolený budoucí směr. V katalogu jsou prozatím vlastní inline SVG; 24×24 viewBox, velikosti 16/20/24 px, currentColor, zaoblené konce/spoje, pracovní stroke 1.8. Dekorativní ikona aria-hidden, ikonové tlačítko popsané aria-label. Nemíchat nahodile ikonové rodiny. React a Hugeicons npm balíčky **nejsou nainstalované**.
 - Vše přidáno přímo do stávající sekce Foundations, bez nového frameworku, katalogu nebo povinné screenshotové gate. **Foundations V1 = dostatečný návrhový základ**, další pravidla rozvíjet dle skutečných komponent.
 
-## 5. Tlačítka · aktuální stav
+## 5. Tlačítka · Button System V1
 
 - Velikost **S**, cca 34px výška; běžná tlačítka **pill**, ikonová **circle**.
 - Styly: Primary, Secondary, Outline, Ghost, Destructive.
@@ -93,11 +93,32 @@ Oficiální zdroje: https://github.com/hugeicons/hugeicons a https://hugeicons.c
 - Akce v katalogu: Stáhnout, Uložit, Smazat, Smazat vše, Nahrát, Přidat, Otevřít, Skrýt, Kopírovat, Upravit. Každá má textovou a kulatou ikonovou variantu. **Jde o vizuální demonstrace; nejsou propojené na skutečné akce aplikace.**
 - Budoucí navigační položky řešit v sekci **Navigace**, nikoli automaticky jako další Button varianty.
 
+### Jediný zdroj a renderer (24. 10. 2026)
+
+- **Kanonické styly:** `components/button.css`. Jediný základ `.axo-btn` určuje sdílenou geometrii, border, radius, typografii a stavy; velikost S má jediný lokální parametr `--button-size:34px`. Kruhový formát z něj odvozuje šířku i výšku. Varianty, formáty a experiment mají pouze své rozdílové parametry; žádná nová CSS override vrstva ani `!important`.
+- **Kanonický renderer:** `renderButton(config)` v `components/button.js`. Také loading používá tento renderer. Původní `makeButton`, samostatné HTML loading tlačítek a ručně složená tlačítka v akčních ukázkách byly odstraněny z `index.html`. Ten pouze načítá komponentu a umisťuje její `buttonsHTML`; globální přepínač tématu ani Foundations se neměnily.
+- Config: `label`, `variant` (`primary`, `secondary`, `outline`, `ghost`, `destructive`), `size` (pouze `s`), `format` (`text`, `icon-text`, `icon-only`), `state` (`default`, `hover`, `focus`, `pressed`, `disabled`, `loading`), volitelný `icon`, `iconPosition`, `motion`, `tooltip`, `tooltipId`, `ariaLabel`, `title` a explicitní experiment `concept:"reveal-fill"`. `icon` přijímá důvěryhodné SVG/obsah katalogu, není to sanitizer externího HTML. Labely, tooltipy a atributové hodnoty renderer escapuje. Nepodporovaná velikost/varianta/formát/stav se odmítne; **M/L nejsou implementované**.
+- Disabled používá skutečný atribut `disabled` a nemá hover/pressed efekt ani animaci akční ikony. Loading má `aria-busy`, přístupný název a společný spinner (13 px / 15 px pro Icon Only); zachovává dosavadní demonstrační blokování pointer událostí. Hover/Focus/Pressed v configu vytvářejí demonstrační třídy, zatímco reálné interakce dál ovládají CSS pseudotřídy.
+- `motion` se aktivuje pouze pro Icon Only. Deset stávajících akcí zachovává své pohyby; Smazat/Smazat vše používají pouze víko se skutečným pantem. Textové akce zůstávají statické. Animace nyní patří přímo Buttonu s `data-action`, nejsou závislé na umístění v `.action-pair`. U nově sjednoceného použití je animace stále explicitně volitelná.
+- Volitelný vlastní tooltip sdílí jeden renderer i CSS, nese `role=tooltip`, unikátní ID a vazbu `aria-describedby`; Icon Only má vždy přístupný název. Akční ukázky zachovávají všech deset tooltipů při hoveru i keyboard focusu bez nativního `title`. Stavové kruhové ukázky si ponechávají své původní jednoduché titulky; automatické tooltip ID je dostupné pro další konfigurace.
+- **Katalog:** 01 · Button Variants (všech pět variant a šest stavů), 02 · Button Formats (Text / Icon + Text / Icon Only a všechny kruhové stavové ukázky), 03 · Action Examples (deset akcí v obou provedeních), 04 · Hover Concepts (jen neschválený Reveal Fill). Nevznikl nový katalog ani Playground.
+- **Reveal Fill:** generuje jej stejný renderer a sdílí geometrii `.axo-btn`, ale má explicitní lokální modifier `reveal-fill` pro dosavadní borderless podklad, odlišný padding/gap, fontový line-height, gradient 02 a animaci. Jeho žádoucí odlišnosti nejsou druhou implementací Buttonu ani novou podobou běžného Primary. Zůstává návrhem ke schválení. Reduced motion vypíná jeho přechody; disabled neodhaluje gradient.
+- Nejde o framework nebo produkční knihovnu. Není přidán React, TypeScript, Vite, nové varianty, M/L, napojení na API ani skutečné destruktivní akce. `components/button.js` obsahuje i malé konfigurační generátory katalogových ukázek; nevznikla další vrstva abstrakcí.
+- **Ověření V1:** cílené kontroly v Chromium prošly v dark/light pro všechny varianty/formáty, šest stavů, disabled bez efektů, loading, tooltip hover/focus, všech deset akčních animací a statické textové ikony, červený destructive focus, reduced motion i Reveal Fill včetně pressed. Porovnání původních 81 tlačítek na šířkách 1440 a 360 px nezjistilo rozdíl ve sledovaných vykreslených rozměrech, barvách, borderech, typografii a stavových filtrech; Reveal nově dědí `min-height` ze základu při zachování stejné skutečné výšky. Dočasná změna jediného `--button-size` na 38 px ovlivnila všechna použití včetně Reveal a rozměrů kruhu, po kontrole vráceno na 34 px. Ověřena i volitelná animace mimo obal Action Examples, názvy a vazby tooltipů. Mobil bez horizontálního overflow; prohlédnut aktuální desktop/mobil. Bez JavaScriptových výjimek; `node --check` a `git diff --check` prošly. Do repozitáře nepřibyl testovací framework, screenshotová baseline ani auditní infrastruktura.
+
+Příklady konfigurace:
+
+```js
+renderButton({label:"Uložit",variant:"primary",format:"text"});
+renderButton({label:"Stáhnout",variant:"secondary",format:"icon-text",icon:actionIcon("download")});
+renderButton({label:"Smazat",variant:"destructive",format:"icon-only",icon:actionIcon("trash",true),motion:"trash",tooltip:"Smazat"});
+```
+
 ## CSS pravidlo · závazné od 24. 10. 2026
 
 **Nepřidávat CSS override vrstvy.** Neopravovat původní komponentu tím, že se na konec CSS souboru připojí nový selektor přebíjející starý. Každou opravu provést přímo ve vlastním původním pravidle nebo tokenu. Každá CSS komponenta má mít jeden srozumitelný zdroj definice.
 
-**Audit katalogu 24. 10. 2026:** v `index.html` byly nalezeny pozdější druhé bloky `:root` a `:root[data-theme="light"]` s Foundations tokeny. Ty jsou nyní sloučeny do jediného původního dark a light bloku. Speciální destructive hover byl přesunut vedle definice destructive varianty, SVG pravidlo do sekce Foundations. Provedena kontrola párování CSS složených závorek a unikátních tokenových bloků. **Bez nové CSS vrstvy a bez změny výsledných hodnot.** Nejde o tvrzení automatického browser/a11y auditu každého vizuálního stavu.
+**Audit katalogu 24. 10. 2026:** v `index.html` byly nalezeny pozdější druhé bloky `:root` a `:root[data-theme="light"]` s Foundations tokeny. Ty jsou nyní sloučeny do jediného původního dark a light bloku. Speciální destructive hover nyní určuje lokální parametr varianty ve společném Button CSS; SVG pravidlo pro Foundations zůstává v sekci Foundations. Provedena kontrola párování CSS složených závorek a unikátních tokenových bloků. **Bez nové CSS vrstvy a bez změny výsledných hodnot.** Nejde o tvrzení automatického browser/a11y auditu každého vizuálního stavu.
 
 **Legitimní CSS kaskáda není zakázaná:** tematické hodnoty dark/light, stavové selektory `:hover`, `:focus-visible`, `:disabled`, varianty `.axo-btn--destructive` a cílené `@media` se liší záměrně. Jsou to součásti návrhu, ne záplaty. Zakázané je neřízené duplikování stejné komponenty nebo tokenu v pozdější vrstvě.
 
@@ -160,18 +181,18 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 
 - V sekci Tlačítka přibyla jediná izolovaná interaktivní ukázka **Primary · Reveal Fill**. Jde o návrh hoveru, **není schválenou výchozí podobou Primary**.
 - Výchozí podklad využívá `--accent-bg`, hover plynule odhaluje existující `--gradient-2` za 400 ms; tlačítko nemá border (focus outline zůstává). Zachována velikost S, kapslový radius, focus a reduced motion.
-- Styly jsou součástí jediného původního bloku ukázky v `index.html`; stávající `.axo-btn` a ostatní varianty jsou nedotčené. Žádné CSS override vrstvy.
+- Styly jsou součástí jediného bloku experimentu v `components/button.css`; společný renderer a `.axo-btn` poskytují základ, lokální modifier zachovává odlišný efekt. Běžné Primary a ostatní varianty efekt nepřebírají. Žádné CSS override vrstvy.
 
 ### Hover animace kulatých akčních ikon (24. 10. 2026)
 
 - Jen kulatá ikonová tlačítka: Stáhnout posun dolů 2 px, Nahrát nahoru 2 px, Uložit rotace 8°, Přidat rotace 90°, Otevřít diagonální posun 2 px, Skrýt rotace −8° a jemné ztlumení, Kopírovat posun doprava 2 px, Upravit rotace 12°.
 - Kulaté Smazat a Smazat vše zachovávají pouze dříve schválenou animaci víka; textové varianty se nemění. Tooltipy a přístupné popisky se zachovávají.
-- Příslušné hover/focus selektory jsou v jediném stávajícím bloku CSS akčních tlačítek v `index.html`, rozlišení podle `data-action`. Bez CSS override vrstvy. Animace využívají `--duration-normal` / `--ease-standard` a respektují reduced motion.
+- Příslušné hover/focus selektory jsou v jediném bloku `components/button.css`, rozlišení podle `data-action` z volitelného `motion` v rendereru. Mají podmínku `:not(:disabled)`. Bez CSS override vrstvy. Animace využívají `--duration-normal` / `--ease-standard` a respektují reduced motion.
 
 ### Tooltip u ikonových akčních tlačítek (24. 10. 2026)
 
 - Všech deset kulatých akčních tlačítek má jednotný tooltip s názvem akce, který se zobrazuje při hoveru i keyboard focusu. Pro Smazat / Smazat vše zůstávají ikony i animace beze změn.
-- Tooltip je jednoduché sdílené pravidlo `.action-tooltip` a `.action-tooltip-wrap` u původních akčních tlačítek v `index.html`; není to nový CSS override. Zůstává `aria-label` a doplněno `aria-describedby`. Nativní `title` odstraněn, aby nevznikaly dva tooltipy.
+- Tooltip je jednoduché sdílené pravidlo `.action-tooltip` a `.action-tooltip-wrap` v `components/button.css`, generované pomocí `renderButton` v `components/button.js`; není to nový CSS override. Zůstává `aria-label` a doplněno `aria-describedby`. Nativní `title` odstraněn, aby nevznikaly dva tooltipy.
 - Používá barvy, radius, motion a vrstvy Foundations; respektuje reduced motion. Jde o katalogový vzor, nikoli hotovou univerzální overlay komponentu pro celou budoucí aplikaci.
 
 ### Akční tlačítka · Animovaný koš (24. 10. 2026)
@@ -180,7 +201,7 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 - **Kulatá Smazat / Smazat vše:** vlastní SVG s jedinou skupinou víka, stejné tělo koše a velikost SVG 16 px uvnitř tlačítka 34×34 px. Původní `fill-box/right center` otáčel víko kolem středu jeho pravého bounding boxu, nikoli skutečného pantu; při 35° horní tahy opouštěly SVG viewBox a ořezávaly se. Víko má nyní symetrické konce x=4 a x=20 a skutečný pant (20,6) určený pomocí `transform-box:view-box` a `transform-origin:20px 6px`. Otevírá se jemně o **14° za 300 ms**, bez zmenšení celé ikony, nového obalu nebo overflow hacku.
 - Hover a keyboard focus otevírají víko, po opuštění těchto stavů se zavírá. Disabled víko neotevírá. Destructive červený focus, původní button stavy a `prefers-reduced-motion` zůstávají: reduced motion vypíná přechod, stav se mění bez plynulého pohybu.
 - Cíleně ověřeno v Chromium v dark/light: obě textové ikony jsou statické a čisté; oba kruhy mají 34×34 px v default/hover/focus/pressed i disabled. Vzorkování SVG cest včetně tloušťky tahu v koncových stavech i během otevírání ověřilo, že neopouštějí viewBox ani kruh tlačítka. Skutečný pohyb myši ověřil otevření i zavření. Zkontrolován červený focus, disabled a reduced motion, prohlédnut zvětšený aktuální vzhled v obou tématech. Bez JavaScriptových výjimek; `git diff --check` prošel. Bez screenshotové baseline či nové testovací infrastruktury.
-- Opraveny pouze původní SVG definice a existující CSS pravidla u akčních tlačítek v `index.html`; ostatní komponenty a Foundations tokeny zůstaly beze změny. Žádné CSS override vrstvy, duplicitní styly ani `!important`. SVG je vlastní inline implementace, nikoli import Hugeicons.
+- Kanonické SVG definice jsou nyní v `components/button.js`, pravidla víka v `components/button.css`; ostatní komponenty a Foundations tokeny zůstávají beze změny. Žádné CSS override vrstvy, duplicitní styly ani `!important`. SVG je vlastní inline implementace, nikoli import Hugeicons.
 
 ## 6. Pravidla spolupráce a vývoje
 
