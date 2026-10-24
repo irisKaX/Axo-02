@@ -101,6 +101,31 @@ Oficiální zdroje: https://github.com/hugeicons/hugeicons a https://hugeicons.c
 
 **Legitimní CSS kaskáda není zakázaná:** tematické hodnoty dark/light, stavové selektory `:hover`, `:focus-visible`, `:disabled`, varianty `.axo-btn--destructive` a cílené `@media` se liší záměrně. Jsou to součásti návrhu, ne záplaty. Zakázané je neřízené duplikování stejné komponenty nebo tokenu v pozdější vrstvě.
 
+### CSS Cleanup & Code Quality · 24. 10. 2026
+
+Kompletní kontrola zahrnula základní CSS, media queries, obě témata, Foundations, tlačítka, navigaci i inline styly v HTML a JS šablonách. Nálezy počítáme jako **9 skupin: 7 vyčištěných a 2 ponechané interakční odchylky**; jednotlivé počty deklarací níže nejsou počtem samostatných vizuálních chyb.
+
+**Provedený úklid bez záměrné změny designu:**
+
+1. Odstraněno **24 identických deklarací** z light tématu: O2 Blue, sdílené sémantické aliasy a pět gradientů. Jejich jediným zdrojem je nyní základní `:root`; aliasy nadále vyhodnocují aktuální tematické barvy. Skutečně odlišné light barvy, původní paleta a stíny zůstávají.
+2. Odstraněno **10 nepoužívaných pravidel**: `.type-title`, `.type-heading`, `.type-body`, `.type-caption`, `.radius-samples`, `.spacing-line`, `.spacing-line i`, `.fdn-type`, `.fdn-type:last-child`, `.fdn-type-label`. Konzumenti nebyli nalezeni ani ve zdrojových šablonách, ani při průchodu sekcemi katalogu.
+3. Odstraněn neplatný shorthand `font:600 12px/1 inherit` v `.axo-btn`, který prohlížeč ignoroval. Rodinu dál dědí přes `button{font:inherit}`, platné velikosti, váha a line-height zůstaly.
+4. Odstraněny nadbytečné `min-height:34px` a `line-height:1` z kruhové varianty; stejné hodnoty již určuje základní `.axo-btn`.
+5. Odstraněny **oba `!important`** z Foundations reduced-motion pravidla. Jeho umístění a specificita stačí; odstraněno také zbytečné `animation:none` u ukázek, které nemají CSS animaci. Omezení přechodů zůstává, stejně jako samostatné reduced-motion pravidlo spinneru.
+6. Opraven konflikt vlastnictví rozměrů `.radius-sample`: původní nevyužité 78×70 px byly vždy přepsány inline na 76×64 px. Výsledných **76×64 px** je nyní přímo v základním pravidle, inline zůstává pouze dynamický radius.
+7. Statická váha tečky loga patří k `.brandmark span`; opakované focus ukázky používají místní `.fdn-demo.demo-focus` a error/selected modifikátory vedle původní komponenty. **Počet zdrojových míst se `style` klesl z 31 na 26** (počet míst v šablonách, nikoli vykreslených elementů).
+
+**Záměrně zachováno:** opakované `.sidebar` a `.foot` upravují mobilní layout, `.axo-btn .spinner` respektuje reduced motion a `.axo-btn--circle .spinner` skutečně potřebuje jiné rozměry. Specifické SVG rozměry akčních tlačítek jsou oprávněnou variantou. Dynamické swatche, gradienty, typografické parametry, spacing, radius, border/shadow a velikosti ikon zůstávají inline. Také několik jednorázových místních rozestupů a obalů ukázek zůstává inline; jejich nahrazení samostatnými třídami by zde přidávalo další systém bez zjednodušení. Dokumentační tokeny bez přímého použití v komponentách nejsou mrtvé styly: zůstávají součástí Foundations. Statická kontrola nenašla opakované vlastnosti uvnitř jednoho pravidla; všech 83 kořenových tokenů má neprázdnou vypočtenou hodnotu.
+
+**Ponechané problémy — status `ISSUES REMAINING`:**
+
+- Destructive hover pravidlo se stejnou specificitou jako obecný pressed stav přichází později. Při současném `:hover` a `:active` proto vyhrává `brightness(1.05)`, zatímco samostatná demo ukázka Pressed používá `brightness(.9)`.
+- Hover selektory Outline/Ghost nemají podmínku `:not(:disabled)`, takže disabled tlačítkům mění pozadí. Také disabled Foundations demo zachovává hover barvu (jeho transformaci disabled pravidlo správně ruší).
+
+Tyto odchylky předcházejí úklidu. Jejich oprava by měnila vykreslené interakční stavy, proto podle požadavku zachovat vzhled zůstávají beze změny. Nejsou zakryté novým přepisem. **Trvalé pravidlo proti CSS override vrstvám nadále platí.**
+
+Ověření úklidu: dočasné porovnání v Chromium prošlo bez rozdílů ve sledovaných vizuálních CSS vlastnostech, rozměrech a kořenových tokenech před/po úklidu. Zahrnulo dark/light, Foundations, Tlačítka a prázdnou sekci, šířky 1440/981/980/791/790/561/560/390 px, hover, focus-visible, pressed, disabled, loading i reduced motion. Přechody byly dokončeny a spinner porovnán ve stejné fázi; nejde o pixelový audit. Funkční kontrola prošla pro render všech variant, přepnutí a obnovení tématu, červený destructive focus, disabled/loading i mobilní menu, Escape a zavření menu po navigaci. Konzole bez JavaScriptových výjimek. Dvě ponechané interakční odchylky byly potvrzeny na původní i upravené verzi. Prohlédnuty aktuální mobilní light Foundations a desktopové dark Tlačítka; ve zkontrolovaném rozsahu nebyla zjištěna nová viditelná regrese. `git diff --check` prošel. Nevznikla testovací infrastruktura, screenshotová baseline, framework ani nový release workflow. Nejde o úplný audit přístupnosti nebo všech prohlížečů.
+
 ## 6. Pravidla spolupráce a vývoje
 
 1. **Design-first:** nejdřív konkrétní zadání, rychlá vizuální úprava, publikace katalogu, zpětná vazba.
