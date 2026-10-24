@@ -270,6 +270,12 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 - Oba vzory používají **stávající `renderButton()`** ze společného Button System V1; nezavádí se druhá implementace tlačítek. Kanonické styly v `components/overlays.css`, chování v `components/overlays.js`, napojení na sekci `#overlays` v `index.html`.
 - Semantické barvy z Foundations, globální dark/light, bez CSS override vrstev a `!important`. Reálné tool operace se neprovádějí.
 
+### Inline Notices · Premium Soft redesign (25. 10. 2026)
+
+- Na žádost uživatelky nahrazen příliš hranatý a obyčejný vzhled notices jemně zaobleným **Soft Status Surface**: radius 22 px, ambientní tónovaný přechod, jemný barevný border, barevné ikonové pouzdro a subtilní hover lift. Informace/úspěch/varování/chyba sdílejí jediný kanonický styl s rolí `--notice-color`.
+- Symboly nahrazeny konzistentními inline SVG. Stavové barvy používají původní `--accent`, `--success`, `--warning`, `--error` bez změn. Dark/light z Foundations, reduced motion zohledněn. Ostatní Feedback komponenty zachovány.
+- Změny přímo v `components/feedback.css` a `components/feedback.js`, bez CSS override vrstev. Návrh čeká na vizuální schválení.
+
 ### Feedback & Status V1 (25. 10. 2026)
 
 - Nové katalogové ukázky pro pracovní nástroje: **Inline Notices** (info, success, warning, error), **Progress / Processing** (simulace kontroly 120 URL s možností zastavení), **Status Badges** (čeká, dokončeno, s omezeními, chyba), **Empty State** (žádný výskyt) a **Toast** (neblokující oznámení).
