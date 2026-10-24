@@ -29,7 +29,7 @@ function animateO2Bubbles(time){
   ctx.beginPath();ctx.arc(b.x-radius*.29,b.y-radius*.36,Math.max(.8,radius*.24),Math.PI,Math.PI*1.6);
   ctx.strokeStyle="rgba(215,195,255,"+(alpha*.62)+")";ctx.lineWidth=.8;ctx.stroke();
  }
- o2BubbleFrame=requestAnimationFrame(animateO2Bubbles);
+ o2BubbleFrame=o2Bubbles.length?requestAnimationFrame(animateO2Bubbles):0;
 }
 function addO2Bubble(event,stage){
  if(event.pointerType!=="mouse"||!document.getElementById("other-bubbles")?.checked||matchMedia("(prefers-reduced-motion: reduce)").matches)return;
