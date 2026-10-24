@@ -20,15 +20,29 @@ function renderDock(){
  '</nav></div><div class="dock-demo-status" id="dock-status" aria-live="polite">Aktivní: Poznámky. Demo nemění skutečnou navigaci aplikace.</div></section></div>';
 }
 function dockMagnify(event){
- const dock=event.target.closest(".axo-dock");if(!dock||matchMedia("(prefers-reduced-motion: reduce)").matches)return;
- dock.querySelectorAll(".axo-dock-button").forEach(button=>{
-  const r=button.getBoundingClientRect(),dx=Math.abs(event.clientX-(r.left+r.width/2));
-  const weight=Math.max(0,1-dx/120);
-  button.style.setProperty("--dock-scale",String(1+weight*.28));
-  button.style.setProperty("--dock-lift",(weight*8)+"px");
+ const dock=event.target.closest(".axo-dock");
+ if(!dock||matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+ dock.querySelectorAll(".axo-dock-item").forEach(item=>{
+  const button=item.querySelector(".axo-dock-button");
+  const rect=item.getBoundingClientRect();
+  const distance=Math.abs(event.clientX-(rect.left+rect.width/2));
+  const weight=Math.max(0,1-distance/145);
+  const narrow=matchMedia("(max-width:650px)").matches;
+  const base=narrow?44:60;
+  item.style.setProperty("--dock-slot",(base+weight*(narrow?9:21))+"px");
+  button.style.setProperty("--dock-scale",String(1+weight*.13));
+  button.style.setProperty("--dock-lift",(weight*9)+"px");
  });
 }
-function resetDock(dock){if(!dock)return;dock.querySelectorAll(".axo-dock-button").forEach(b=>{b.style.removeProperty("--dock-scale");b.style.removeProperty("--dock-lift")})}
+function resetDock(dock){
+ if(!dock)return;
+ dock.querySelectorAll(".axo-dock-item").forEach(item=>{
+  item.style.removeProperty("--dock-slot");
+  const button=item.querySelector(".axo-dock-button");
+  button.style.removeProperty("--dock-scale");
+  button.style.removeProperty("--dock-lift");
+ });
+}
 document.addEventListener("pointermove",event=>{if(event.pointerType==="mouse")dockMagnify(event)});
 document.addEventListener("pointerout",event=>{const dock=event.target.closest(".axo-dock");if(dock&&!dock.contains(event.relatedTarget))resetDock(dock)});
 document.addEventListener("click",event=>{
