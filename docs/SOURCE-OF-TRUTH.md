@@ -317,7 +317,7 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 ## Další prvky V1 · Scrollbar a Cursor Studio (25. 10. 2026)
 
 - **Primary Violet Scrollbar:** v sekci `#other` ukázka nativně scrollovatelného panelu s fialovým `--accent` thumbem, jemnou dráhou, zaoblením a hoverem. Používá `scrollbar-color` / `scrollbar-width` a `::-webkit-scrollbar` fallback. Globální scrollbary katalogu nemění.
-- **Cursor Studio:** izolovaná interaktivní plocha s volitelným **Glow Cursor** a **Click Burst**. Kurzor samotný ani ostatní části katalogu nepřebírá; podpora `pointerType=mouse`, dotykové použití nevyvolává efekt. `prefers-reduced-motion` deaktivuje burst.
+- **Cursor Studio:** izolovaná interaktivní plocha s **Ambient Glow 02** a **Click Burst**. Původní plochý Glow uživatelce nevyhovoval; nové Ambient Glow má menší jasné jádro, rozměrnější jemnou auru, opožděný pohyb přes `requestAnimationFrame` a jemné protažení dle rychlosti pohybu. Click Burst zůstává beze změny a uživatelce se líbí. Kurzor ostatních částí katalogu se nemění; dotykový režim efekty nevyvolává, `prefers-reduced-motion` vypíná burst a odstraňuje opoždění Glow. Ambient Glow 02 čeká na vizuální schválení.
 - Kanonické soubory `components/other.css` a `components/other.js`, jednoduché napojení přes `index.html`. Dark/light používají semantické tokeny; žádné CSS override vrstvy ani nové závislosti.
 - **Stav:** první návrhy k vizuálnímu schválení. Cards odloženy. Logo V1 Codex implementoval, ale uživatelkou nebylo zde výslovně vizuálně schváleno.
 
