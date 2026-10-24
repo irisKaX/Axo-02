@@ -191,7 +191,12 @@
 .axo-btn--secondary {
   --button-bg:var(--secondary);
   --button-fg:var(--secondary-foreground);
-  --button-border:var(--border)
+  --button-border:var(--border);
+  --button-hover-filter:none
+}
+.axo-btn--secondary:not(:disabled):is(:hover,.demo-hover):not(:active):not(.demo-pressed) {
+  background:var(--accent-bg);
+  border-color:var(--border-hover)
 }
 .axo-btn--outline {
   --button-bg:transparent;
