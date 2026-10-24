@@ -43,7 +43,7 @@
 
 ### Barvy
 
-- **Aktivní téma:** Catppuccin-inspirované Mocha (dark) / Latte (light) pro jemnější pozadí, povrchy a fialový akcent.
+- **Aktivní téma:** Catppuccin-inspirované Mocha (dark) / Latte (light) pro jemnější pozadí a povrchy. **Dark Accent je nově `#8C00FF`** (token `--accent`, rozhodnutí 24. 10. 2026); light Accent zůstává `#8839EF`. Ostatní barvy a gradienty beze změny.
 - **Původní Axo paleta** je zachovaná v `--axo-original-*`, nemaže se.
 - **O2 modrá:** `#0050FF`, token `--o2-blue`.
 - **Stavové role:** `--error`, `--warning`, `--success`; rozdílné odstíny pro dark/light.
