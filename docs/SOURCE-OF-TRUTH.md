@@ -28,7 +28,7 @@
 | Foundations | **Rozpracováno, funkční** | Palety, role, stavové barvy, O2 modrá, gradienty, Geist, typography/spacing/radius scale, borders/shadows, interactions, motion, opacity/blur, layout/layers, iconography, Accessibility, Breakpoints a Iconography Rules |
 | Tlačítka | **Button System V1, funkční ukázky** | Button Variants, Button Formats, Action Examples a Hover Concepts; jeden renderer a základ, velikost S, pět variant, tři formáty a šest stavů |
 | Navigace | **Rozpracováno** | Pagination (Numbered/Compact/Table), Tabs (Pill/Underline) a Breadcrumbs (plná/kompaktní ukázka). Další navigační komponenty zatím nejsou vytvořené. |
-| Inputy a formuláře | **Prázdná sekce** | Návrh teprve vznikne |
+| Inputy a formuláře | **Rozpracováno** | URL input s kopírováním a demonstračním výběrem karet; Search input s nepřetržitým animovaným borderem ve stylu Primary 03 |
 | Karty | **Prázdná sekce** | Návrh teprve vznikne |
 | Dialogs a popovers | **Prázdná sekce** | Návrh teprve vznikne |
 | Feedback a status | **Prázdná sekce** | Návrh teprve vznikne |
@@ -227,6 +227,14 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 ### Akční tlačítka · sjednocení Secondary (24. 10. 2026)
 
 - Akce **Otevřít** a **Upravit** byly původně nakonfigurovány jako `outline`, proto vizuálně neodpovídaly Stáhnout, Nahrát a Kopírovat. Obě akce nyní používají `secondary` ve společném seznamu `actions` v `components/button.js`. Textové i kulaté formáty automaticky sdílejí stejný styl a hover. Žádné CSS změny ani override vrstvy.
+
+### Inputs V1 · první dva návrhy (24. 10. 2026)
+
+- **URL Input:** editovatelné pole typu `url`, ikonka odkazu, kopírování přes Clipboard API a dropdown s výběrem tří lokálních ukázkových karet. **Katalog nemá browser extension ani oprávnění získat reálné otevřené karty**; dropdown tuto schopnost pouze demonstruje. Bez napojení na aktivní kartu.
+- **Search Input:** vstup typu `search`, ikona lupy a stále animovaná fialovo-růžová hrana analogická schválené Primary 03; používá `--accent`, `--detail-magenta`, `--surface` a `prefers-reduced-motion`. Zatím **nehledá ve skutečných datech**.
+- **Kanonické soubory:** `components/inputs.css` pro styly a `components/inputs.js` pro zobrazení a lokální ovládání. V `index.html` pouze napojení, žádné přepisovací CSS vrstvy.
+- Oba návrhy přebírají globální dark/light a Foundations; ovládání menu zahrnuje Escape, šipky a klik mimo. Další formulářové prvky se zatím nevytvářely.
+- **Stav:** návrhy do katalogu k vizuálnímu schválení, nikoli hotová produkční implementace browser tabs nebo vyhledávání.
 
 ## 6. Pravidla spolupráce a vývoje
 
