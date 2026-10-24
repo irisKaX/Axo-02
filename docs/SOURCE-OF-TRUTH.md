@@ -148,6 +148,9 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 
 ## Navigation · Tabs & Breadcrumbs (24. 10. 2026)
 
+- **Hover refinement:** Underline Tabs nemají na hover pozadí, zvýrazňuje se pouze text a spodní linka fialovou. Breadcrumbs mají na hover čitelný text `--ink`, neutrální plochu `--surface-2` a jemné fialové podtržení. Úprava provedena přímo v původních pravidlech `components/navigation-extras.css`, žádné override vrstvy.
+
+
 - **Pill Tabs** a **Underline Tabs** jsou interaktivní katalogové komponenty se stavem selected, navázaným demonstračním panelem a podporou kláves Home/End/šipek, focus a dark/light.
 - **Breadcrumbs** mají běžnou hierarchickou variantu a kompaktní ukázku delší cesty. Zatím jde o ukázkové odkazy, nikoliv napojení na router skutečné aplikace.
 - Kanonické styly pro tyto nové prvky žijí v `components/navigation-extras.css`, chování v `components/navigation-extras.js`; `index.html` je pouze načítá a zobrazuje v sekci Navigace. Žádné CSS override vrstvy.
