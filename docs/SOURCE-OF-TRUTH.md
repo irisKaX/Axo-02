@@ -93,12 +93,20 @@ Oficiální zdroje: https://github.com/hugeicons/hugeicons a https://hugeicons.c
 - Akce v katalogu: Stáhnout, Uložit, Smazat, Smazat vše, Nahrát, Přidat, Otevřít, Skrýt, Kopírovat, Upravit. Každá má textovou a kulatou ikonovou variantu. **Jde o vizuální demonstrace; nejsou propojené na skutečné akce aplikace.**
 - Budoucí navigační položky řešit v sekci **Navigace**, nikoli automaticky jako další Button varianty.
 
+## CSS pravidlo · závazné od 24. 10. 2026
+
+**Nepřidávat CSS override vrstvy.** Neopravovat původní komponentu tím, že se na konec CSS souboru připojí nový selektor přebíjející starý. Každou opravu provést přímo ve vlastním původním pravidle nebo tokenu. Každá CSS komponenta má mít jeden srozumitelný zdroj definice.
+
+**Audit katalogu 24. 10. 2026:** v `index.html` byly nalezeny pozdější druhé bloky `:root` a `:root[data-theme="light"]` s Foundations tokeny. Ty jsou nyní sloučeny do jediného původního dark a light bloku. Speciální destructive hover byl přesunut vedle definice destructive varianty, SVG pravidlo do sekce Foundations. Provedena kontrola párování CSS složených závorek a unikátních tokenových bloků. **Bez nové CSS vrstvy a bez změny výsledných hodnot.** Nejde o tvrzení automatického browser/a11y auditu každého vizuálního stavu.
+
+**Legitimní CSS kaskáda není zakázaná:** tematické hodnoty dark/light, stavové selektory `:hover`, `:focus-visible`, `:disabled`, varianty `.axo-btn--destructive` a cílené `@media` se liší záměrně. Jsou to součásti návrhu, ne záplaty. Zakázané je neřízené duplikování stejné komponenty nebo tokenu v pozdější vrstvě.
+
 ## 6. Pravidla spolupráce a vývoje
 
 1. **Design-first:** nejdřív konkrétní zadání, rychlá vizuální úprava, publikace katalogu, zpětná vazba.
 2. **Žádný Playground, nové laboratoře ani paralelní katalogy.**
 3. **Žádné pixel-perfect baseline, 96 screenshotů, production-grade QA či schvalovací release gate pro designové experimenty.** Kontrolovat základní funkčnost, příslušnou komponentu a dostupnost náhledu.
-4. **Čisté úpravy:** měnit původní CSS/JS definici, neřetězit overrides, patche nebo kopie komponent.
+4. **Čisté úpravy, trvalé pravidlo:** měnit původní CSS/JS definici, **nikdy nepřidávat nové přepisovací CSS bloky na konec**. Legitimizované hover/focus, varianty a @media zůstávají v místě vlastníka. Žádné patchové vrstvy nebo kopie komponent.
 5. **Jednotný dark/light:** nové komponenty používají existující role; globální toggle mění vše.
 6. **Žádná migrace ze starého Axolotl 2.0 automaticky.** Případné převzetí konkrétní části vyžaduje samostatné rozhodnutí.
 7. **Dokument aktualizovat při každé významné změně.** Vždy rozlišovat IMPLEMENTOVÁNO / SCHVÁLENO / PLÁN. Nikdy neoznačovat neexistující framework za nainstalovaný.
