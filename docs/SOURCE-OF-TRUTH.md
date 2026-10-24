@@ -30,7 +30,7 @@
 | Navigace | **Rozpracováno** | Pagination (Numbered/Compact/Table), Tabs (Pill/Underline) a Breadcrumbs (plná/kompaktní ukázka). Další navigační komponenty zatím nejsou vytvořené. |
 | Inputy a formuláře | **Rozpracováno** | URL Input, Search Input, nové návrhy Select, Checkbox/Radio a Switch |
 | Karty | **Prázdná sekce** | Návrh teprve vznikne |
-| Dialogs a popovers | **Prázdná sekce** | Návrh teprve vznikne |
+| Dialogs a popovers | **Rozpracováno** | Confirm Dialog, Information Dialog a Action Popover, interaktivní katalogové ukázky |
 | Feedback a status | **Prázdná sekce** | Návrh teprve vznikne |
 | Logo | **Prázdná sekce** | Návrh teprve vznikne |
 | Brand | **Prázdná sekce** | Návrh teprve vznikne |
@@ -262,6 +262,13 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 - **Kanonické soubory:** `components/inputs.css` pro styly a `components/inputs.js` pro zobrazení a lokální ovládání. V `index.html` pouze napojení, žádné přepisovací CSS vrstvy.
 - Oba návrhy přebírají globální dark/light a Foundations; ovládání menu zahrnuje Escape, šipky a klik mimo. Další formulářové prvky se zatím nevytvářely.
 - **Stav:** návrhy do katalogu k vizuálnímu schválení, nikoli hotová produkční implementace browser tabs nebo vyhledávání.
+
+### Dialogs & Popovers V1 (24. 10. 2026)
+
+- První pracovní příklady: **Confirm Dialog** (potvrzení smazání bez skutečné destruktivní akce), **Information Dialog** (vysvětlení omezení skenu) a **Action Popover** (uložení, kopírování, odebrání, vše jen demo). Stav: k vizuálnímu schválení.
+- Dialogy používají nativní HTML `<dialog>` a `showModal()`, podporují Escape, správnou modalitu a focus prohlížeče. Popover je vlastní malá nabídka s kliknutím mimo a Escape; akce pouze přepisují lokální demo zprávu.
+- Oba vzory používají **stávající `renderButton()`** ze společného Button System V1; nezavádí se druhá implementace tlačítek. Kanonické styly v `components/overlays.css`, chování v `components/overlays.js`, napojení na sekci `#overlays` v `index.html`.
+- Semantické barvy z Foundations, globální dark/light, bez CSS override vrstev a `!important`. Reálné tool operace se neprovádějí.
 
 ## 6. Pravidla spolupráce a vývoje
 
