@@ -35,7 +35,7 @@
 | Logo | **V1 · Návrh ke schválení** | Jeden kruhový znak: originální bílá PNG hlava, stálý tmavý střed, rotující gradient; velikosti, Dark / Light a Animated / Static |
 | Brand | **Prázdná sekce** | Návrh teprve vznikne |
 | Loaders | **Prázdná sekce** | Návrh teprve vznikne |
-| Další prvky | **Prázdná sekce** | Podle potřeby |
+| Další prvky | **Rozpracováno** | Primary Violet Scrollbar a izolované Cursor Studio (Glow, Click Burst), návrhy ke schválení |
 
 **Navigace samotného katalogu již funguje.** To neznamená, že máme navrženou budoucí komponentu pro navigaci celé aplikace.
 
@@ -313,6 +313,13 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 - Výběr skutečných SVG z Hugeicons Free a podmínky MIT jsou budoucí implementační krok.
 - React/TypeScript/Vite nejsou aktuální povinnost ani dokončená práce.
 - Až se začne vytvářet **skutečná aplikace**, odděleně rozhodnout o architektuře a testech.
+
+## Další prvky V1 · Scrollbar a Cursor Studio (25. 10. 2026)
+
+- **Primary Violet Scrollbar:** v sekci `#other` ukázka nativně scrollovatelného panelu s fialovým `--accent` thumbem, jemnou dráhou, zaoblením a hoverem. Používá `scrollbar-color` / `scrollbar-width` a `::-webkit-scrollbar` fallback. Globální scrollbary katalogu nemění.
+- **Cursor Studio:** izolovaná interaktivní plocha s volitelným **Glow Cursor** a **Click Burst**. Kurzor samotný ani ostatní části katalogu nepřebírá; podpora `pointerType=mouse`, dotykové použití nevyvolává efekt. `prefers-reduced-motion` deaktivuje burst.
+- Kanonické soubory `components/other.css` a `components/other.js`, jednoduché napojení přes `index.html`. Dark/light používají semantické tokeny; žádné CSS override vrstvy ani nové závislosti.
+- **Stav:** první návrhy k vizuálnímu schválení. Cards odloženy. Logo V1 Codex implementoval, ale uživatelkou nebylo zde výslovně vizuálně schváleno.
 
 ## 8. Udržování dokumentu a Obsidian
 
