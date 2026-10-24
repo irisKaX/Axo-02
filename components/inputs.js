@@ -38,7 +38,8 @@ root.innerHTML='<div class="input-gallery"><div class="foundation-note">Dvě prv
 inputDemoTabs.map((tab,i)=>'<button class="input-tab-option" role="option" type="button" data-demo-tab="'+i+'" aria-selected="'+(i===0)+'">'+tab.title+'</button>').join('')+'</div></div></div></div>'+
 '<div class="input-message" id="url-feedback" aria-live="polite">Adresu můžeš upravit ručně. Výběr karet používá vzorové údaje.</div></section>'+
 '<section class="input-card"><div><h2>02 · Search Input · Animated Border</h2><p>Klasický textový input s ikonou lupy a nepřetržitě animovaným fialovo-růžovým borderem podle Primary 03.</p></div>'+
-'<label class="input-label" for="axo-search-input">Vyhledávání</label><div class="input-search-shell"><div class="input-search-inner"><span class="input-icon">'+inputIcon("search")+'</span><input type="search" id="axo-search-input" placeholder="Najít frázi na webu…" aria-label="Vyhledat frázi nebo asset na webu" autocomplete="off"></div></div><div class="input-message">Designová ukázka, zatím bez vyhledávacího indexu.</div></section></div>';\nstartInputHints();
+'<label class="input-label" for="axo-search-input">Vyhledávání</label><div class="input-search-shell"><div class="input-search-inner"><span class="input-icon">'+inputIcon("search")+'</span><input type="search" id="axo-search-input" placeholder="Najít frázi na webu…" aria-label="Vyhledat frázi nebo asset na webu" autocomplete="off"></div></div><div class="input-message">Designová ukázka, zatím bez vyhledávacího indexu.</div></section></div>';
+startInputHints();
 }
 function closeAxoTabs(focus=false){const trigger=document.getElementById("axo-tab-trigger"),menu=document.getElementById("axo-tab-menu");if(!trigger||!menu)return;menu.hidden=true;trigger.setAttribute("aria-expanded","false");if(focus)trigger.focus()}
 document.addEventListener("click",async e=>{
