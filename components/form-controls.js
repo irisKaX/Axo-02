@@ -14,3 +14,10 @@ document.addEventListener("change",e=>{
  }
  if(e.target.id==="axo-auto-check"){document.getElementById("axo-switch-state").textContent=e.target.checked?"Automatická kontrola zapnutá":"Automatická kontrola vypnutá"}
 });
+function axoSelectClose(){const b=document.getElementById("axo-format"),m=document.getElementById("axo-format-list");if(b&&m){m.hidden=true;b.setAttribute("aria-expanded","false")}}
+document.addEventListener("click",e=>{
+const b=e.target.closest("#axo-format"),o=e.target.closest("[data-format]"),m=document.getElementById("axo-format-list");if(!m)return;
+if(b){m.hidden=!m.hidden;b.setAttribute("aria-expanded",String(!m.hidden));return}
+if(o){document.getElementById("axo-format-value").textContent=o.dataset.format;document.getElementById("axo-format-state").textContent="Vybráno: "+o.dataset.format;m.querySelectorAll("[data-format]").forEach(x=>x.setAttribute("aria-selected",String(x===o)));axoSelectClose();b?.focus();return}
+if(!e.target.closest("#axo-format-list"))axoSelectClose()
+});
