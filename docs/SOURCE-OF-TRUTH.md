@@ -27,7 +27,7 @@
 | --- | --- | --- |
 | Foundations | **Rozpracováno, funkční** | Palety, role, stavové barvy, O2 modrá, gradienty, Geist, typography/spacing/radius scale, borders/shadows, interactions, motion, opacity/blur, layout/layers, iconography, Accessibility, Breakpoints a Iconography Rules |
 | Tlačítka | **Rozpracováno, funkční ukázky** | Velikost S, klasické kapslové a kruhové ikonové; Primary, Secondary, Outline, Ghost, Destructive; Default, Hover, Focus, Pressed, Disabled, Loading; deset akčních tlačítek |
-| Navigace | **Prázdná sekce** | Návrh teprve vznikne |
+| Navigace | **Rozpracováno** | Pagination: číselná, kompaktní a tabulková varianta; další navigační komponenty zatím neimplementovány |
 | Inputy a formuláře | **Prázdná sekce** | Návrh teprve vznikne |
 | Karty | **Prázdná sekce** | Návrh teprve vznikne |
 | Dialogs a popovers | **Prázdná sekce** | Návrh teprve vznikne |
@@ -129,6 +129,13 @@ Cílené ověření v Chromium nejprve reprodukovalo obě chyby a po opravě pro
 **Trvalé pravidlo proti CSS override vrstvám nadále platí:** upraveny původní selektory a pořadí existujícího pravidla, žádná nová opravná vrstva, duplicitní selektor ani `!important`.
 
 Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnání v Chromium prošlo bez rozdílů ve sledovaných vizuálních CSS vlastnostech, rozměrech a kořenových tokenech před/po úklidu. Zahrnulo dark/light, Foundations, Tlačítka a prázdnou sekci, šířky 1440/981/980/791/790/561/560/390 px, hover, focus-visible, pressed, disabled, loading i reduced motion. Přechody byly dokončeny a spinner porovnán ve stejné fázi; nejde o pixelový audit. Funkční kontrola prošla pro render všech variant, přepnutí a obnovení tématu, červený destructive focus, disabled/loading i mobilní menu, Escape a zavření menu po navigaci. Konzole bez JavaScriptových výjimek. Dvě ponechané interakční odchylky byly potvrzeny na původní i upravené verzi. Prohlédnuty aktuální mobilní light Foundations a desktopové dark Tlačítka; ve zkontrolovaném rozsahu nebyla zjištěna nová viditelná regrese. `git diff --check` prošel. Nevznikla testovací infrastruktura, screenshotová baseline, framework ani nový release workflow. Nejde o úplný audit přístupnosti nebo všech prohlížečů.
+
+## Navigation · Pagination (24. 10. 2026)
+
+- Tři interaktivní katalogové varianty: Numbered, Compact a Table. Tabulková varianta umožňuje přepínání počtu řádků.
+- Jde o ukázku s lokálními daty, bez napojení na reálnou tabulku či API.
+- Jediný vlastník stylů: `components/pagination.css`; chování: `components/pagination.js`; `index.html` komponentu pouze načítá a umisťuje do Navigace. Žádné přepisovací CSS vrstvy.
+- Sdílí dark/light a barevné tokeny Foundations. Katalogová demonstrace, nikoli produkční integrace.
 
 ## 6. Pravidla spolupráce a vývoje
 
