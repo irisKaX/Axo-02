@@ -47,7 +47,9 @@
 - **Původní Axo paleta** je zachovaná v `--axo-original-*`, nemaže se.
 - **O2 modrá:** `#0050FF`, token `--o2-blue`.
 - **Stavové role:** `--error`, `--warning`, `--success`; rozdílné odstíny pro dark/light.
-- **Role:** `--primary`, `--secondary`, `--tertiary`, `--hover`, `--active`, `--focus`, `--disabled`. Zatím jde o jednoduché aliasy existujících barev, ne složitý systém komponentových variant.
+- **Barevné role (rozhodnutí 24. 10. 2026):** dark `--accent` / `--primary` = `#8C00FF`, light = `#8839EF`. Primary je hlavní barva akcí; `--border-hover`, `--focus` a `--selected` používají stejnou fialovou pro běžné interakce. `--active` je jemná fialová plocha a dark `--accent-bg` odpovídá nové fialové. `--secondary` je neutrální povrch, `--tertiary` transparentní, `--hover` neutrální zvýraznění, `--disabled` nenápadná barva.
+- **Textové role:** `--primary-foreground` (bílá na primární akci), `--secondary-foreground`, `--text-primary`, `--text-secondary`, `--text-subtle`, `--text-inverse`. `--border-hover` neznamená přebarvení všech borderů; výchozí `--border` zůstává neutrální.
+- **Kontextové focus barvy:** běžné UI `--focus` fialová; destruktivní akce `--focus-error` červená, upozornění `--focus-warning` žlutá, úspěch `--focus-success` zelená. Varování a úspěch jsou připravené role, nikoli hotové typy tlačítek. Použití musí respektovat čitelnost a stav komponenty.
 - **Pět gradientů:** přesné uživatelské CSS hodnoty uložené v `--gradient-1` až `--gradient-5`. Bez nevyžádaného použití v UI.
 
 ### Typografie
