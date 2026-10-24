@@ -228,6 +228,13 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 
 - Akce **Otevřít** a **Upravit** byly původně nakonfigurovány jako `outline`, proto vizuálně neodpovídaly Stáhnout, Nahrát a Kopírovat. Obě akce nyní používají `secondary` ve společném seznamu `actions` v `components/button.js`. Textové i kulaté formáty automaticky sdílejí stejný styl a hover. Žádné CSS změny ani override vrstvy.
 
+### Inputs V1 · délka, klidnější hover a psaný placeholder (24. 10. 2026)
+
+- **Šířka:** URL i Search používají `width:100%;max-width:520px`. V katalogu jsou kratší; budoucí kontejnery mohou určit ještě menší šířku, aniž by se kopírovala komponenta. Nejde o fixní velikost pro všechny budoucí obrazovky.
+- **Search border:** rotace má stálou periodu 4,5 s v default, hover i focus; hover zesiluje tloušťku a vizuální sytost úseků gradientu, nikoliv rychlost. Focus zachovává vnější animovanou hranu a vnitřní fialový border.
+- **Search placeholder:** lokální JS střídá čtyři ukázkové fráze o hledání textu, obrázků a assetů pomocí efektu psaní. Při focusu/psaní animace přestane zasahovat do pole; při opuštění prázdného pole pokračuje. Systémový reduced motion zobrazí statický text. Skutečné vyhledávání zatím není implementováno.
+- **Zdroje:** změněny původní `components/inputs.css` a `components/inputs.js`, bez CSS override vrstev nebo nové infrastruktury.
+
 ### Inputs V1 · vizuální doladění (24. 10. 2026)
 
 - **URL Input:** ikona Globe (web) místo Link. Hover i focus uvnitř pole přebarvují Globe na `--accent`; URL input má na hover/focus skutečný 2px `--border-hover` a pevnou celkovou výšku 43 px. Copy a výběr ukázkových karet odděluje jemný divider. Jejich ikony mají vlastní mikroanimaci (copy malý posun, tabs malé natočení) a popisky při hoveru i focusu; nativní `title` odstraněn. Ovládání výběru karet zůstává pouze lokální demo.
