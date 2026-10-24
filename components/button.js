@@ -61,7 +61,7 @@ function renderButton({label,variant="primary",size="s",format="text",state="def
 }
 
 /* Catalog examples configure the same renderer; no copied button markup. */
-const actions=[["Stáhnout","download","secondary"],["Uložit","save","primary"],["Smazat","trash","destructive"],["Smazat vše","trashAll","destructive"],["Nahrát","upload","secondary"],["Přidat","plus","primary"],["Otevřít","open","outline"],["Skrýt","hide","ghost"],["Kopírovat","copy","secondary"],["Upravit","edit","outline"]];
+const actions=[["Stáhnout","download","secondary"],["Uložit","save","primary"],["Smazat","trash","destructive"],["Smazat vše","trashAll","destructive"],["Nahrát","upload","secondary"],["Přidat","plus","primary"],["Otevřít","open","secondary"],["Skrýt","hide","ghost"],["Kopírovat","copy","secondary"],["Upravit","edit","secondary"]];
 const buttonExampleIcon='<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>';
 function renderButtonSet(format){
  const round=format==="icon-only";
