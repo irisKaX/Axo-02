@@ -162,6 +162,12 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 - Výchozí podklad využívá `--accent-bg`, hover plynule odhaluje existující `--gradient-2` za 400 ms; tlačítko nemá border (focus outline zůstává). Zachována velikost S, kapslový radius, focus a reduced motion.
 - Styly jsou součástí jediného původního bloku ukázky v `index.html`; stávající `.axo-btn` a ostatní varianty jsou nedotčené. Žádné CSS override vrstvy.
 
+### Akční tlačítka · Animovaný koš (24. 10. 2026)
+
+- Kulatá ikonová tlačítka **Smazat** a **Smazat vše** používají vlastní SVG se samostatnou skupinou víka. Při hoveru nebo keyboard focusu se víko pootočí o 35° (300 ms), při opuštění vrátí zpět.
+- Zachován rozměr S (34×34), Destructive barva i focus token; u `prefers-reduced-motion` se přechod vypne. Textové varianty a ostatní ikony se nemění.
+- Styl je přímo u akčních tlačítek v `index.html`, bez duplicitních CSS override pravidel. SVG je vlastní inline implementace, ne import Hugeicons.
+
 ## 6. Pravidla spolupráce a vývoje
 
 1. **Design-first:** nejdřív konkrétní zadání, rychlá vizuální úprava, publikace katalogu, zpětná vazba.
