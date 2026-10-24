@@ -27,7 +27,7 @@
 | --- | --- | --- |
 | Foundations | **Rozpracováno, funkční** | Palety, role, stavové barvy, O2 modrá, gradienty, Geist, typography/spacing/radius scale, borders/shadows, interactions, motion, opacity/blur, layout/layers, iconography, Accessibility, Breakpoints a Iconography Rules |
 | Tlačítka | **Rozpracováno, funkční ukázky** | Velikost S, klasické kapslové a kruhové ikonové; Primary, Secondary, Outline, Ghost, Destructive; Default, Hover, Focus, Pressed, Disabled, Loading; deset akčních tlačítek |
-| Navigace | **Rozpracováno** | Pagination: číselná, kompaktní a tabulková varianta; další navigační komponenty zatím neimplementovány |
+| Navigace | **Rozpracováno** | Pagination (Numbered/Compact/Table), Tabs (Pill/Underline) a Breadcrumbs (plná/kompaktní ukázka). Další navigační komponenty zatím nejsou vytvořené. |
 | Inputy a formuláře | **Prázdná sekce** | Návrh teprve vznikne |
 | Karty | **Prázdná sekce** | Návrh teprve vznikne |
 | Dialogs a popovers | **Prázdná sekce** | Návrh teprve vznikne |
@@ -145,6 +145,13 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 - Panel používá nativní Popover API s vlastním Catppuccin CSS v horní vykreslovací vrstvě prohlížeče. Není ořezaný rodičovským overflow; poloha se přizpůsobuje viewportu, podle místa nad/pod triggerem a při scrollu/resize. Při odscrollování triggeru mimo viewport se zavře. Použití předpokládá moderní prohlížeč s Popover API; bez nové UI knihovny či polyfillu.
 - Cíleně ověřeno v Chromium v dark/light na šířkách 1440 a 360 px: kruhy včetně stránky 18, aktivní a disabled hranice, výběr všech tří velikostí, rozsah 51–93 při velikosti 50 na stránce 2, klávesnice včetně Tab/Shift+Tab, Escape, návrat fokusu, toggle/outside click, panel nad triggerem u spodního okraje a panel pod ořezávajícím rodičem. Prohlédnut aktuální desktop dark a mobilní light vzhled; bez JavaScriptových výjimek. `node --check` a `git diff --check` prošly. Bez screenshotové baseline či nové testovací infrastruktury; nejde o úplný audit screen readerů nebo všech prohlížečů.
 - Styly mají jediného vlastníka v `components/pagination.css`: upraveny příslušné původní definice, nová pravidla listboxu jsou jednou vedle ostatních pravidel Table. Žádná CSS override vrstva ani `!important`. `index.html`, Foundations, sekce Tlačítka a navigace katalogu zůstaly v tomto úkolu beze změny.
+
+## Navigation · Tabs & Breadcrumbs (24. 10. 2026)
+
+- **Pill Tabs** a **Underline Tabs** jsou interaktivní katalogové komponenty se stavem selected, navázaným demonstračním panelem a podporou kláves Home/End/šipek, focus a dark/light.
+- **Breadcrumbs** mají běžnou hierarchickou variantu a kompaktní ukázku delší cesty. Zatím jde o ukázkové odkazy, nikoliv napojení na router skutečné aplikace.
+- Kanonické styly pro tyto nové prvky žijí v `components/navigation-extras.css`, chování v `components/navigation-extras.js`; `index.html` je pouze načítá a zobrazuje v sekci Navigace. Žádné CSS override vrstvy.
+- Stránkování zůstává oddělené v `components/pagination.css` a `components/pagination.js`.
 
 ## 6. Pravidla spolupráce a vývoje
 
