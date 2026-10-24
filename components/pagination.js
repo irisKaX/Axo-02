@@ -24,7 +24,7 @@ function paginationView(model){
  if(model!=="table")return controls;
  return '<div class="page-tablebar"><div class="page-size"><span id="pagination-size-label">Řádků na stránku</span>'+
  '<button type="button" class="page-size-trigger" id="pagination-size-trigger" aria-haspopup="listbox" aria-expanded="false" aria-controls="pagination-size-list" aria-labelledby="pagination-size-label pagination-size-value"><span id="pagination-size-value">'+state.size+'</span>'+paginationSizeIcon("chevron")+'</button>'+
- '<div class="page-size-list" id="pagination-size-list" role="listbox" aria-labelledby="pagination-size-label" tabindex="-1" popover="manual">'+
+ '<div class="page-size-list" id="pagination-size-list" role="listbox" aria-labelledby="pagination-size-label" tabindex="-1" hidden>'+
  paginationSizes.map(n=>'<div class="page-size-option" id="pagination-size-option-'+n+'" role="option" aria-selected="'+(n===state.size)+'" data-size="'+n+'">'+n+paginationSizeIcon("check")+'</div>').join("")+
  '</div></div><span class="page-meta">'+((p-1)*state.size+1)+'–'+Math.min(p*state.size,state.count)+' z '+state.count+' záznamů</span>'+controls+'</div>';
 }
@@ -88,7 +88,7 @@ function openPaginationSize(index=paginationSizes.indexOf(paginationState.table.
  if(!trigger||!panel)return;
  paginationSizeMenu={trigger,panel,index};
  trigger.setAttribute("aria-expanded","true");
- panel.showPopover();
+ panel.hidden=false;
  positionPaginationSize();
  if(!paginationSizeMenu)return;
  setPaginationSizeActive(index);
@@ -96,10 +96,10 @@ function openPaginationSize(index=paginationSizes.indexOf(paginationState.table.
 }
 function closePaginationSize(restoreFocus=false){
  const menu=paginationSizeMenu;
- if(!menu)return;
+ if(!menu){const stale=document.getElementById("pagination-size-list");if(stale)stale.hidden=true;return;}
  paginationSizeMenu=null;
  menu.trigger.setAttribute("aria-expanded","false");
- if(menu.panel.matches(":popover-open"))menu.panel.hidePopover();
+ menu.panel.hidden=true;
  if(restoreFocus&&menu.trigger.isConnected)menu.trigger.focus({preventScroll:true});
 }
 function selectPaginationSize(size){
