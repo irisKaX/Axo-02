@@ -224,6 +224,10 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 - **Pill Tabs:** při hoveru neaktivní položky používají stejnou barevnou kombinaci; aktivní záložka zůstává ve svém selected stylu. **Underline Tabs** nadále používají pouze fialový text a podtržení bez hover pozadí.
 - Změněna pouze původní stavová pravidla v `components/button.css` a `components/navigation-extras.css`, bez CSS override vrstvy či dalších tokenů.
 
+### Akční tlačítka · sjednocení Secondary (24. 10. 2026)
+
+- Akce **Otevřít** a **Upravit** byly původně nakonfigurovány jako `outline`, proto vizuálně neodpovídaly Stáhnout, Nahrát a Kopírovat. Obě akce nyní používají `secondary` ve společném seznamu `actions` v `components/button.js`. Textové i kulaté formáty automaticky sdílejí stejný styl a hover. Žádné CSS změny ani override vrstvy.
+
 ## 6. Pravidla spolupráce a vývoje
 
 1. **Design-first:** nejdřív konkrétní zadání, rychlá vizuální úprava, publikace katalogu, zpětná vazba.
