@@ -338,12 +338,7 @@
     transition:none
   }
 }
-/* Primary 03 · Animated Border proposal; shared Button renderer, no CSS override layer. */
-@property --axo-border-angle {
-  syntax:"<angle>";
-  inherits:false;
-  initial-value:0deg;
-}
+/* Primary 03 · continuously animated border, single canonical definition. */
 .border-demo {
   display:flex;
   align-items:center;
@@ -360,35 +355,50 @@
   line-height:1.6;
 }
 .animated-border {
-  --button-bg:var(--surface-2);
+  --button-bg:var(--bg);
   --button-fg:var(--ink);
   --button-border-style:none;
   --button-hover-filter:none;
   --button-pressed-filter:none;
   --button-padding-x:17px;
   isolation:isolate;
+  overflow:hidden;
 }
 .animated-border::before {
   content:"";
   position:absolute;
-  inset:0;
-  padding:2px;
+  inset:-85px;
+  z-index:0;
+  pointer-events:none;
+  background:conic-gradient(
+    from 0deg,
+    transparent 0%,
+    transparent 35%,
+    var(--accent) 50%,
+    transparent 65%,
+    transparent 85%,
+    var(--detail-magenta) 100%
+  );
+  animation:axo-border-spin 2.5s linear infinite;
+}
+.animated-border::after {
+  content:"";
+  position:absolute;
+  inset:2px;
+  z-index:1;
   border-radius:inherit;
   pointer-events:none;
-  background:conic-gradient(from var(--axo-border-angle),var(--accent),var(--detail-magenta),var(--accent));
-  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
-  -webkit-mask-composite:xor;
-  mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
-  mask-composite:exclude;
+  background:var(--bg);
 }
-.animated-border:not(:disabled):is(:hover,:focus-visible)::before {
-  animation:axo-border-spin 1.8s linear infinite;
+.animated-border > span {
+  position:relative;
+  z-index:2;
 }
 @keyframes axo-border-spin {
-  to {--axo-border-angle:360deg}
+  to {transform:rotate(360deg)}
 }
 @media(prefers-reduced-motion:reduce) {
-  .animated-border:not(:disabled):is(:hover,:focus-visible)::before {animation:none}
+  .animated-border::before {animation:none}
 }
 /* Catalog composition; no independent button implementations. */
 .btn-section {
