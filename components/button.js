@@ -90,7 +90,7 @@ function renderButtonCatalog(){
   ["Icon + Text",{label:"Stáhnout",variant:"secondary",format:"icon-text",icon:actionIcon("download")}],
   ["Icon Only",{label:"Stáhnout",variant:"secondary",format:"icon-only",icon:actionIcon("download"),tooltip:"Stáhnout"}]
  ].map(([name,config])=>'<div class="action-card"><div class="action-title">'+name+'</div><div class="action-pair">'+renderButton(config)+'</div></div>').join("")+'</div>';
- const borderDemo='<div class="border-demo">'+renderButton({label:"Animated Border",concept:"animated-border"})+'<span class="border-demo-caption">Animovaná hrana · Primary Violet + Detail Magenta · návrh ke schválení</span></div>';
+ const borderDemo='<div class="border-demo">'+renderButton({label:"Animated Border",concept:"animated-border"})+'<span class="border-demo-caption">Nepřetržitě rotující barevné segmenty · Violet + Detail Magenta · návrh ke schválení</span></div>';
  const reveal='<div class="reveal-demo">'+renderButton({label:"Vyzkoušet hover",format:"icon-text",icon:"→",iconPosition:"end",concept:"reveal-fill"})+'<span class="reveal-demo-caption">Plynulé odhalení modrofialového gradientu · dark/light · reduced motion</span></div>';
  return '<div class="btn-catalog"><div class="foundation-note">Základní sada velikosti S. Přepínač dark/light mění všechny varianty. Stavové ukázky jsou viditelné a tlačítka lze také reálně ovládat myší a klávesnicí.</div>'+
   buttonSection("button-variants","01 · Button Variants","Primary · Secondary · Outline · Ghost · Destructive",renderButtonSet("text"))+
