@@ -161,11 +161,17 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 
 - Screenshot konce stránky ukazoval pravděpodobně otevřenou plovoucí nabídku Table Pagination mimo původní komponentu. Při scrollování stránky nebo viewportu se nyní výběr počtu řádků zavře místo toho, aby dál plaval nad jinou částí stránky. Zachované otevření, volba, klávesnice i ostatní navigační prvky. Změna pouze v původních event listenerech `components/pagination.js`, bez CSS override vrstev. Přímé vizuální ověření veřejného deploymentu neproběhlo.
 
+### Notebook Dock · úprava rozestupů (25. 10. 2026)
+
+- Podle screenshotu a reference React Bits bylo zvětšování ikon příliš namačkané. Zvětšeny mezery i vnitřní padding v původní definici `components/dock.css`.
+- Magnification v `components/dock.js` nyní roztahuje skutečnou šířku položky v layoutu (60 až 81 px) a vlastní tlačítko škáluje jen jemně (max. 1.13×, zdvih 9 px). Sousední ikony tím dostávají více prostoru. Menší obrazovky mají kompaktnější rozsah.
+- Tooltips, badge, aktivní položka a reduced motion zachovány; bez override vrstev. Dock nadále čeká na vizuální schválení.
+
 ## Navigation · Notebook Dock V1 (25. 10. 2026)
 
 - V sekci Navigace přidán **10 · Notebook Dock**, volně inspirovaný uživatelkou přiloženým obrázkem plovoucího ikonového docku. Pro budoucí nástroj Notebook, zatím pouze **interaktivní izolované demo**, nikoli změna navigace aplikace.
 - Osm akcí: Přehled, Hledat, Poznámky, Úkoly, Kalendář, Přílohy, Nastavení, Koš. Jemná kulatá základna, fialové hover/active barvy z Foundations, vlastní inline SVG ikony, aktivní indikátor, tooltipy pro myš i klávesnici, počet úkolů a notifikační tečka jako ukázková data.
-- Pohyb kurzoru nad dockem mírně zvětšuje a nadzvedává blízké ikonové položky, maximálně 1.28× a 8 px. Podpora `prefers-reduced-motion` i klávesnice; žádné navigační akce nejsou prováděny.
+- Pohyb kurzoru nad dockem mírně zvětšuje a nadzvedává blízké ikonové položky, maximálně 1.13× a 9 px, zároveň se rozšiřuje slot položky. Podpora `prefers-reduced-motion` i klávesnice; žádné navigační akce nejsou prováděny.
 - Jediné kanonické styly `components/dock.css`, chování `components/dock.js`. Zapojení v `index.html`, bez dalších závislostí, bez CSS override vrstev a bez zásahu do stávajících komponent.
 - **Stav:** návrh ke schválení podle referenčního screenshotu.
 
