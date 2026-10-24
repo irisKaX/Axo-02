@@ -20,6 +20,7 @@
 
 </style>
 <link rel="stylesheet" href="components/inputs.css?v=d2e310b">
+<link rel="stylesheet" href="components/form-controls.css">
 <link rel="stylesheet" href="components/button.css?v=51742ea">
 <link rel="stylesheet" href="components/pagination.css">
 <link rel="stylesheet" href="components/navigation-extras.css?v=8a81a0f">
@@ -48,6 +49,7 @@
 <div class="content"><div class="eyebrow" id="count">01 / 11 · Design Catalog</div><h1 class="title" id="heading">Foundations</h1><p class="description" id="desc"></p><hr class="rule"><section class="canvas" id="sectionContent" aria-label="Obsah sekce"><div><div class="empty-icon">＋</div><div class="empty-title">Zatím prázdno</div><div class="empty-desc">Tady postupně vznikne obsah této sekce.<br>Žádné staré komponenty nebyly přeneseny.</div></div></section><div class="foot"><span>Nový začátek. Čistý prostor.</span><span id="footerSection">Foundations</span></div></div>
 </main></div>
 <script src="components/inputs.js?v=d5e09c3"></script>
+<script src="components/form-controls.js"></script>
 <script src="components/button.js?v=15ce152"></script>
 <script src="components/pagination.js"></script>
 <script src="components/navigation-extras.js"></script>
@@ -112,7 +114,7 @@ function setTheme(theme){root.dataset.theme=theme;document.getElementById("light
 let saved;try{saved=localStorage.getItem("axo02-theme")}catch(e){}
 setTheme(saved==="light"||saved==="dark"?saved:(matchMedia("(prefers-color-scheme:light)").matches?"light":"dark"));
 toggle.addEventListener("click",()=>setTheme(root.dataset.theme==="dark"?"light":"dark"));
-function render(){let key=decodeURIComponent(location.hash.slice(1));let index=sections.findIndex(s=>s[0]===key);if(index<0)index=0;let s=sections[index];document.getElementById("heading").textContent=s[1];document.getElementById("desc").textContent=s[2];document.getElementById("crumb").textContent=s[1];document.getElementById("footerSection").textContent=s[1];const panel=document.getElementById("sectionContent");if(s[0]==="foundations"){panel.classList.remove("canvas");panel.innerHTML=foundationHTML;refreshFoundationTokens()}else if(s[0]==="buttons"){panel.classList.remove("canvas");panel.innerHTML=buttonsHTML;}else if(s[0]==="navigation"){panel.classList.remove("canvas");renderPagination();panel.insertAdjacentHTML("beforeend", '<div id="navigation-extras"></div>');renderNavigationExtras();}else if(s[0]==="inputs"){panel.classList.remove("canvas");renderInputs();}else{panel.classList.add("canvas");panel.innerHTML=emptyHTML;}document.getElementById("count").textContent=String(index+1).padStart(2,"0")+" / "+sections.length+" · Design Catalog";document.querySelectorAll("[data-section]").forEach(a=>{let current=a.dataset.section===s[0];a.classList.toggle("active",current);current?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current")});document.getElementById("sidebar").classList.remove("open");document.getElementById("overlay").classList.remove("show");document.title=s[1]+" · Axo 02"}
+function render(){let key=decodeURIComponent(location.hash.slice(1));let index=sections.findIndex(s=>s[0]===key);if(index<0)index=0;let s=sections[index];document.getElementById("heading").textContent=s[1];document.getElementById("desc").textContent=s[2];document.getElementById("crumb").textContent=s[1];document.getElementById("footerSection").textContent=s[1];const panel=document.getElementById("sectionContent");if(s[0]==="foundations"){panel.classList.remove("canvas");panel.innerHTML=foundationHTML;refreshFoundationTokens()}else if(s[0]==="buttons"){panel.classList.remove("canvas");panel.innerHTML=buttonsHTML;}else if(s[0]==="navigation"){panel.classList.remove("canvas");renderPagination();panel.insertAdjacentHTML("beforeend", '<div id="navigation-extras"></div>');renderNavigationExtras();}else if(s[0]==="inputs"){panel.classList.remove("canvas");renderInputs();panel.insertAdjacentHTML("beforeend", '<div id="form-controls"></div>');renderFormControls();}else{panel.classList.add("canvas");panel.innerHTML=emptyHTML;}document.getElementById("count").textContent=String(index+1).padStart(2,"0")+" / "+sections.length+" · Design Catalog";document.querySelectorAll("[data-section]").forEach(a=>{let current=a.dataset.section===s[0];a.classList.toggle("active",current);current?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current")});document.getElementById("sidebar").classList.remove("open");document.getElementById("overlay").classList.remove("show");document.title=s[1]+" · Axo 02"}
 addEventListener("hashchange",render);render();
 const sidebar=document.getElementById("sidebar"),overlay=document.getElementById("overlay");document.getElementById("menu").onclick=()=>{sidebar.classList.add("open");overlay.classList.add("show")};overlay.onclick=()=>{sidebar.classList.remove("open");overlay.classList.remove("show")};document.addEventListener("keydown",e=>{if(e.key==="Escape")overlay.click()});
 </script>
