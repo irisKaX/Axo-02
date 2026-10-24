@@ -316,14 +316,13 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 
 ## Další prvky V1 · Scrollbar a Cursor Studio (25. 10. 2026)
 
-- **Primary Violet Scrollbar:** v sekci `#other` ukázka nativně scrollovatelného panelu s fialovým `--accent` thumbem, jemnou dráhou, zaoblením a hoverem. Používá `scrollbar-color` / `scrollbar-width` a `::-webkit-scrollbar` fallback. Globální scrollbary katalogu nemění.
-- **Cursor Studio:** izolovaná interaktivní plocha s **Ambient Glow 02** a **Click Burst**. Původní plochý Glow uživatelce nevyhovoval; nové Ambient Glow má menší jasné jádro, rozměrnější jemnou auru, opožděný pohyb přes `requestAnimationFrame` a jemné protažení dle rychlosti pohybu. Click Burst zůstává beze změny a uživatelce se líbí. Kurzor ostatních částí katalogu se nemění; dotykový režim efekty nevyvolává, `prefers-reduced-motion` vypíná burst a odstraňuje opoždění Glow. Ambient Glow 02 čeká na vizuální schválení.
-- **O2 Bubble 03 · návrh:** přidán třetí samostatný efekt podle principu `bubbleCursor` z `tholman/cursor-effects` (MIT; https://github.com/tholman/cursor-effects). Vlastní adaptace přes Canvas: řídce se tvořící malé průsvitné modro-fialové obrysy bublin, jemné světelné odlesky, pomalý pohyb vzhůru a zanikání. V samostatném checkboxu ve stejném Cursor Studiu; Ambient Glow ani Click Burst se neměnily. Jen uvnitř demo plochy, bez dotyku, vypnuto při reduced motion, limit 30 bublin a zastavení animační smyčky po vypršení. **O2 Bubble 03 schváleno uživatelkou.**
-- **O2 Shimmer 04 (návrh):** vlastní jemná světelná stopa inspirovaná Glitter od Custom Cursor (https://custom-cursor.com/cursor-trails/sparkles-and-twinkles/glitter); žádné jejich grafické assety se nekopírují. Vlastní Canvas vykreslování velmi drobných modrofialových křížových záblesků, řídký výskyt, postupné mizení, limit 38 částic. Samostatné zapnutí v Cursor Studiu. Dotyk a reduced motion efekt vypínají. Ostatní efekty beze změny.
-- **Magnetic Cursor 05 (návrh):** samostatný checkbox a interaktivní `Magnetic Button` uvnitř Cursor Studia. Při přiblížení kurzoru do cca 105 px se tlačítko jemně přitahuje (max 12 px), při oddálení se vrací. Při `prefers-reduced-motion` je přitahování vypnuto. Neovlivňuje globální tlačítka.
-- **Axo Cursor (návrh):** volitelné nahrazení ukazatele **pouze uvnitř Cursor Studia** fialově konturovanou šipkou podle screenshotu od uživatelky, vytvořenou jako vlastní textový SVG asset `assets/axo-cursor.svg` s průhledným pozadím a tmavou výplní. Jde o vektorovou rekonstrukci vzhledu podle malého screenshotu, nikoliv pixelově identickou extrakci. Vypínatelný checkbox; nativní kurzor v ostatních sekcích beze změny. Na žádost uživatelky zmenšen z 36 × 36 na 24 × 24 px a upraven hotspot na (3,3), bez změny kresby.
-- Kanonické soubory `components/other.css` a `components/other.js`, jednoduché napojení přes `index.html`. Dark/light používají semantické tokeny; žádné CSS override vrstvy ani nové závislosti.
-- **Stav:** první návrhy k vizuálnímu schválení. Cards odloženy. Logo V1 Codex implementoval, ale uživatelkou nebylo zde výslovně vizuálně schváleno.
+- **Primary Violet Scrollbar:** lokální ukázka `--accent` scrollbar se zaoblením a hoverem v sekci `#other`, bez globálních změn.
+- **Schválené efekty v Cursor Studiu:** **Click Burst**, **O2 Bubble**, **O2 Shimmer**, **Magnetic Cursor**. Zachovány stávající přepínače a implementace, efekty zůstávají omezeny na testovací plochu.
+- **O2 Bubble:** vlastní Canvas adaptace podle `bubbleCursor` od tholman/cursor-effects (MIT, https://github.com/tholman/cursor-effects); uživatelka schválila.
+- **O2 Shimmer:** vlastní decentní mikrozáblesky inspirované https://custom-cursor.com/cursor-trails/sparkles-and-twinkles/glitter, bez kopírovaných assetů; uživatelka schválila.
+- **Magnetic Cursor:** jemné přitahování demonstračního tlačítka v Cursor Studiu; uživatelka schválila.
+- **Axo Cursor a Ambient Glow:** uživatelka je výslovně odmítla. Byly **odstraněny z katalogu i z CSS/JS**, odstraněn také nepotřebný asset `assets/axo-cursor.svg`. **Bez nového zadání je znovu nezavádět.**
+- Kanonické soubory `components/other.css` a `components/other.js`; žádné CSS override vrstvy ani nové závislosti. Cards jsou stále odloženy; Logo V1 čeká na výslovné vizuální schválení.
 
 ## 8. Udržování dokumentu a Obsidian
 
