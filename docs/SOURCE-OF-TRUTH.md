@@ -228,6 +228,12 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 
 - Akce **Otevřít** a **Upravit** byly původně nakonfigurovány jako `outline`, proto vizuálně neodpovídaly Stáhnout, Nahrát a Kopírovat. Obě akce nyní používají `secondary` ve společném seznamu `actions` v `components/button.js`. Textové i kulaté formáty automaticky sdílejí stejný styl a hover. Žádné CSS změny ani override vrstvy.
 
+### Inputs V1 · vizuální doladění (24. 10. 2026)
+
+- **URL Input:** ikona Globe (web) místo Link. Hover i focus uvnitř pole přebarvují Globe na `--accent`; URL input má na hover/focus skutečný 2px `--border-hover` a pevnou celkovou výšku 43 px. Copy a výběr ukázkových karet odděluje jemný divider. Jejich ikony mají vlastní mikroanimaci (copy malý posun, tabs malé natočení) a popisky při hoveru i focusu; nativní `title` odstraněn. Ovládání výběru karet zůstává pouze lokální demo.
+- **Search Input:** výchozí rotující gradient zachován, na hover se zesílí gradientová hrana (3px a širší barevné segmenty). Ikona lupy se barví na `--accent` při hoveru a focusu. Při focusu je gradient vnější 4px prstenec a **vnitřní** 2px fialový focus border na `.input-search-inner`, nikoli další vnější jednobarevný outline.
+- **Udržovatelnost:** změněny původní definice v `components/inputs.css` a `components/inputs.js`, žádné nové CSS override vrstvy, tokeny a ostatní komponenty beze změny. Dark/light a reduced motion zachovány. Skutečný browser audit celé přístupnosti neproběhl.
+
 ### Inputs V1 · první dva návrhy (24. 10. 2026)
 
 - **URL Input:** editovatelné pole typu `url`, ikonka odkazu, kopírování přes Clipboard API a dropdown s výběrem tří lokálních ukázkových karet. **Katalog nemá browser extension ani oprávnění získat reálné otevřené karty**; dropdown tuto schopnost pouze demonstruje. Bez napojení na aktivní kartu.
