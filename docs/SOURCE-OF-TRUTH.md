@@ -30,8 +30,8 @@
 | Navigace | **Rozpracováno** | Pagination (Numbered/Compact/Table), Tabs (Pill/Underline) a Breadcrumbs (plná/kompaktní ukázka). Další navigační komponenty zatím nejsou vytvořené. |
 | Inputy a formuláře | **Rozpracováno** | URL Input, Search Input, nové návrhy Select, Checkbox/Radio a Switch |
 | Karty | **Prázdná sekce** | Návrh teprve vznikne |
-| Dialogs a popovers | **Rozpracováno** | Confirm Dialog, Information Dialog a Action Popover, interaktivní katalogové ukázky |
-| Feedback a status | **Prázdná sekce** | Návrh teprve vznikne |
+| Dialogs a popovers | **Schváleno V1** | Confirm Dialog, Information Dialog a Action Popover, vizuálně schváleno uživatelkou |
+| Feedback a status | **Rozpracováno** | Inline Notices, Progress / Processing, Status Badges, Empty State a Toast, interaktivní návrhy |
 | Logo | **Prázdná sekce** | Návrh teprve vznikne |
 | Brand | **Prázdná sekce** | Návrh teprve vznikne |
 | Loaders | **Prázdná sekce** | Návrh teprve vznikne |
@@ -269,6 +269,13 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 - Dialogy používají nativní HTML `<dialog>` a `showModal()`, podporují Escape, správnou modalitu a focus prohlížeče. Popover je vlastní malá nabídka s kliknutím mimo a Escape; akce pouze přepisují lokální demo zprávu.
 - Oba vzory používají **stávající `renderButton()`** ze společného Button System V1; nezavádí se druhá implementace tlačítek. Kanonické styly v `components/overlays.css`, chování v `components/overlays.js`, napojení na sekci `#overlays` v `index.html`.
 - Semantické barvy z Foundations, globální dark/light, bez CSS override vrstev a `!important`. Reálné tool operace se neprovádějí.
+
+### Feedback & Status V1 (25. 10. 2026)
+
+- Nové katalogové ukázky pro pracovní nástroje: **Inline Notices** (info, success, warning, error), **Progress / Processing** (simulace kontroly 120 URL s možností zastavení), **Status Badges** (čeká, dokončeno, s omezeními, chyba), **Empty State** (žádný výskyt) a **Toast** (neblokující oznámení).
+- Interakce používají lokální demonstrační data, nespouštějí žádné skenování ani ukládání. Dialogs & Popovers V1 uživatelka výslovně schválila.
+- Nové soubory: `components/feedback.css` (jediné kanonické definice stylů) a `components/feedback.js` (ukázky a lokální stavy), napojené do `#feedback` v `index.html`. Tlačítka zůstávají přes jediný sdílený `renderButton()`.
+- Stavy používají barevné role Foundations; dark/light a reduced motion, bez CSS override vrstev a `!important`. **Vizuální schválení Feedback V1 ještě neproběhlo.**
 
 ## 6. Pravidla spolupráce a vývoje
 
