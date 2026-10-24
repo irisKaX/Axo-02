@@ -153,8 +153,8 @@ document.addEventListener("focusin",event=>{
 });
 addEventListener("hashchange",()=>closePaginationSize());
 addEventListener("resize",positionPaginationSize);
-addEventListener("scroll",positionPaginationSize,true);
+addEventListener("scroll",()=>closePaginationSize(),true);
 if(window.visualViewport){
  visualViewport.addEventListener("resize",positionPaginationSize);
- visualViewport.addEventListener("scroll",positionPaginationSize);
+ visualViewport.addEventListener("scroll",()=>closePaginationSize());
 }
