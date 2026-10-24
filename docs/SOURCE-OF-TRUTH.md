@@ -230,7 +230,7 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 
 ### Dropdown spacing refinement (24. 10. 2026)
 
-- Na základě screenshotů uživatelky zvětšen vnitřní prostor **Select / Dropdown** a **Table Pagination** menu: Select menu padding 9 px, volby min. 46 px s horizontálním paddingem 15 px; Table Pagination menu padding podle `--space-2`, min. šířka 104 px, volby min. 42 px s paddingem 10 × 12 px.
+- Na základě screenshotů uživatelky zvětšen vnitřní prostor **Select / Dropdown** a **Table Pagination** menu: Select menu padding 9 px, volby min. 47 px s horizontálním paddingem 15 px; Table Pagination menu padding podle `--space-2`, min. šířka 104 px, volby min. 43 px s paddingem 10 × 12 px. Poslední doladění: +1 px výšky položky u obou menu.
 - Zachovány současné hover, focus, selected stavy a ovládání. Změny pouze v kanonických definicích `components/form-controls.css` a `components/pagination.css`, žádné override vrstvy ani `!important`.
 
 ### Tool Form Controls V1 · první návrhy (24. 10. 2026)
