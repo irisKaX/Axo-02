@@ -270,11 +270,11 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 - Oba vzory používají **stávající `renderButton()`** ze společného Button System V1; nezavádí se druhá implementace tlačítek. Kanonické styly v `components/overlays.css`, chování v `components/overlays.js`, napojení na sekci `#overlays` v `index.html`.
 - Semantické barvy z Foundations, globální dark/light, bez CSS override vrstev a `!important`. Reálné tool operace se neprovádějí.
 
-### Inline Notices · Premium Soft redesign (25. 10. 2026)
+### Inline Notices · návrat k původnímu V1 (25. 10. 2026)
 
-- Na žádost uživatelky nahrazen příliš hranatý a obyčejný vzhled notices jemně zaobleným **Soft Status Surface**: radius 22 px, ambientní tónovaný přechod, jemný barevný border, barevné ikonové pouzdro a subtilní hover lift. Informace/úspěch/varování/chyba sdílejí jediný kanonický styl s rolí `--notice-color`.
-- Symboly nahrazeny konzistentními inline SVG. Stavové barvy používají původní `--accent`, `--success`, `--warning`, `--error` bez změn. Dark/light z Foundations, reduced motion zohledněn. Ostatní Feedback komponenty zachovány.
-- Změny přímo v `components/feedback.css` a `components/feedback.js`, bez CSS override vrstev. Návrh čeká na vizuální schválení.
+- Uživatelka odmítla Premium Soft redesign jako neodpovídající vizuálnímu stylu Axo 02. **Původní Inline Notices V1 byly obnoveny beze změn**, včetně ikon a popisků.
+- Další redesign Inline Notices je **odložen, dokud uživatelka nepřinese vlastní nápad**. Nic dalšího zde bez nového zadání nenavrhovat.
+- Zpětný návrat je přímo v kanonických definicích `components/feedback.css` a `components/feedback.js`, žádné CSS override vrstvy. Ostatní Feedback komponenty zůstaly beze změn.
 
 ### Feedback & Status V1 (25. 10. 2026)
 
