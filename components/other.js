@@ -84,8 +84,8 @@ function renderOther(){
  host.innerHTML='<div class="other-gallery"><div class="foundation-note">Další prvky · první návrh. Scrollbar má Primary Violet, efekty kurzoru fungují pouze uvnitř testovací plochy.</div>'+
  '<section class="other-card"><div><h2>01 · Primary Violet Scrollbar</h2><p>Jemný zaoblený scrollbar se zvýrazněním při hoveru. Ukázka uvnitř dlouhého seznamu, bez změny globálního scrollování katalogu.</p></div><div class="other-scroll-stage"><div class="other-scroll-pane" tabindex="0" aria-label="Scrollable seznam výsledků">'+rows+'</div></div><div class="other-caption">Barva: <code>--accent</code>. Nativní scrollování myší, trackpadem i klávesnicí.</div></section>'+
  '<section class="other-card"><div><h2>02 · Cursor Studio</h2><p>Ambient Glow, Click Burst, O2 Bubble a O2 Shimmer. Efekty jsou izolované, takže nic nepřebírá kurzor ostatních sekcí.</p></div>'+
- '<div class="other-control-row"><label class="other-control"><input type="checkbox" id="other-glow" checked> Ambient Glow</label><label class="other-control"><input type="checkbox" id="other-burst" checked> Click Burst</label><label class="other-control"><input type="checkbox" id="other-bubbles"> O2 Bubble</label><label class="other-control"><input type="checkbox" id="other-shimmer"> O2 Shimmer</label></div>'+
- '<div class="other-cursor-stage" id="other-cursor-stage"><canvas class="other-cursor-bubbles" id="other-bubble-canvas" aria-hidden="true"></canvas><canvas class="other-cursor-bubbles" id="other-shimmer-canvas" aria-hidden="true"></canvas><div class="other-cursor-glow" id="other-cursor-glow" aria-hidden="true"></div><div class="other-cursor-hint">Pohybuj kurzorem v této ploše.<br>Klikni pro drobný fialový burst.</div></div>'+
+ '<div class="other-control-row"><label class="other-control"><input type="checkbox" id="other-glow" checked> Ambient Glow</label><label class="other-control"><input type="checkbox" id="other-burst" checked> Click Burst</label><label class="other-control"><input type="checkbox" id="other-bubbles"> O2 Bubble</label><label class="other-control"><input type="checkbox" id="other-shimmer"> O2 Shimmer</label><label class="other-control"><input type="checkbox" id="other-magnetic" checked> Magnetic</label><label class="other-control"><input type="checkbox" id="other-custom-cursor" checked> Axo Cursor</label></div>'+
+ '<div class="other-cursor-stage" id="other-cursor-stage" data-custom-pointer="true"><canvas class="other-cursor-bubbles" id="other-bubble-canvas" aria-hidden="true"></canvas><canvas class="other-cursor-bubbles" id="other-shimmer-canvas" aria-hidden="true"></canvas><div class="other-cursor-glow" id="other-cursor-glow" aria-hidden="true"></div><div class="other-cursor-hint">Pohybuj kurzorem v této ploše.<br>Klikni pro drobný fialový burst.</div><button class="other-magnetic-target" id="other-magnetic-target" type="button">Magnetic Button</button></div>'+
  '<div class="other-caption" id="other-cursor-caption">Na dotykových zařízeních se efekty kurzoru nezobrazují. Reduced motion vypíná burst, bublinky i třpytky.</div></section></div>';
 }
 function otherPointerPosition(event,stage){const r=stage.getBoundingClientRect();return{x:event.clientX-r.left,y:event.clientY-r.top}}
@@ -100,8 +100,22 @@ function animateAmbientGlow(){
  glow.style.setProperty("--glow-stretch",String(1+Math.min(.25,speed/160)));
  ambientFrame=requestAnimationFrame(animateAmbientGlow);
 }
+function resetMagneticTarget(){
+ const b=document.getElementById("other-magnetic-target");
+ if(b){b.style.setProperty("--mag-x","0px");b.style.setProperty("--mag-y","0px")}
+}
+function updateMagneticTarget(event,stage){
+ if(event.pointerType!=="mouse"||!document.getElementById("other-magnetic")?.checked||matchMedia("(prefers-reduced-motion: reduce)").matches){resetMagneticTarget();return}
+ const b=document.getElementById("other-magnetic-target");if(!b)return;
+ const r=b.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
+ const dx=event.clientX-cx,dy=event.clientY-cy,dist=Math.hypot(dx,dy);
+ if(dist>105){resetMagneticTarget();return}
+ b.style.setProperty("--mag-x",Math.max(-12,Math.min(12,dx*.15))+"px");
+ b.style.setProperty("--mag-y",Math.max(-12,Math.min(12,dy*.15))+"px");
+}
 document.addEventListener("pointermove",event=>{
  const bubbleStage=event.target.closest("#other-cursor-stage");if(bubbleStage){addO2Bubble(event,bubbleStage);addO2Shimmer(event,bubbleStage)}
+ if(bubbleStage)updateMagneticTarget(event,bubbleStage);
  const stage=event.target.closest("#other-cursor-stage");
  if(!stage||event.pointerType!=="mouse"||!document.getElementById("other-glow")?.checked)return;
  const point=otherPointerPosition(event,stage);
@@ -109,10 +123,12 @@ document.addEventListener("pointermove",event=>{
  else{ambientPos.tx=point.x;ambientPos.ty=point.y}
  stage.dataset.active="true";
 });
-document.addEventListener("pointerout",event=>{const stage=event.target.closest("#other-cursor-stage");if(stage&&!stage.contains(event.relatedTarget)){stage.dataset.active="false";stopAmbientGlow()}});
-document.addEventListener("change",event=>{if(event.target.id==="other-bubbles"&&!event.target.checked)stopO2Bubbles();if(event.target.id==="other-shimmer"&&!event.target.checked)stopO2Shimmer();if(event.target.id==="other-glow"&&!event.target.checked){const stage=document.getElementById("other-cursor-stage");if(stage)stage.dataset.active="false";stopAmbientGlow()}});
+document.addEventListener("pointerout",event=>{const stage=event.target.closest("#other-cursor-stage");if(stage&&!stage.contains(event.relatedTarget)){stage.dataset.active="false";stopAmbientGlow();resetMagneticTarget()}});
+document.addEventListener("change",event=>{if(event.target.id==="other-bubbles"&&!event.target.checked)stopO2Bubbles();if(event.target.id==="other-shimmer"&&!event.target.checked)stopO2Shimmer();if(event.target.id==="other-magnetic"&&!event.target.checked)resetMagneticTarget();if(event.target.id==="other-custom-cursor"){const stage=document.getElementById("other-cursor-stage");if(stage)stage.dataset.customPointer=String(event.target.checked)}if(event.target.id==="other-glow"&&!event.target.checked){const stage=document.getElementById("other-cursor-stage");if(stage)stage.dataset.active="false";stopAmbientGlow()}});
 document.addEventListener("pointerdown",event=>{
  const stage=event.target.closest("#other-cursor-stage");if(!stage||event.pointerType!=="mouse"||!document.getElementById("other-burst")?.checked||matchMedia("(prefers-reduced-motion: reduce)").matches)return;
  const p=otherPointerPosition(event,stage);
  for(let i=0;i<7;i++){const spark=document.createElement("span");spark.className="other-cursor-spark";spark.style.left=p.x+"px";spark.style.top=p.y+"px";const angle=i*Math.PI*2/7;spark.style.setProperty("--dx",Math.cos(angle)*31+"px");spark.style.setProperty("--dy",Math.sin(angle)*31+"px");spark.addEventListener("animationend",()=>spark.remove(),{once:true});stage.appendChild(spark)}
 });
+
+document.addEventListener("click",event=>{if(event.target.closest("#other-magnetic-target")){const c=document.getElementById("other-cursor-caption");if(c)c.textContent="Magnetic Button · demonstrace, bez další akce.";}});
