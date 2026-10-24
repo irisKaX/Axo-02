@@ -39,16 +39,54 @@ function addO2Bubble(event,stage){
  o2Bubbles.push({x:p.x+(Math.random()-.5)*12,y:p.y,vx:(Math.random()-.5)*.4,vy:-.35-Math.random()*.45,radius:3+Math.random()*4,age:0,life:85+Math.random()*35});
  if(!o2BubbleFrame)o2BubbleFrame=requestAnimationFrame(animateO2Bubbles);
 }
+/* O2 Shimmer: original fine-light trail inspired by Custom Cursor Glitter, no copied artwork. */
+let shimmerParticles=[],shimmerFrame=0,shimmerTime=0,shimmerPointerTime=0;
+function stopO2Shimmer(){
+ if(shimmerFrame)cancelAnimationFrame(shimmerFrame);
+ shimmerFrame=0;shimmerParticles=[];shimmerTime=0;shimmerPointerTime=0;
+ const canvas=document.getElementById("other-shimmer-canvas");
+ if(canvas)canvas.getContext("2d")?.clearRect(0,0,canvas.width,canvas.height);
+}
+function animateO2Shimmer(time){
+ const canvas=document.getElementById("other-shimmer-canvas"),stage=document.getElementById("other-cursor-stage");
+ if(!canvas||!stage||!document.getElementById("other-shimmer")?.checked||matchMedia("(prefers-reduced-motion: reduce)").matches){stopO2Shimmer();return}
+ const rect=stage.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,2),w=Math.round(rect.width*dpr),h=Math.round(rect.height*dpr);
+ if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h}
+ const ctx=canvas.getContext("2d");if(!ctx){stopO2Shimmer();return}
+ ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,rect.width,rect.height);
+ const dt=Math.min(2,(time-(shimmerTime||time))/16.67);shimmerTime=time;
+ shimmerParticles=shimmerParticles.filter(p=>p.age<p.life);
+ for(const p of shimmerParticles){
+  p.age+=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.vx*=.988;
+  const t=Math.min(1,p.age/p.life),opacity=.62*Math.sin(Math.PI*t),radius=p.size*(1-t*.4);
+  ctx.save();ctx.globalAlpha=opacity;ctx.translate(p.x,p.y);ctx.rotate(p.rotation+t*.5);
+  ctx.strokeStyle=p.color;ctx.lineWidth=.75;
+  ctx.beginPath();ctx.moveTo(-radius,0);ctx.lineTo(radius,0);ctx.moveTo(0,-radius);ctx.lineTo(0,radius);ctx.stroke();
+  ctx.beginPath();ctx.fillStyle=p.color;ctx.arc(0,0,.65,0,Math.PI*2);ctx.fill();
+  ctx.restore();
+ }
+ shimmerFrame=shimmerParticles.length?requestAnimationFrame(animateO2Shimmer):0;
+}
+function addO2Shimmer(event,stage){
+ if(event.pointerType!=="mouse"||!document.getElementById("other-shimmer")?.checked||matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+ const now=performance.now();if(now-shimmerPointerTime<48)return;shimmerPointerTime=now;
+ const p=otherPointerPosition(event,stage);
+ for(let i=0;i<2;i++){
+  if(shimmerParticles.length>=38)shimmerParticles.shift();
+  shimmerParticles.push({x:p.x+(Math.random()-.5)*13,y:p.y+(Math.random()-.5)*13,vx:(Math.random()-.5)*.48,vy:-.13-Math.random()*.28,size:1.7+Math.random()*2.5,rotation:Math.random()*Math.PI,age:0,life:32+Math.random()*26,color:Math.random()<.55?"#B29AFF":"#78B2FF"});
+ }
+ if(!shimmerFrame)shimmerFrame=requestAnimationFrame(animateO2Shimmer);
+}
 function renderOther(){
- stopAmbientGlow();stopO2Bubbles();
+ stopAmbientGlow();stopO2Bubbles();stopO2Shimmer();
  const host=document.getElementById("sectionContent");if(!host)return;
  const rows=Array.from({length:15},(_,i)=>'<div class="other-scroll-row">Výsledek kontroly '+String(i+1).padStart(2,"0")+' · /osobni/oneplay</div>').join("");
  host.innerHTML='<div class="other-gallery"><div class="foundation-note">Další prvky · první návrh. Scrollbar má Primary Violet, efekty kurzoru fungují pouze uvnitř testovací plochy.</div>'+
  '<section class="other-card"><div><h2>01 · Primary Violet Scrollbar</h2><p>Jemný zaoblený scrollbar se zvýrazněním při hoveru. Ukázka uvnitř dlouhého seznamu, bez změny globálního scrollování katalogu.</p></div><div class="other-scroll-stage"><div class="other-scroll-pane" tabindex="0" aria-label="Scrollable seznam výsledků">'+rows+'</div></div><div class="other-caption">Barva: <code>--accent</code>. Nativní scrollování myší, trackpadem i klávesnicí.</div></section>'+
- '<section class="other-card"><div><h2>02 · Cursor Studio</h2><p>Ambient Glow, Click Burst a jemné O2 Bubble. Efekty jsou izolované, takže nic nepřebírá kurzor ostatních sekcí.</p></div>'+
- '<div class="other-control-row"><label class="other-control"><input type="checkbox" id="other-glow" checked> Ambient Glow</label><label class="other-control"><input type="checkbox" id="other-burst" checked> Click Burst</label><label class="other-control"><input type="checkbox" id="other-bubbles"> O2 Bubble</label></div>'+
- '<div class="other-cursor-stage" id="other-cursor-stage"><canvas class="other-cursor-bubbles" id="other-bubble-canvas" aria-hidden="true"></canvas><div class="other-cursor-glow" id="other-cursor-glow" aria-hidden="true"></div><div class="other-cursor-hint">Pohybuj kurzorem v této ploše.<br>Klikni pro drobný fialový burst.</div></div>'+
- '<div class="other-caption" id="other-cursor-caption">Na dotykových zařízeních se efekty kurzoru nezobrazují. Reduced motion vypíná burst i bublinky.</div></section></div>';
+ '<section class="other-card"><div><h2>02 · Cursor Studio</h2><p>Ambient Glow, Click Burst, O2 Bubble a O2 Shimmer. Efekty jsou izolované, takže nic nepřebírá kurzor ostatních sekcí.</p></div>'+
+ '<div class="other-control-row"><label class="other-control"><input type="checkbox" id="other-glow" checked> Ambient Glow</label><label class="other-control"><input type="checkbox" id="other-burst" checked> Click Burst</label><label class="other-control"><input type="checkbox" id="other-bubbles"> O2 Bubble</label><label class="other-control"><input type="checkbox" id="other-shimmer"> O2 Shimmer</label></div>'+
+ '<div class="other-cursor-stage" id="other-cursor-stage"><canvas class="other-cursor-bubbles" id="other-bubble-canvas" aria-hidden="true"></canvas><canvas class="other-cursor-bubbles" id="other-shimmer-canvas" aria-hidden="true"></canvas><div class="other-cursor-glow" id="other-cursor-glow" aria-hidden="true"></div><div class="other-cursor-hint">Pohybuj kurzorem v této ploše.<br>Klikni pro drobný fialový burst.</div></div>'+
+ '<div class="other-caption" id="other-cursor-caption">Na dotykových zařízeních se efekty kurzoru nezobrazují. Reduced motion vypíná burst, bublinky i třpytky.</div></section></div>';
 }
 function otherPointerPosition(event,stage){const r=stage.getBoundingClientRect();return{x:event.clientX-r.left,y:event.clientY-r.top}}
 function animateAmbientGlow(){
@@ -63,7 +101,7 @@ function animateAmbientGlow(){
  ambientFrame=requestAnimationFrame(animateAmbientGlow);
 }
 document.addEventListener("pointermove",event=>{
- const bubbleStage=event.target.closest("#other-cursor-stage");if(bubbleStage)addO2Bubble(event,bubbleStage);
+ const bubbleStage=event.target.closest("#other-cursor-stage");if(bubbleStage){addO2Bubble(event,bubbleStage);addO2Shimmer(event,bubbleStage)}
  const stage=event.target.closest("#other-cursor-stage");
  if(!stage||event.pointerType!=="mouse"||!document.getElementById("other-glow")?.checked)return;
  const point=otherPointerPosition(event,stage);
@@ -72,7 +110,7 @@ document.addEventListener("pointermove",event=>{
  stage.dataset.active="true";
 });
 document.addEventListener("pointerout",event=>{const stage=event.target.closest("#other-cursor-stage");if(stage&&!stage.contains(event.relatedTarget)){stage.dataset.active="false";stopAmbientGlow()}});
-document.addEventListener("change",event=>{if(event.target.id==="other-bubbles"&&!event.target.checked)stopO2Bubbles();if(event.target.id==="other-glow"&&!event.target.checked){const stage=document.getElementById("other-cursor-stage");if(stage)stage.dataset.active="false";stopAmbientGlow()}});
+document.addEventListener("change",event=>{if(event.target.id==="other-bubbles"&&!event.target.checked)stopO2Bubbles();if(event.target.id==="other-shimmer"&&!event.target.checked)stopO2Shimmer();if(event.target.id==="other-glow"&&!event.target.checked){const stage=document.getElementById("other-cursor-stage");if(stage)stage.dataset.active="false";stopAmbientGlow()}});
 document.addEventListener("pointerdown",event=>{
  const stage=event.target.closest("#other-cursor-stage");if(!stage||event.pointerType!=="mouse"||!document.getElementById("other-burst")?.checked||matchMedia("(prefers-reduced-motion: reduce)").matches)return;
  const p=otherPointerPosition(event,stage);
