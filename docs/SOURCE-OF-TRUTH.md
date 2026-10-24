@@ -203,6 +203,14 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 - Cíleně ověřeno v Chromium v dark/light: obě textové ikony jsou statické a čisté; oba kruhy mají 34×34 px v default/hover/focus/pressed i disabled. Vzorkování SVG cest včetně tloušťky tahu v koncových stavech i během otevírání ověřilo, že neopouštějí viewBox ani kruh tlačítka. Skutečný pohyb myši ověřil otevření i zavření. Zkontrolován červený focus, disabled a reduced motion, prohlédnut zvětšený aktuální vzhled v obou tématech. Bez JavaScriptových výjimek; `git diff --check` prošel. Bez screenshotové baseline či nové testovací infrastruktury.
 - Kanonické SVG definice jsou nyní v `components/button.js`, pravidla víka v `components/button.css`; ostatní komponenty a Foundations tokeny zůstávají beze změny. Žádné CSS override vrstvy, duplicitní styly ani `!important`. SVG je vlastní inline implementace, nikoli import Hugeicons.
 
+### Primary 03 · Animated Border (24. 10. 2026)
+
+- **Stav:** nová samostatná interaktivní ukázka v sekci Primary Styles, návrh ke schválení. Nezaměňovat s výchozím Primary 01 ani schválenou Primary 02 / Reveal Fill.
+- **Reference:** https://21st.dev/community/components/s/button?preview=%2F%40shadcnspace%2Fcomponents%2Fbutton-33 . Konkrétní live preview nešlo při implementaci spolehlivě načíst, takže aktuální chování je naše **interpretace animovaného borderu**, nikoli přesná kopie externí komponenty.
+- **Barvy:** `--accent` dark `#8C00FF` + nová `--detail-magenta: #D10062`; nová barva je ve Foundations v dark i light. Zbylá paleta beze změn. Detail Magenta je doplňkový akcent, **nenahrazuje stavovou Error**.
+- **Implementace:** sdílený `renderButton(config)` v `components/button.js` podporuje koncept `animated-border`, CSS vlastní `components/button.css` u dalších Primary konceptů. Animovaná dvoubarevná hrana používá conic gradient a CSS `@property`; bez dalších knihoven nebo duplicitního button rendereru. Respektuje reduced motion.
+- **CSS zásada:** žádné override vrstvy, žádné `!important` a žádná změna ostatních Button stylů.
+
 ## 6. Pravidla spolupráce a vývoje
 
 1. **Design-first:** nejdřív konkrétní zadání, rychlá vizuální úprava, publikace katalogu, zpětná vazba.
