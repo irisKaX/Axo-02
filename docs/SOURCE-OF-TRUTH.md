@@ -228,6 +228,11 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 
 - Akce **Otevřít** a **Upravit** byly původně nakonfigurovány jako `outline`, proto vizuálně neodpovídaly Stáhnout, Nahrát a Kopírovat. Obě akce nyní používají `secondary` ve společném seznamu `actions` v `components/button.js`. Textové i kulaté formáty automaticky sdílejí stejný styl a hover. Žádné CSS změny ani override vrstvy.
 
+### Dropdown spacing refinement (24. 10. 2026)
+
+- Na základě screenshotů uživatelky zvětšen vnitřní prostor **Select / Dropdown** a **Table Pagination** menu: Select menu padding 9 px, volby min. 46 px s horizontálním paddingem 15 px; Table Pagination menu padding podle `--space-2`, min. šířka 104 px, volby min. 42 px s paddingem 10 × 12 px.
+- Zachovány současné hover, focus, selected stavy a ovládání. Změny pouze v kanonických definicích `components/form-controls.css` a `components/pagination.css`, žádné override vrstvy ani `!important`.
+
 ### Tool Form Controls V1 · první návrhy (24. 10. 2026)
 
 - Sekce **Inputy a formuláře** zahrnuje nové živé ukázky **Select / Dropdown**, **Checkbox / Radio** a **Switch / Toggle** pro pracovní nástroje. Není to přihlašovací ani registrační formulář.
