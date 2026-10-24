@@ -164,6 +164,9 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 
 ### Akční tlačítka · Animovaný koš (24. 10. 2026)
 
+- **Oprava:** U varianty `Smazat vše` byl v animovaném SVG ponechán samostatný diagonální tah z původní ikony, který vizuálně připomínal druhé víko. Odstraněn přímo ze zdrojové SVG definice; `Smazat` a `Smazat vše` nyní používají shodnou skupinu jediného animovaného víka. Tlačítka mají odlišné přístupné názvy, avšak aktuálně stejný symbol; případné budoucí vizuální rozlišení řešit novým schváleným návrhem.
+
+
 - Kulatá ikonová tlačítka **Smazat** a **Smazat vše** používají vlastní SVG se samostatnou skupinou víka. Při hoveru nebo keyboard focusu se víko pootočí o 35° (300 ms), při opuštění vrátí zpět.
 - Zachován rozměr S (34×34), Destructive barva i focus token; u `prefers-reduced-motion` se přechod vypne. Textové varianty a ostatní ikony se nemění.
 - Styl je přímo u akčních tlačítek v `index.html`, bez duplicitních CSS override pravidel. SVG je vlastní inline implementace, ne import Hugeicons.
