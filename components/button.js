@@ -33,7 +33,7 @@ function renderButton({label,variant="primary",size="s",format="text",state="def
  if(!buttonStates.some(([,key])=>key===state))throw new RangeError("Unknown Button state");
  if(!String(label||"").trim())throw new TypeError("Button requires an accessible label");
  if(format!=="text"&&!icon&&state!=="loading")throw new TypeError("Icon format requires icon content");
- if(concept&&concept!=="reveal-fill")throw new RangeError("Unknown Button concept");
+ if(concept&&!["reveal-fill","animated-border"].includes(concept))throw new RangeError("Unknown Button concept");
  const round=format==="icon-only",loading=state==="loading";
  const actionMotion=round&&!loading?motion:"";
  const classes=["axo-btn","axo-btn--"+variant];
@@ -90,12 +90,13 @@ function renderButtonCatalog(){
   ["Icon + Text",{label:"Stáhnout",variant:"secondary",format:"icon-text",icon:actionIcon("download")}],
   ["Icon Only",{label:"Stáhnout",variant:"secondary",format:"icon-only",icon:actionIcon("download"),tooltip:"Stáhnout"}]
  ].map(([name,config])=>'<div class="action-card"><div class="action-title">'+name+'</div><div class="action-pair">'+renderButton(config)+'</div></div>').join("")+'</div>';
+ const borderDemo='<div class="border-demo">'+renderButton({label:"Animated Border",concept:"animated-border"})+'<span class="border-demo-caption">Animovaná hrana · Primary Violet + Detail Magenta · návrh ke schválení</span></div>';
  const reveal='<div class="reveal-demo">'+renderButton({label:"Vyzkoušet hover",format:"icon-text",icon:"→",iconPosition:"end",concept:"reveal-fill"})+'<span class="reveal-demo-caption">Plynulé odhalení modrofialového gradientu · dark/light · reduced motion</span></div>';
  return '<div class="btn-catalog"><div class="foundation-note">Základní sada velikosti S. Přepínač dark/light mění všechny varianty. Stavové ukázky jsou viditelné a tlačítka lze také reálně ovládat myší a klávesnicí.</div>'+
   buttonSection("button-variants","01 · Button Variants","Primary · Secondary · Outline · Ghost · Destructive",renderButtonSet("text"))+
   buttonSection("button-formats","02 · Button Formats","Text, Icon + Text a Icon Only používají stejný Button základ. Níže jsou všechny stavy kruhových variant S.",formats+renderButtonSet("icon-only"))+
   buttonSection("button-actions","03 · Action Examples","Deset běžných akcí ve dvou provedeních: text s ikonou a kulaté ikonové. Destructive používá červenou i pro focus.",renderActionButtons())+
-  buttonSection("button-concepts","04 · Hover Concepts","Primary · Reveal Fill: samostatný návrh hover efektu ke schválení. Stávající Primary zůstává beze změny.",reveal)+
+  buttonSection("button-concepts","04 · Primary Styles","Primary 01: současný základ · Primary 02: Reveal Fill · Primary 03: Animated Border (návrh).",reveal+borderDemo)+
   '<p class="btn-note">Ukázkové tlačítko neprovádí žádnou destruktivní akci. Loading je pouze demonstrační stav. Všechny barvy vycházejí z Foundations.</p></div>';
 }
 const buttonsHTML=renderButtonCatalog();
