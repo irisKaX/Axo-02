@@ -1,7 +1,7 @@
 /* Axo 02 · Inputs V1, local demo only; no browser tab permissions */
 const inputDemoTabs=[{title:"Axo 02 · Design Catalog",url:"https://iriskax.github.io/Axo-02/"},{title:"O2 · Úvodní stránka",url:"https://www.o2.cz/"},{title:"Ukázková stránka",url:"https://example.com/"}];
 const inputSvg={
-link:'<path d="M10 13a5 5 0 0 0 7.1 0l3-3a5 5 0 0 0-7.1-7.1l-1.7 1.7M14 11a5 5 0 0 0-7.1 0l-3 3a5 5 0 0 0 7.1 7.1l1.7-1.7"/>',
+globe:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c-3 3-3 15 0 18M12 3c3 3 3 15 0 18"/>',
 copy:'<rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>',
 tabs:'<rect x="3" y="5" width="15" height="14" rx="2"/><path d="M7 2h12a2 2 0 0 1 2 2v12"/>',
 search:'<circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>'
@@ -11,11 +11,11 @@ function renderInputs(){
 const root=document.getElementById("sectionContent");if(!root)return;
 root.innerHTML='<div class="input-gallery"><div class="foundation-note">Dvě první varianty Inputů. URL výběr karet je pouze lokální demo; skutečné karty bude možné získat až přes browser extension.</div>'+
 '<section class="input-card"><div><h2>01 · URL Input</h2><p>Zobrazení i ruční zadání URL, kopírování a výběr z demonstračních karet.</p></div><label class="input-label" for="axo-url-input">URL adresa</label>'+
-'<div class="input-shell"><span class="input-icon">'+inputIcon("link")+'</span><input id="axo-url-input" type="url" inputmode="url" spellcheck="false" value="https://iriskax.github.io/Axo-02/" placeholder="https://example.com/" aria-describedby="url-feedback">'+
-'<button class="input-action" id="axo-copy-url" type="button" aria-label="Kopírovat URL" title="Kopírovat URL">'+inputIcon("copy")+'</button>'+
-'<div class="input-select-wrap"><button class="input-action" id="axo-tab-trigger" type="button" aria-label="Vybrat kartu" aria-expanded="false" aria-controls="axo-tab-menu" aria-haspopup="listbox">'+inputIcon("tabs")+'</button>'+
+'<div class="input-shell"><span class="input-icon">'+inputIcon("globe")+'</span><input id="axo-url-input" type="url" inputmode="url" spellcheck="false" value="https://iriskax.github.io/Axo-02/" placeholder="https://example.com/" aria-describedby="url-feedback">'+
+'<div class="input-action-group"><span class="input-tooltip-wrap"><button class="input-action" id="axo-copy-url" type="button" aria-label="Kopírovat URL" aria-describedby="url-copy-tooltip">'+inputIcon("copy")+'</button><span class="input-tooltip" id="url-copy-tooltip" role="tooltip">Kopírovat URL</span></span><span class="input-action-divider" aria-hidden="true"></span>'+
+'<div class="input-select-wrap"><span class="input-tooltip-wrap"><button class="input-action" id="axo-tab-trigger" type="button" aria-label="Vybrat kartu prohlížeče" aria-describedby="url-tabs-tooltip" aria-expanded="false" aria-controls="axo-tab-menu" aria-haspopup="listbox">'+inputIcon("tabs")+'</button><span class="input-tooltip" id="url-tabs-tooltip" role="tooltip">Vybrat kartu prohlížeče</span></span>'+
 '<div class="input-tab-menu" id="axo-tab-menu" role="listbox" aria-label="Demonstrační karty" hidden><div class="input-tab-heading">Ukázkové karty · nejsou načtené z prohlížeče</div>'+
-inputDemoTabs.map((tab,i)=>'<button class="input-tab-option" role="option" type="button" data-demo-tab="'+i+'" aria-selected="'+(i===0)+'">'+tab.title+'</button>').join('')+'</div></div></div>'+
+inputDemoTabs.map((tab,i)=>'<button class="input-tab-option" role="option" type="button" data-demo-tab="'+i+'" aria-selected="'+(i===0)+'">'+tab.title+'</button>').join('')+'</div></div></div></div>'+
 '<div class="input-message" id="url-feedback" aria-live="polite">Adresu můžeš upravit ručně. Výběr karet používá vzorové údaje.</div></section>'+
 '<section class="input-card"><div><h2>02 · Search Input · Animated Border</h2><p>Klasický textový input s ikonou lupy a nepřetržitě animovaným fialovo-růžovým borderem podle Primary 03.</p></div>'+
 '<label class="input-label" for="axo-search-input">Vyhledávání</label><div class="input-search-shell"><div class="input-search-inner"><span class="input-icon">'+inputIcon("search")+'</span><input type="search" id="axo-search-input" placeholder="Hledat v katalogu…" autocomplete="off"></div></div><div class="input-message">Designová ukázka, zatím bez vyhledávacího indexu.</div></section></div>';
