@@ -151,6 +151,13 @@ Cílené ověření v Chromium nejprve reprodukovalo obě chyby a po opravě pro
 
 Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnání v Chromium prošlo bez rozdílů ve sledovaných vizuálních CSS vlastnostech, rozměrech a kořenových tokenech před/po úklidu. Zahrnulo dark/light, Foundations, Tlačítka a prázdnou sekci, šířky 1440/981/980/791/790/561/560/390 px, hover, focus-visible, pressed, disabled, loading i reduced motion. Přechody byly dokončeny a spinner porovnán ve stejné fázi; nejde o pixelový audit. Funkční kontrola prošla pro render všech variant, přepnutí a obnovení tématu, červený destructive focus, disabled/loading i mobilní menu, Escape a zavření menu po navigaci. Konzole bez JavaScriptových výjimek. Dvě ponechané interakční odchylky byly potvrzeny na původní i upravené verzi. Prohlédnuty aktuální mobilní light Foundations a desktopové dark Tlačítka; ve zkontrolovaném rozsahu nebyla zjištěna nová viditelná regrese. `git diff --check` prošel. Nevznikla testovací infrastruktura, screenshotová baseline, framework ani nový release workflow. Nejde o úplný audit přístupnosti nebo všech prohlížečů.
 
+## Navigation · Stepper V1 (25. 10. 2026)
+
+- Na základě uživatelkou schválené vizuální ukázky přidány tři příklady v sekci `#navigation`: **07 Navigation Stepper** (klikací 4 kroky, Zpět / Pokračovat), **08 Progress Stepper** (neklikací postup), **09 Stepper Error State** (chybový krok).
+- Jediná kanonická vizuální definice v `components/stepper.css`, jediný společný `stepperSteps()` pro oba módy v `components/stepper.js`; navigační ovládací tlačítka přes existující `renderButton()`. Žádné dodatečné CSS override vrstvy, nové balíčky ani změny ostatních komponent.
+- Stavy completed / active / upcoming / error, dokončené kroky s fajfkou, aktivní krok fialový, barvy z Foundations. Přístupná tlačítka s `aria-current="step"`, klávesnice a focus. Lokální demo, nespojeno s nástroji.
+- **Stav:** Stepper V1 návrh ke schválení v katalogu; použitá podoba byla uživatelkou předběžně schválena v konverzační ukázce.
+
 ## Navigation · Pagination (24. 10. 2026)
 
 - Tři interaktivní katalogové varianty: Numbered, Compact a Table. Tabulková varianta umožňuje přepínání počtu řádků.
