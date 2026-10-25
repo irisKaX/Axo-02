@@ -12,7 +12,8 @@
 .axo-dock-face{position:absolute;inset:0;display:grid;place-items:center;border:1px solid var(--border);border-radius:calc(var(--dock-base,50px)*var(--dock-round,.5)*.5);background:var(--surface-2);box-shadow:0 5px 12px rgba(0,0,0,.09);transition:border-color 160ms,background 160ms,color 160ms}
 .axo-dock-face svg{width:calc(var(--dock-base,50px)*.48);height:calc(var(--dock-base,50px)*.48);stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .axo-dock-item:hover,.axo-dock-item:focus-visible{color:var(--accent)}
-.axo-dock-item:hover .axo-dock-face,.axo-dock-item:focus-visible .axo-dock-face{border-color:var(--border-hover);background:var(--accent-bg)}
+.axo-dock-item:hover .axo-dock-face,.axo-dock-item:focus-visible{outline:none}
+.axo-dock-item:focus-visible .axo-dock-face{border-color:var(--border-hover);background:var(--accent-bg)}
 .axo-dock-item:focus-visible .axo-dock-face{background:var(--primary);border-color:var(--primary);color:var(--primary-foreground);outline:2px solid var(--primary);outline-offset:3px}
 .axo-dock-item[aria-pressed="true"]{color:var(--primary-foreground)}
 .axo-dock-item[aria-pressed="true"] .axo-dock-face{background:var(--primary);border-color:var(--primary);color:var(--primary-foreground)}
