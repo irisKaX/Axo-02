@@ -1,4 +1,4 @@
-/* Header Navigation V3: isolated demo inspired by original axolotl-2 layout. */
+/* Header Navigation V4: isolated demo inspired by original axolotl-2 layout. */
 const headerNavGroups={
 media:[["Konverze obrázků","Konverze"],["Obrázky z webu","Obrázky"],["PDF Scout","PDF"],["Screenshot","Screenshot"],["QR generátor","QR"]],
 workspace:[["Notebook","Notebook"],["Úkoly","Úkoly"],["Kalendář","Kalendář"]],
@@ -13,22 +13,49 @@ tabs:'<rect x="3" y="5" width="15" height="14" rx="2"/><path d="M7 2h12a2 2 0 0 
 sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
 moon:'<path d="M21 13a9 9 0 0 1-10-10A9 9 0 1 0 21 13Z"/>',
 bell:'<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/>',
-settings:'<circle cx="12" cy="12" r="3"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+settings:'<path d="m9.5 3-.6 2a8 8 0 0 0-1.6.9l-2-.5-2.5 4.2 1.5 1.5a8 8 0 0 0 0 1.8l-1.5 1.5 2.5 4.2 2-.5a8 8 0 0 0 1.6.9l.6 2h5l.6-2a8 8 0 0 0 1.6-.9l2 .5 2.5-4.2-1.5-1.5a8 8 0 0 0 0-1.8l1.5-1.5-2.5-4.2-2 .5a8 8 0 0 0-1.6-.9l-.6-2h-5Z"></path><circle cx="12" cy="12" r="3"></circle>',
 menu:'<path d="M4 8h16M4 16h16"/>',
 media:'<rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1"/><path d="m4 17 5-4 3 2 4-5 4 4"/>',
 workspace:'<rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8M8 12h8M8 16h5"/>',
 shield:'<path d="m12 2 9 4v6c0 6-4 9-9 10-5-1-9-4-9-10V6Z"/><path d="m8 12 3 3 5-6"/>'
 };
+// Existing rounded-stroke tool glyphs: reference Icon.tsx and Axo Dock; no icon package.
+Object.assign(headerNavIcons,{
+ convert:"<rect x=\"3\" y=\"3\" width=\"14\" height=\"14\" rx=\"3\"></rect><path d=\"m3 13 4-4 4 4m4 8h6m-3-3 3 3-3 3\"></path><circle cx=\"12\" cy=\"7\" r=\"1\"></circle>",
+ webImages:"<rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"3\"></rect><path d=\"m3 16 5-5 4 4 3-3 6 6M8 4v3m8-3v3\"></path>",
+ pdf:"<path d=\"M13 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8M13 3v6h6l-6-6Z\"></path><circle cx=\"17\" cy=\"16\" r=\"3\"></circle><path d=\"m19 18 3 3M8 12h3m-3 4h2\"></path>",
+ capture:"<path d=\"M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5\"></path><rect x=\"7\" y=\"7\" width=\"10\" height=\"10\" rx=\"2\"></rect>",
+ qr:"<path d=\"M3 3h6v6H3zM15 3h6v6h-6zM3 15h6v6H3zM15 15h3v3h3v3h-6v-3m6-3v-3M12 3v3m0 6h3M3 12h3m6 6v3\"></path>",
+ metadata:"<rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"3\"></rect><path d=\"M3 9h18M7 13h5m-5 3h10\"></path>",
+ headings:"<path d=\"M5 5v14M15 5v14M5 12h10M19 15v4m-1-3 1-1\"></path>",
+ structure:"<rect x=\"9\" y=\"3\" width=\"6\" height=\"5\" rx=\"1\"></rect><rect x=\"3\" y=\"16\" width=\"6\" height=\"5\" rx=\"1\"></rect><rect x=\"15\" y=\"16\" width=\"6\" height=\"5\" rx=\"1\"></rect><path d=\"M12 8v4H6v4m6-4h6v4\"></path>",
+ imageCheck:"<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"3\"></rect><circle cx=\"8\" cy=\"8\" r=\"1.5\"></circle><path d=\"m21 15-5-5L5 21\"></path>",
+ tasks:"<rect x=\"3\" y=\"4\" width=\"18\" height=\"16\" rx=\"3\"/><path d=\"m7 11 3 3 6-7\"/>",
+ calendar:"<rect x=\"3\" y=\"5\" width=\"18\" height=\"16\" rx=\"2\"/><path d=\"M7 3v4M17 3v4M3 10h18\"/>",
+ search:"<circle cx=\"10.8\" cy=\"10.8\" r=\"7.5\"/><path d=\"m16.4 16.4 5 5\"/>"
+});
+const headerToolIcons={"Notebook":"workspace","Úkoly":"tasks","Kalendář":"calendar","Konverze":"convert","Obrázky":"webImages","PDF":"pdf","Screenshot":"capture","QR":"qr","Metadata":"metadata","Nadpisy":"headings","Strukturovaná data":"structure","Find Phrase":"search","Kontrola obrázků":"imageCheck"};
 const headerNavLabels={media:["Média","media"],kontrola:["Kontrola","shield"],workspace:["Můj workspace","workspace"]};
 const headerNavOrder=["workspace","media","kontrola"];
+let headerActive="home";
 let headerDemoURL="https://www.o2.cz/osobni/oneplay";
 let headerClockTimer=null,headerPreview="desktop",headerOpenMenu=null,headerLayoutCleanup=null,headerCloseTimer=0;
 function headerNavIcon(name){return '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+headerNavIcons[name]+'</svg>'}
 function headerNavRows(key,compact=false){
  return headerNavGroups[key].map(([label,id])=>{
-  const row='<button class="header-menu-item" '+(compact?'':'role="menuitem" tabindex="-1" ')+'type="button" data-h-pick="'+id+'">'+label+'</button>';
+  const row='<button class="header-menu-item" '+(compact?'':'role="menuitem" tabindex="-1" ')+'type="button" data-h-pick="'+id+'">'+headerNavIcon(headerToolIcons[id])+'<span>'+label+'</span></button>';
   return compact?'<li>'+row+'</li>':row;
  }).join("");
+}
+function syncHeaderActive(){
+ const header=document.querySelector(".header-demo");if(!header)return;
+ function current(button,on,value){if(on)button.setAttribute("aria-current",value);else button.removeAttribute("aria-current")}
+ header.querySelectorAll('[data-h-action="home"]').forEach(button=>current(button,headerActive==="home","page"));
+ for(const key of headerNavOrder){
+  const active=headerNavGroups[key].some(([,id])=>id===headerActive);
+  header.querySelectorAll('[data-h-menu="'+key+'"],[data-h-group="'+key+'"]').forEach(button=>current(button,active,"true"));
+ }
+ header.querySelectorAll("[data-h-pick]").forEach(button=>current(button,button.dataset.hPick===headerActive,"page"));
 }
 function headerNavPanel(key,content,align="left"){
  return '<div class="header-menu-panel" id="h-panel-'+key+'" role="'+(key==="compact"?'dialog':'menu')+'" aria-labelledby="h-trigger-'+key+'" tabindex="-1" popover="manual" data-kind="'+key+'" data-align="'+align+'">'+content+'</div>';
@@ -43,7 +70,7 @@ function headerNavTheme(){
 }
 function headerNavDropdown(key){
  const [label,icon]=headerNavLabels[key];
- return '<span class="header-menu-wrap"><button class="nav-tab header-pill" type="button"'+headerNavMenuAttrs(key)+'>'+headerNavIcon(icon)+label+headerNavIcon("chevron")+'</button>'+headerNavPanel(key,headerNavRows(key))+'</span>';
+ return '<span class="header-menu-wrap"><button class="header-pill" type="button"'+headerNavMenuAttrs(key)+'>'+headerNavIcon(icon)+label+headerNavIcon("chevron")+'</button>'+headerNavPanel(key,headerNavRows(key))+'</span>';
 }
 function cancelHeaderClose(){clearTimeout(headerCloseTimer);headerCloseTimer=0}
 function closeHeaderMenus(restore=false){
@@ -64,7 +91,7 @@ function positionHeaderMenu(){
  const stage=header.closest(".header-lab-stage").getBoundingClientRect();
  if(bar.bottom<0||bar.bottom>innerHeight||r.right<stage.left||r.left>Math.min(stage.right,innerWidth)){closeHeaderMenus();return}
  const viewportWidth=document.documentElement.clientWidth;
- panel.style.width=Math.min(panel.dataset.kind==="compact"?bar.width:340,viewportWidth-24)+"px";
+ panel.style.width=Math.min(panel.dataset.kind==="compact"?bar.width:parseFloat(getComputedStyle(panel).getPropertyValue("--header-panel-width")),viewportWidth-24)+"px";
  panel.style.maxHeight=Math.max(0,innerHeight-bar.bottom-24)+"px";
  const box=panel.getBoundingClientRect(),left=panel.dataset.kind==="compact"?bar.left:panel.dataset.align==="right"?r.right-box.width:r.left;
  panel.style.left=Math.max(12,Math.min(left,viewportWidth-box.width-12))+"px";
@@ -124,7 +151,7 @@ function mountHeaderLayout(header){
    header.querySelector(".header-index-badge").getBoundingClientRect().width+parseFloat(clusterStyle.columnGap)+
    2*parseFloat(style.columnGap)+parseFloat(style.paddingLeft)+parseFloat(style.paddingRight)+2*parseFloat(style.borderLeftWidth));
   const clusterMinimum=urlMinimum+header.querySelector(".header-index-badge").getBoundingClientRect().width+parseFloat(clusterStyle.columnGap);
-  const comfortable=minimum+Math.max(0,320-clusterMinimum)+24;
+  const comfortable=minimum+Math.max(0,352-clusterMinimum)+24;
   const required=headerPreview==="desktop"?comfortable+"px":"0px";
   if(surface.style.getPropertyValue("--header-preview-min")!==required)surface.style.setProperty("--header-preview-min",required);
   const compact=headerPreview==="compact"||(headerPreview==="auto"&&surface.clientWidth<minimum);
@@ -160,10 +187,11 @@ function renderHeaderNav(){
  closeHeaderMenus();headerLayoutCleanup?.();clearInterval(headerClockTimer);
  const compact='<nav aria-label="Kompaktní navigace"><button class="header-menu-item" data-h-action="home" type="button">'+headerNavIcon("home")+'Home</button>'+headerNavOrder.map(key=>'<section><button class="header-menu-item header-group-toggle" type="button" data-h-group="'+key+'" aria-expanded="false" aria-controls="h-group-'+key+'">'+headerNavIcon(headerNavLabels[key][1])+'<span>'+headerNavLabels[key][0]+'</span>'+headerNavIcon("chevron")+'</button><ul class="header-group-items" id="h-group-'+key+'" hidden>'+headerNavRows(key,true)+'</ul></section>').join("")+'</nav>';
  const tabs=[["Axo 02 · Katalog","https://iriskax.github.io/Axo-02/"],["O2 · Oneplay","https://www.o2.cz/osobni/oneplay"],["O2 · Internet","https://www.o2.cz/osobni/internet"]].map(([label,url])=>'<button class="header-menu-item" role="menuitem" tabindex="-1" type="button" data-h-url="'+url+'">'+label+'</button>').join("");
- host.innerHTML='<div class="header-lab"><h2 class="header-lab-title">11 · Main Header Navigation</h2><p class="header-lab-description">Header V3 · Návrh ke schválení. Kompozice podle Library V1.1, komponenty a vizuální identita Axo 02.</p><div class="header-lab-controls" role="group" aria-label="Režim náhledu hlavičky">'+[["desktop","Desktop preview"],["auto","Auto"],["compact","Compact preview"]].map(([key,label])=>'<button type="button" data-h-preview="'+key+'" aria-pressed="'+(headerPreview===key)+'">'+label+'</button>').join("")+'</div><div class="header-lab-stage" data-preview="'+headerPreview+'" role="region" aria-label="Náhled hlavičky; desktop lze vodorovně posouvat" tabindex="0"><div class="header-preview-surface"><header class="header-demo" data-layout="desktop" aria-label="Náhled hlavní navigace"><div class="header-left"><span class="header-demo-logo">'+renderLogo({size:32,animated:true,label:"Logo Axo 02"})+'</span><nav class="header-navigation" aria-label="Nástroje"><button class="header-icon-button" aria-current="page" aria-label="Home" type="button" data-h-action="home">'+headerNavIcon("home")+'</button>'+headerNavOrder.map(headerNavDropdown).join("")+'</nav><span class="header-menu-wrap header-compact-menu"><button class="nav-tab header-pill" type="button" aria-label="Otevřít navigaci"'+headerNavMenuAttrs("compact")+'>'+headerNavIcon("menu")+'<span class="header-menu-label">Menu</span></button>'+headerNavPanel("compact",compact)+'</span></div>'+
- '<div class="header-url-cluster"><span class="header-index-badge header-tooltip-host" id="h-index-badge" data-state="index" tabindex="0" aria-label="Indexováno, demonstrační stav"><span class="header-index-dot" aria-hidden="true"></span><span class="header-tooltip" role="tooltip">Indexováno · demo</span></span><div class="input-shell header-url-box"><span class="input-icon header-web-icon">'+headerNavIcon("globe")+'</span><input id="header-url-input" aria-label="URL stránky" value="https://www.o2.cz/osobni/oneplay" placeholder="Vlož URL stránky" spellcheck="false" inputmode="url"/><span class="input-action-group header-url-actions">'+headerNavTip("Kopírovat URL","copy","copy",false,true)+'<span class="input-action-divider" aria-hidden="true"></span><span class="header-menu-wrap">'+headerNavTip("Vybrat kartu","tabs","tabs",true,true)+headerNavPanel("tabs",tabs,"right")+'</span></span></div></div>'+
- '<div class="header-right"><time class="header-clock" id="h-clock" aria-label="Čas a datum v Praze"></time><span class="header-right-divider" aria-hidden="true"></span><span class="header-menu-wrap">'+headerNavTip("Upozornění","bell","notifications",true)+headerNavPanel("notifications",'<button class="header-menu-item" role="menuitem" tabindex="-1" type="button" data-h-pick="Upozornění">Žádná nová upozornění (demo)</button>',"right")+'</span><span class="header-menu-wrap">'+headerNavTip("Nastavení","settings","settings",true)+headerNavPanel("settings",'<button class="header-menu-item" role="menuitem" tabindex="-1" type="button" data-h-pick="Nastavení">Nastavení pracovního prostředí (demo)</button>',"right")+'</span>'+headerNavTheme()+'</div></header></div></div><div class="header-demo-feedback" id="h-feedback" aria-live="polite">URL a výběr karet jsou demonstrační. Indexace i upozornění zatím nemají datové napojení.</div></div>';
+ host.innerHTML='<div class="header-lab"><h2 class="header-lab-title">11 · Main Header Navigation</h2><p class="header-lab-description">Main Header V4 · Visual Proposal. Unified Floating Header · sjednocené materiály a navigační stavy.</p><div class="header-lab-controls" role="group" aria-label="Režim náhledu hlavičky">'+[["desktop","Desktop preview"],["auto","Auto"],["compact","Compact preview"]].map(([key,label])=>'<button type="button" data-h-preview="'+key+'" aria-pressed="'+(headerPreview===key)+'">'+label+'</button>').join("")+'</div><div class="header-lab-stage" data-preview="'+headerPreview+'" role="region" aria-label="Náhled hlavičky; desktop lze vodorovně posouvat" tabindex="0"><div class="header-preview-surface"><header class="header-demo" data-layout="desktop" aria-label="Náhled hlavní navigace"><div class="header-left"><span class="header-demo-logo">'+renderLogo({size:32,animated:true,label:"Logo Axo 02"})+'</span><nav class="header-navigation" aria-label="Nástroje"><button class="header-icon-button" aria-current="page" aria-label="Home" type="button" data-h-action="home">'+headerNavIcon("home")+'</button>'+headerNavOrder.map(headerNavDropdown).join("")+'</nav><span class="header-menu-wrap header-compact-menu"><button class="header-pill" type="button" aria-label="Otevřít navigaci"'+headerNavMenuAttrs("compact")+'>'+headerNavIcon("menu")+'<span class="header-menu-label">Menu</span></button>'+headerNavPanel("compact",compact)+'</span></div>'+
+ '<div class="header-url-cluster"><div class="input-shell header-url-box"><span class="input-icon header-web-icon">'+headerNavIcon("globe")+'</span><input id="header-url-input" aria-label="URL stránky" value="https://www.o2.cz/osobni/oneplay" placeholder="Vlož URL stránky" spellcheck="false" inputmode="url"/><span class="input-action-group header-url-actions">'+headerNavTip("Kopírovat URL","copy","copy",false,true)+'<span class="input-action-divider" aria-hidden="true"></span><span class="header-menu-wrap">'+headerNavTip("Vybrat kartu","tabs","tabs",true,true)+headerNavPanel("tabs",tabs,"right")+'</span></span></div><span class="header-index-badge header-tooltip-host" id="h-index-badge" data-state="index" tabindex="0" aria-label="Indexováno, demonstrační stav"><span class="header-index-dot" aria-hidden="true"></span><span class="header-tooltip" role="tooltip">Indexováno · demo</span></span></div>'+
+ '<div class="header-right"><time class="header-clock" id="h-clock" aria-label="Čas a datum v Praze"></time><span class="header-right-divider" aria-hidden="true"></span>'+headerNavTheme()+'<span class="header-menu-wrap">'+headerNavTip("Upozornění","bell","notifications",true)+headerNavPanel("notifications",'<button class="header-menu-item" role="menuitem" tabindex="-1" type="button" data-h-pick="Upozornění">Žádná nová upozornění (demo)</button>',"right")+'</span><span class="header-menu-wrap">'+headerNavTip("Nastavení","settings","settings",true)+headerNavPanel("settings",'<button class="header-menu-item" role="menuitem" tabindex="-1" type="button" data-h-pick="Nastavení">Nastavení pracovního prostředí (demo)</button>',"right")+'</span></div></header></div></div><div class="header-demo-feedback" id="h-feedback" aria-live="polite">URL a výběr karet jsou demonstrační. Indexace i upozornění zatím nemají datové napojení.</div></div>';
  document.getElementById("header-url-input").value=headerDemoURL;
+ syncHeaderActive();
  updateHeaderClock();headerClockTimer=setInterval(updateHeaderClock,30000);
  headerLayoutCleanup=mountHeaderLayout(host.querySelector(".header-demo"));
 }
@@ -185,7 +213,10 @@ document.addEventListener("click",async event=>{
  const selected=event.target.closest(".header-menu-panel [data-h-pick],.header-menu-panel [data-h-url]");
  if(selected){
   if(selected.dataset.hUrl){headerDemoURL=selected.dataset.hUrl;document.getElementById("header-url-input").value=headerDemoURL;feedback.textContent="Vybrána ukázková karta: "+selected.textContent+"."}
-  else feedback.textContent="Zvolen nástroj: "+selected.dataset.hPick+" (demo).";
+  else {
+   if(headerNavOrder.some(key=>headerNavGroups[key].some(([,id])=>id===selected.dataset.hPick))){headerActive=selected.dataset.hPick;syncHeaderActive()}
+   feedback.textContent="Zvolen nástroj: "+selected.dataset.hPick+" (demo).";
+  }
   closeHeaderMenus(true);return;
  }
  const action=event.target.closest(".header-demo [data-h-action]");if(!action)return;
@@ -197,7 +228,7 @@ document.addEventListener("click",async event=>{
  }else if(key==="copy"){
   try{await navigator.clipboard.writeText(document.getElementById("header-url-input").value);feedback.textContent="URL zkopírována."}
   catch{feedback.textContent="Kopírování není dostupné."}
- }else feedback.textContent="Navigace · Home (demo).";
+ }else {headerActive="home";syncHeaderActive();feedback.textContent="Navigace · Home (demo).";}
 });
 document.addEventListener("pointerdown",event=>{
  if(headerOpenMenu&&!headerOpenMenu.panel.contains(event.target)&&!headerOpenMenu.trigger.contains(event.target))closeHeaderMenus();
