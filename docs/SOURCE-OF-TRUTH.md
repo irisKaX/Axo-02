@@ -182,6 +182,13 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 
 - Klávesnicový `:focus-visible` na dlaždici Docku nyní používá plné pozadí `--primary` (primární fialová), `--primary-foreground` pro kontrast ikony a stejně fialový border/outline. Hover a active, fyzika magnification i ostatní navigační komponenty beze změn. Upraveno přímo v kanonickém pravidle `components/dock.css`, bez CSS override vrstev.
 
+## Navigation · Main Header V1 (25. 10. 2026)
+
+- Samostatná ukázka hlavní navigace přidaná v sekci `#navigation` za Notebook Dock. **Původní `irisKaX/axolotl-2` byl pouze referencí struktury**, konkrétně `src/app/header/AppHeader.tsx`, `Navigation.tsx`, `UrlControl.tsx` a `header.module.css`, nikoliv zdrojem přenášených stylů.
+- Obsah: logo přes existující `renderLogo()`, Home, dropdowny Média a Kontrola, editovatelný URL input s ikonou globu, copy a demo výběrem karet, index indicator, pražský čas a datum, přepínání globálního dark/light katalogu, upozornění a nastavení. Všechny položky vedou pouze na demonstrační stavy, skutečná browser extension ani kontrola indexace zde nejsou.
+- Větší obrazovka jako jedna plovoucí lišta; compact verze přes Menu a URL na druhém řádku. Uživatelský přepínač náhledu Desktop/Compact a standardní breakpoint. Demo zatím čeká na vizuální schválení.
+- Kanonické soubory `components/header-nav.css`, `components/header-nav.js`; pouze napojení v `index.html`. Reuse logo, Foundations a přepínače témat. Žádné CSS override vrstvy, knihovny nebo změny původních komponent.
+
 ## Navigation · Notebook Dock V2 · React Bits Motion Fidelity (25. 10. 2026)
 
 - **Stav: Notebook Dock V2 · Návrh ke schválení.** Existující `10 · Notebook Dock` v sekci Navigace, stále izolované demo pro budoucí Notebook, nikoli skutečná navigace aplikace. Osm původních akcí, vlastní inline SVG, aktivní fialová položka/indikátor, tooltipy, badge Úkoly, notifikační tečka Poznámky a oddělovač před Košem zachovány. Barvy nadále z Foundations a globálního dark/light, bez palety React Bits.
