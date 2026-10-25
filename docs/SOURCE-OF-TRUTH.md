@@ -172,6 +172,10 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 - Magnification v `components/dock.js` nyní roztahuje skutečnou šířku položky v layoutu (60 až 81 px) a vlastní tlačítko škáluje jen jemně (max. 1.13×, zdvih 9 px). Sousední ikony tím dostávají více prostoru. Menší obrazovky mají kompaktnější rozsah.
 - Tooltips, badge, aktivní položka a reduced motion zachovány; bez override vrstev. Dock nadále čeká na vizuální schválení.
 
+### Notebook Dock V2 · Primary Focus (25. 10. 2026)
+
+- Klávesnicový `:focus-visible` na dlaždici Docku nyní používá plné pozadí `--primary` (primární fialová), `--primary-foreground` pro kontrast ikony a stejně fialový border/outline. Hover a active, fyzika magnification i ostatní navigační komponenty beze změn. Upraveno přímo v kanonickém pravidle `components/dock.css`, bez CSS override vrstev.
+
 ## Navigation · Notebook Dock V2 · React Bits Motion Fidelity (25. 10. 2026)
 
 - **Stav: Notebook Dock V2 · Návrh ke schválení.** Existující `10 · Notebook Dock` v sekci Navigace, stále izolované demo pro budoucí Notebook, nikoli skutečná navigace aplikace. Osm původních akcí, vlastní inline SVG, aktivní fialová položka/indikátor, tooltipy, badge Úkoly, notifikační tečka Poznámky a oddělovač před Košem zachovány. Barvy nadále z Foundations a globálního dark/light, bez palety React Bits.
