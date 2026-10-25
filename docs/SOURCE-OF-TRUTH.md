@@ -380,6 +380,11 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 
 - Na přání uživatelky zúžena pouze tloušťka Gradient Ring: v jediné kanonické definici `.axo-loader-ring::after` původní pokus `15%` → `22%` byl chybný (prstenec zesílil). Opraveno na `inset:8%`, což skutečně vytváří tenčí okraj. Barevný gradient, rychlost animace, velikosti a další dva loadery beze změn. Žádné CSS override vrstvy.
 
+### Loaders Playground · sjednocení dropdownů (25. 10. 2026)
+
+- V Playgroundu byly původně tři systémové `select` prvky, které nerespektovaly schválený vzhled Axo 02. Všechny volby Typ, Velikost, Barva nyní používají existující vizuální systém `form-select`, `form-select-menu`, `form-select-option` z Inputů a formulářů, včetně centrované SVG šipky, hover/focus/selected stavu, klávesnice a zavírání kliknutím mimo.
+- Úpravy pouze původního `components/loaders.js` a kanonické části `components/loaders.css` (layout Playgroundu, odstraněn styling nativních selectů). `components/form-controls.css` se nemění, žádné CSS override vrstvy a nové balíčky. Animace loaderů beze změny.
+
 ## Loaders V1 (25. 10. 2026)
 
 - Sekce `#loaders` obsahuje první tři návrhy podle kódu dodaného uživatelkou: **Dot Spinner** (8 pulzujících teček), **Blade Spinner** (12 paprsků s opacitou) a **Gradient Ring** (rotační gradientní mezikruží). Barevně upraveno podle Foundations, nepřebírat pevné barvy původních ukázek.
