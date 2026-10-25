@@ -172,6 +172,10 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 - Magnification v `components/dock.js` nyní roztahuje skutečnou šířku položky v layoutu (60 až 81 px) a vlastní tlačítko škáluje jen jemně (max. 1.13×, zdvih 9 px). Sousední ikony tím dostávají více prostoru. Menší obrazovky mají kompaktnější rozsah.
 - Tooltips, badge, aktivní položka a reduced motion zachovány; bez override vrstev. Dock nadále čeká na vizuální schválení.
 
+### Notebook Dock V2 · zaoblený focus bez čtverce (25. 10. 2026)
+
+- Globální `button:focus-visible` způsoboval při ovládání Docku klávesnicí hranatý outline kolem celé interaktivní oblasti. Přímo v kanonických pravidlech `components/dock.css` dostává `.axo-dock-item` odpovídající border-radius a `.axo-dock-item:focus-visible` ruší pouze vnější globální outline; čitelný **fialový zaoblený focus ring na `.axo-dock-face` zůstává zachovaný**. Žádná změna magnification, aktivního stavu nebo jiných komponent. Žádné CSS override vrstvy.
+
 ### Notebook Dock V2 · Primary Focus (25. 10. 2026)
 
 - **Oprava po testu:** původní úprava ovlivnila pouze `:focus-visible`, nikoliv výběr myší. Nyní také `aria-pressed="true"` používá `--primary` jako plné pozadí, `--primary-foreground` pro ikonu a fialový border. Kliknutí i klávesnicový focus mají konzistentní primární vizuál. Upraveno v původních stavových selektorech, bez override vrstev.
