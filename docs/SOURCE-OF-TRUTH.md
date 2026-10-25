@@ -420,3 +420,11 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 Aby nevznikly dva soupeřící zdroje pravdy, **nekopírovat jej jako samostatně ručně editovaný master** do starého `axolotl-knowledge`. V existujícím Obsidian trezoru lze mít odkaz na tento GitHub dokument či čtenou kopii, ale při rozporu platí kanonický soubor v `Axo-02`.
 
 > Udržovací pravidlo pro asistenty a Codex: před jakýmkoli úkolem v Axo 02 nejdřív přečíst tento dokument a aktuální kód, po změně aktualizovat pravdivý stav. Nedoplňovat testy ani infrastrukturu bez zadání.
+
+## Composition Lab V1 · Dashboard Layout (26. 10. 2026)
+
+- **Uživatelkou odsouhlasená kompozice** podle screenshotu: nahoře jedna lišta; dominantní **Axolotl Office** vlevo, čtyři malé widgety vpravo v uspořádání 2 × 2, dva široké widgety pod horní částí, každý na polovinu šířky. Toto rozložení nenahrazovat dalšími experimentálními variantami.
+- **Implementováno jako návrh ke kontrole:** sekce `#composition` v existujícím katalogu, `components/composition-lab.css/js`, napojení v `index.html`. Výchozí náhled 1470 px, přepnutí 1366 / 1920 / 390 px, mobil skládá dva sloupce malých widgetů a široké karty pod sebe. Větší rozměry mají vlastní horizontálně posuvný náhled.
+- **Záměrná omezení:** Office i widgety jsou skutečné prázdné layoutové placeholdery; nezobrazují hotový obsah. Header má pouze prostorový placeholder s odkazem na skutečnou interaktivní V4 v sekci Navigace. Nejde o duplikovaný header ani o plně funkční aplikaci.
+- **Výjimka z původního zákazu laboratoří:** pouze uživatelkou výslovně vyžádaný Composition Lab pro zkoušení kompozice; nepovoluje další paralelní katalogy. Ostatní komponenty zůstávají nezměněné. Žádné nové závislosti, framework ani CSS override vrstvy.
+- **Stav:** implementovaný návrh k vizuálnímu schválení, nikoli schválený finální dashboard.
