@@ -33,6 +33,7 @@
 <link rel="stylesheet" href="components/loaders.css?v=564b446">
 <link rel="stylesheet" href="components/cards.css?v=e53d6a8">
 <link rel="stylesheet" href="components/header-nav.css?v=header-v4-visual">
+<link rel="stylesheet" href="components/composition-lab.css?v=1">
 </head>
 <body>
 <div class="sidebar-overlay" id="overlay"></div>
@@ -52,6 +53,7 @@
 <a href="#brand" data-section="brand"><span class="symbol">✳</span> Brand</a>
 <a href="#loaders" data-section="loaders"><span class="symbol">◌</span> Loaders</a>
 <a href="#other" data-section="other"><span class="symbol">⊞</span> Další prvky</a>
+<a href="#composition" data-section="composition"><span class="symbol">▦</span> Composition Lab</a>
 </nav><div class="sidebar-bottom">AXO 02 · Design first, build later.</div>
 </aside>
 <main class="main"><header class="topbar"><div class="left-top"><button class="mobile-menu" id="menu" aria-label="Otevřít navigaci">☰</button><span class="crumb">Katalog <span aria-hidden="true"> / </span> <b id="crumb">Foundations</b></span></div><div class="controls"><span class="mode-label" id="modeLabel">Tmavý režim</span><button class="theme-toggle" id="themeToggle" type="button" aria-label="Přepnout světlý a tmavý režim" aria-pressed="false"><span class="option" id="lightIcon" aria-hidden="true">☀</span><span class="option" id="darkIcon" aria-hidden="true">☾</span></button></div></header>
@@ -71,6 +73,7 @@
 <script src="components/cards.js?v=829b5e5"></script>
 <script src="components/dock.js?v=notebook-v2"></script>
 <script src="components/header-nav.js?v=header-v4-visual"></script>
+<script src="components/composition-lab.js?v=1"></script>
 <script>
 const sections=[
 ["foundations","Foundations","Základní stavební prvky designu: barvy, typografie, rozestupy, radius, stíny, povrchy a jejich role."],
@@ -83,7 +86,8 @@ const sections=[
 ["logo","Logo","Axo 02 · V1. Kruhový znak s bílou hlavou axolotla a plynule rotujícím gradientním okrajem."],
 ["brand","Brand","Prostor pro vizuální identitu, značkové motivy, výrazové principy a grafické prvky."],
 ["loaders","Loaders","Prostor pro indikátory načítání, skeletony a přechodové stavy."],
-["other","Další prvky","Prostor pro další komponenty, které v průběhu návrhu doplníme."]
+["other","Další prvky","Prostor pro další komponenty, které v průběhu návrhu doplníme."],
+["composition","Composition Lab","Dashboard Layout V1: schválené rozložení Office a šesti widgetů v různých šířkách."]
 ];
 
 const emptyHTML=document.getElementById("sectionContent").innerHTML;
@@ -132,7 +136,7 @@ function setTheme(theme){root.dataset.theme=theme;document.getElementById("light
 let saved;try{saved=localStorage.getItem("axo02-theme")}catch(e){}
 setTheme(saved==="light"||saved==="dark"?saved:(matchMedia("(prefers-color-scheme:light)").matches?"light":"dark"));
 toggle.addEventListener("click",()=>setTheme(root.dataset.theme==="dark"?"light":"dark"));
-function render(){let key=decodeURIComponent(location.hash.slice(1));let index=sections.findIndex(s=>s[0]===key);if(index<0)index=0;let s=sections[index];document.getElementById("heading").textContent=s[1];document.getElementById("desc").textContent=s[2];document.getElementById("crumb").textContent=s[1];document.getElementById("footerSection").textContent=s[1];const panel=document.getElementById("sectionContent");if(s[0]==="foundations"){panel.classList.remove("canvas");panel.innerHTML=foundationHTML;refreshFoundationTokens()}else if(s[0]==="buttons"){panel.classList.remove("canvas");panel.innerHTML=buttonsHTML;}else if(s[0]==="navigation"){panel.classList.remove("canvas");renderPagination();panel.insertAdjacentHTML("beforeend", '<div id="navigation-extras"></div>');renderNavigationExtras();panel.insertAdjacentHTML("beforeend", '<div id="stepper-catalog"></div>');renderStepper();panel.insertAdjacentHTML("beforeend", '<div id="dock-catalog"></div>');renderDock();panel.insertAdjacentHTML("beforeend", '<div id="header-nav-catalog"></div>');renderHeaderNav();}else if(s[0]==="inputs"){panel.classList.remove("canvas");renderInputs();panel.insertAdjacentHTML("beforeend", '<div id="form-controls"></div>');renderFormControls();}else if(s[0]==="overlays"){panel.classList.remove("canvas");renderOverlays();}else if(s[0]==="feedback"){panel.classList.remove("canvas");renderFeedback();}else if(s[0]==="logo"){panel.classList.remove("canvas");renderLogoCatalog();}else if(s[0]==="other"){panel.classList.remove("canvas");renderOther();}else if(s[0]==="loaders"){panel.classList.remove("canvas");renderLoaders();}else if(s[0]==="cards"){panel.classList.remove("canvas");renderCards();}else{panel.classList.add("canvas");panel.innerHTML=emptyHTML;}document.getElementById("count").textContent=String(index+1).padStart(2,"0")+" / "+sections.length+" · Design Catalog";document.querySelectorAll("[data-section]").forEach(a=>{let current=a.dataset.section===s[0];a.classList.toggle("active",current);current?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current")});document.getElementById("sidebar").classList.remove("open");document.getElementById("overlay").classList.remove("show");document.title=s[1]+" · Axo 02"}
+function render(){let key=decodeURIComponent(location.hash.slice(1));let index=sections.findIndex(s=>s[0]===key);if(index<0)index=0;let s=sections[index];document.getElementById("heading").textContent=s[1];document.getElementById("desc").textContent=s[2];document.getElementById("crumb").textContent=s[1];document.getElementById("footerSection").textContent=s[1];const panel=document.getElementById("sectionContent");if(s[0]==="foundations"){panel.classList.remove("canvas");panel.innerHTML=foundationHTML;refreshFoundationTokens()}else if(s[0]==="buttons"){panel.classList.remove("canvas");panel.innerHTML=buttonsHTML;}else if(s[0]==="navigation"){panel.classList.remove("canvas");renderPagination();panel.insertAdjacentHTML("beforeend", '<div id="navigation-extras"></div>');renderNavigationExtras();panel.insertAdjacentHTML("beforeend", '<div id="stepper-catalog"></div>');renderStepper();panel.insertAdjacentHTML("beforeend", '<div id="dock-catalog"></div>');renderDock();panel.insertAdjacentHTML("beforeend", '<div id="header-nav-catalog"></div>');renderHeaderNav();}else if(s[0]==="inputs"){panel.classList.remove("canvas");renderInputs();panel.insertAdjacentHTML("beforeend", '<div id="form-controls"></div>');renderFormControls();}else if(s[0]==="overlays"){panel.classList.remove("canvas");renderOverlays();}else if(s[0]==="feedback"){panel.classList.remove("canvas");renderFeedback();}else if(s[0]==="logo"){panel.classList.remove("canvas");renderLogoCatalog();}else if(s[0]==="other"){panel.classList.remove("canvas");renderOther();}else if(s[0]==="loaders"){panel.classList.remove("canvas");renderLoaders();}else if(s[0]==="cards"){panel.classList.remove("canvas");renderCards();}else if(s[0]==="composition"){panel.classList.remove("canvas");renderCompositionLab();}else{panel.classList.add("canvas");panel.innerHTML=emptyHTML;}document.getElementById("count").textContent=String(index+1).padStart(2,"0")+" / "+sections.length+" · Design Catalog";document.querySelectorAll("[data-section]").forEach(a=>{let current=a.dataset.section===s[0];a.classList.toggle("active",current);current?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current")});document.getElementById("sidebar").classList.remove("open");document.getElementById("overlay").classList.remove("show");document.title=s[1]+" · Axo 02"}
 addEventListener("hashchange",render);render();
 const sidebar=document.getElementById("sidebar"),overlay=document.getElementById("overlay");document.getElementById("menu").onclick=()=>{sidebar.classList.add("open");overlay.classList.add("show")};overlay.onclick=()=>{sidebar.classList.remove("open");overlay.classList.remove("show")};document.addEventListener("keydown",e=>{if(e.key==="Escape")overlay.click()});
 </script>
