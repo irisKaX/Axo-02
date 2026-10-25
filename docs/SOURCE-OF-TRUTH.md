@@ -29,7 +29,7 @@
 | Tlačítka | **Button System V1, funkční ukázky** | Button Variants, Button Formats, Action Examples a Hover Concepts; jeden renderer a základ, velikost S, pět variant, tři formáty a šest stavů |
 | Navigace | **Rozpracováno** | Pagination (Numbered/Compact/Table), Tabs (Pill/Underline) a Breadcrumbs (plná/kompaktní ukázka). Další navigační komponenty zatím nejsou vytvořené. |
 | Inputy a formuláře | **Rozpracováno** | URL Input, Search Input, nové návrhy Select, Checkbox/Radio a Switch |
-| Karty | **Prázdná sekce** | Návrh teprve vznikne |
+| Karty | **Rozpracováno** | Base Card Studio V1: Clean, Depth a Accent; dark/light a interaktivní stavy |
 | Dialogs a popovers | **Schváleno V1** | Confirm Dialog, Information Dialog a Action Popover, vizuálně schváleno uživatelkou |
 | Feedback a status | **Rozpracováno** | Inline Notices, Progress / Processing, Status Badges, Empty State a Toast, interaktivní návrhy |
 | Logo | **V1 · Návrh ke schválení** | Jeden kruhový znak: originální bílá PNG hlava, stálý tmavý střed, rotující gradient; velikosti, Dark / Light a Animated / Static |
@@ -391,6 +391,13 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 - Varianta velikosti S/M/L u každého typu; interaktivní Playground s volbou typu, velikosti a Primary/Neutral barvy. U Gradient Ring je gradient stále paletový, volba neutral mění atribut, ale ne barevné spektrum; tuto vlastnost případně dále doladit.
 - Kánonické soubory `components/loaders.css` a `components/loaders.js`; jediný renderer `loaderMarkup(type,size,tone)`, CSS animace, reduced motion a sdílené dark/light tokeny. Žádné nové knihovny ani CSS override vrstvy.
 - Loadery jsou čistě vizuální; skutečný loading stav musí být oznámen také textem nebo přístupným statusem. **Stav V1: návrhy ke schválení**, zatím bez napojení na reálné nástroje.
+
+## Cards · Base Card Studio V1 (25. 10. 2026)
+
+- Sekce `#cards` nyní obsahuje návrhové studio se třemi styly jediné rodiny **Base Card**: Clean, Depth a Accent. Všechny sdílejí strukturu a kanonické CSS; jde o materiálové modifikátory, nikoli tři nezávislé implementace.
+- Clean je čistý povrch a jemný border; Depth přidává hloubku a světelný akcent; Accent používá fialový border a jemné tónování. Všechny mají hover lift, keyboard focus, demonstrativní click feedback, reduced motion; porovnání Dark/Light na izolovaných ukázkových površích.
+- Kanonické `components/cards.css` a `components/cards.js`, napojení do `index.html`. Žádné CSS override vrstvy ani nové knihovny. Bez reálné navigace či dat nástrojů.
+- **Stav:** první návrhy k vizuálnímu schválení. Ostatní typy (Tool/Widget/Result/Workspace) zatím nebyly vytvořeny.
 
 ## 8. Udržování dokumentu a Obsidian
 
