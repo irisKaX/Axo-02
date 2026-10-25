@@ -428,3 +428,11 @@ Aby nevznikly dva soupeřící zdroje pravdy, **nekopírovat jej jako samostatn�
 - **Záměrná omezení:** Office i widgety jsou skutečné prázdné layoutové placeholdery; nezobrazují hotový obsah. Header má pouze prostorový placeholder s odkazem na skutečnou interaktivní V4 v sekci Navigace. Nejde o duplikovaný header ani o plně funkční aplikaci.
 - **Výjimka z původního zákazu laboratoří:** pouze uživatelkou výslovně vyžádaný Composition Lab pro zkoušení kompozice; nepovoluje další paralelní katalogy. Ostatní komponenty zůstávají nezměněné. Žádné nové závislosti, framework ani CSS override vrstvy.
 - **Stav:** implementovaný návrh k vizuálnímu schválení, nikoli schválený finální dashboard.
+
+### Composition Lab V1 · Fullscreen viewport (26. 10. 2026)
+
+- Na základě screenshotu uživatelka odmítla preview uvnitř úzkého katalogového panelu s horizontálním rolováním a simulovanými pevnými šířkami.
+- Sekce `#composition` nyní po otevření přepne katalog do samostatného **fullscreen canvas režimu**: sidebar, katalogový topbar, titulek a běžný content wrapper jsou pouze v této sekci skryté; dashboard používá aktuální **šířku a výšku okna prohlížeče** (CSS viewport), bez voliče 1470/1366/1920/390 px.
+- Dashboard zachovává schválené rozmístění Office + widgety 1–4 vpravo 2 × 2 + widgety 5–6 dole, s využitím dostupné výšky. Pod 720 px se karty přeskupí pro mobil. V záhlaví je ukazatel skutečné velikosti CSS viewportu a tlačítko návratu do katalogu.
+- Header V4 zůstává **jen označenou rezervou**, není zde duplicitní implementace. Skutečný header je nadále v sekci Navigace. Nevyvozovat z placeholderu vizuální schválení kompozice pravého ovládání.
+- Změny pouze v kanonických `components/composition-lab.css/js`, přepnutí režimu v `index.html` a v tomto dokumentu; žádné CSS override vrstvy, závislosti ani změny ostatních komponent. Stav: návrh k vizuální kontrole.
