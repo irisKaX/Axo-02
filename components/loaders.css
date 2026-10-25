@@ -19,9 +19,10 @@
 .axo-loader-ring{border-radius:50%;background:conic-gradient(from 0deg,var(--primary),var(--detail-magenta),var(--o2-blue),var(--primary));animation:axo-loader-ring-spin 1.8s linear infinite}
 .axo-loader-ring::after{content:"";position:absolute;inset:8%;border-radius:50%;background:var(--surface-2)}
 @keyframes axo-loader-ring-spin{to{transform:rotate(360deg)}}
-.axo-loader-controls{display:flex;flex-wrap:wrap;gap:14px;align-items:center;font-size:12px;color:var(--muted)}
-.axo-loader-controls label{display:inline-flex;align-items:center;gap:7px}
-.axo-loader-controls select{border:1px solid var(--border);background:var(--surface-2);border-radius:var(--radius-sm);color:var(--ink);padding:7px 10px;font:inherit}
-.axo-loader-controls select:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.axo-loader-controls{display:flex;flex-wrap:wrap;align-items:flex-end;gap:16px}
+.axo-loader-control{display:grid;gap:8px;min-width:126px;flex:0 1 175px}
+.axo-loader-control-label{font-size:12px;font-weight:650;color:var(--muted)}
+.axo-loader-control .form-select{height:43px}
+.axo-loader-control .form-select-menu{min-width:100%}
 .axo-loader-note{font-size:12px;color:var(--muted)}
 @media(prefers-reduced-motion:reduce){.axo-loader-dot::before,.axo-loader-blade,.axo-loader-ring{animation:none}.axo-loader-dot::before{transform:scale(.7);opacity:calc(.25 + var(--dot-index)*.08)}.axo-loader-blade{opacity:calc(.2 + var(--blade-index)*.06)}}
