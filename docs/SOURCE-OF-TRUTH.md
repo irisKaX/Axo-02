@@ -182,6 +182,14 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 
 - Klávesnicový `:focus-visible` na dlaždici Docku nyní používá plné pozadí `--primary` (primární fialová), `--primary-foreground` pro kontrast ikony a stejně fialový border/outline. Hover a active, fyzika magnification i ostatní navigační komponenty beze změn. Upraveno přímo v kanonickém pravidle `components/dock.css`, bez CSS override vrstev.
 
+### Main Header V1 · menu, status a responzivita (25. 10. 2026)
+
+- Podle screenshotů opraveno otevírání/zavírání **Upozornění** a **Nastavení**: opakovaný klik zavře stejné menu, otevření dalšího zavře předchozí, klik mimo a Escape vše zavřou. Stav triggerů nyní odpovídá `aria-expanded`.
+- Indikátor indexace vedle URL je **samostatná zelená tečka** s tooltipem a focus popisem, nikoli kapsle s textem. Jde pouze o demonstrační index status.
+- Z nabídky Média a Kontrola odstraněn duplicitní vnitřní nadpis, zachovány jen položky. Kompaktní Menu si orientační nadpis ponechává.
+- Responzivita reaguje na **skutečnou šířku kontejneru** katalogové ukázky (`@container header-lab`), nikoli pouze na šířku celého okna. Pod hranicí 1120 px se navigační skupiny přesouvají do Menu a URL do druhého řádku; pod 560 px se zmenšuje ovládání a zobrazuje se čas bez data. Žádné CSS override vrstvy; změněny přímo `components/header-nav.css` a `components/header-nav.js`.
+- Ostatní komponenty neovlivněny. V1 nadále čeká na vizuální schválení.
+
 ## Navigation · Main Header V1 (25. 10. 2026)
 
 - Samostatná ukázka hlavní navigace přidaná v sekci `#navigation` za Notebook Dock. **Původní `irisKaX/axolotl-2` byl pouze referencí struktury**, konkrétně `src/app/header/AppHeader.tsx`, `Navigation.tsx`, `UrlControl.tsx` a `header.module.css`, nikoliv zdrojem přenášených stylů.
