@@ -2,7 +2,7 @@
 .header-lab{display:grid;gap:15px;margin-top:28px;min-width:0}
 .header-lab-title{font-size:20px;margin:0}
 .header-lab-description{color:var(--muted);font-size:13px;line-height:1.6;margin:0}
-.header-lab-stage{min-width:0;padding:20px 12px 26px;border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--bg)}
+.header-lab-stage{container-name:header-lab;container-type:inline-size;min-width:0;padding:20px 12px 26px;border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--bg)}
 .header-demo{--header-control:40px;position:relative;display:flex;align-items:center;gap:12px;min-width:0;width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:29px;background:var(--surface);box-shadow:var(--shadow-soft)}
 .header-left,.header-right,.header-navigation,.header-url-actions{display:flex;align-items:center;gap:6px;min-width:0}
 .header-left{flex:none}.header-right{flex:none;margin-left:auto}.header-navigation{flex:none}
@@ -31,8 +31,8 @@
 .header-url-actions{gap:2px}
 .header-url-actions .header-icon-button{height:32px;min-height:32px;width:32px}
 .header-url-divider{height:19px;width:1px;background:var(--border);flex:none}
-.header-index-badge{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;border:1px solid var(--border);border-radius:999px;color:var(--muted);padding:9px 10px;font-size:10px}
-.header-index-dot{width:7px;height:7px;border-radius:50%;background:var(--success)}
+.header-index-badge{position:relative;display:inline-flex;align-items:center;justify-content:center;flex:none;width:24px;height:24px;border:1px solid transparent;border-radius:50%;color:var(--muted);cursor:help}.header-index-badge:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.header-index-dot{width:9px;height:9px;border-radius:50%;background:var(--success)}
 .header-index-badge[data-state="noindex"] .header-index-dot{background:var(--warning)}
 .header-clock{display:flex;flex-direction:column;text-align:center;gap:1px;white-space:nowrap;min-width:95px;color:var(--ink);font-size:14px;font-weight:650;font-variant-numeric:tabular-nums}
 .header-clock small{font-size:10px;font-weight:450;color:var(--muted)}
@@ -42,7 +42,7 @@
 .header-tooltip{position:absolute;left:50%;bottom:calc(100% + 8px);transform:translate(-50%,4px);background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:7px 10px;font-size:11px;color:var(--ink);white-space:nowrap;pointer-events:none;opacity:0;visibility:hidden;z-index:10}
 .header-tooltip-host{position:relative;display:inline-flex}
 .header-tooltip-host:hover .header-tooltip,.header-tooltip-host:focus-within .header-tooltip{opacity:1;visibility:visible;transform:translate(-50%,0)}
-.header-demo[data-preview="compact"]{flex-wrap:wrap;border-radius:25px}
+.header-demo[data-preview="compact"]{flex-wrap:wrap;border-radius:25px}.header-demo[data-preview="compact"] .header-left{flex:1 1 auto}
 .header-demo[data-preview="compact"] .header-navigation{display:none}
 .header-demo[data-preview="compact"] .header-compact-menu{display:inline-flex}
 .header-demo[data-preview="compact"] .header-url-cluster{flex:1 1 100%;order:3}
@@ -50,6 +50,6 @@
 .header-lab-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .header-lab-controls button{border:1px solid var(--border);border-radius:999px;background:var(--surface-2);color:var(--ink);padding:8px 12px;cursor:pointer}
 .header-lab-controls button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
-@media(max-width:1210px){.header-demo{flex-wrap:wrap;border-radius:25px}.header-demo .header-navigation{display:none}.header-demo .header-compact-menu{display:inline-flex}.header-demo .header-url-cluster{order:3;flex:1 1 100%}.header-demo .header-url-box{max-width:none}}
-@media(max-width:575px){.header-lab-stage{padding:10px 6px}.header-demo{gap:6px;padding:8px}.header-demo-logo{width:36px}.header-right{gap:2px}.header-clock{min-width:71px;font-size:12px}.header-clock small{font-size:9px}.header-right-divider{display:none}.header-index-badge{font-size:0;padding:10px}.header-index-dot{width:8px;height:8px}}
+@container header-lab (max-width:1120px){.header-demo{flex-wrap:wrap;border-radius:25px}.header-demo .header-left{flex:1 1 auto}.header-demo .header-navigation{display:none}.header-demo .header-compact-menu{display:inline-flex}.header-demo .header-url-cluster{order:3;flex:1 1 100%}.header-demo .header-url-box{max-width:none}}
+@container header-lab (max-width:560px){.header-demo{gap:6px;padding:8px}.header-demo .header-right{gap:2px}.header-demo .header-icon-button{--header-control:33px}.header-demo .header-clock{min-width:56px;font-size:12px}.header-demo .header-clock small{display:none}.header-demo .header-right-divider{display:none}.header-demo .header-pill{padding:0 9px}.header-demo .header-url-cluster{gap:2px}.header-menu-panel{min-width:min(240px,84vw)}}
 @media(prefers-reduced-motion:reduce){.header-pill,.header-icon-button,.header-url-box,.header-tooltip{transition:none}}
