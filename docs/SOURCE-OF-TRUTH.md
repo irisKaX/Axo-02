@@ -34,7 +34,7 @@
 | Feedback a status | **Rozpracováno** | Inline Notices, Progress / Processing, Status Badges, Empty State a Toast, interaktivní návrhy |
 | Logo | **V1 · Návrh ke schválení** | Jeden kruhový znak: originální bílá PNG hlava, stálý tmavý střed, rotující gradient; velikosti, Dark / Light a Animated / Static |
 | Brand | **Prázdná sekce** | Návrh teprve vznikne |
-| Loaders | **Prázdná sekce** | Návrh teprve vznikne |
+| Loaders | **Rozpracováno** | Dot Spinner, Blade Spinner, Gradient Ring, varianty S/M/L a Playground |
 | Další prvky | **Rozpracováno** | Primary Violet Scrollbar a izolované Cursor Studio (Glow, Click Burst), návrhy ke schválení |
 
 **Navigace samotného katalogu již funguje.** To neznamená, že máme navrženou budoucí komponentu pro navigaci celé aplikace.
@@ -375,6 +375,13 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 - **Magnetic Cursor:** jemné přitahování demonstračního tlačítka v Cursor Studiu; uživatelka schválila.
 - **Axo Cursor a Ambient Glow:** uživatelka je výslovně odmítla. Byly **odstraněny z katalogu i z CSS/JS**, odstraněn také nepotřebný asset `assets/axo-cursor.svg`. **Bez nového zadání je znovu nezavádět.**
 - Kanonické soubory `components/other.css` a `components/other.js`; žádné CSS override vrstvy ani nové závislosti. Cards jsou stále odloženy; Logo V1 čeká na výslovné vizuální schválení.
+
+## Loaders V1 (25. 10. 2026)
+
+- Sekce `#loaders` obsahuje první tři návrhy podle kódu dodaného uživatelkou: **Dot Spinner** (8 pulzujících teček), **Blade Spinner** (12 paprsků s opacitou) a **Gradient Ring** (rotační gradientní mezikruží). Barevně upraveno podle Foundations, nepřebírat pevné barvy původních ukázek.
+- Varianta velikosti S/M/L u každého typu; interaktivní Playground s volbou typu, velikosti a Primary/Neutral barvy. U Gradient Ring je gradient stále paletový, volba neutral mění atribut, ale ne barevné spektrum; tuto vlastnost případně dále doladit.
+- Kánonické soubory `components/loaders.css` a `components/loaders.js`; jediný renderer `loaderMarkup(type,size,tone)`, CSS animace, reduced motion a sdílené dark/light tokeny. Žádné nové knihovny ani CSS override vrstvy.
+- Loadery jsou čistě vizuální; skutečný loading stav musí být oznámen také textem nebo přístupným statusem. **Stav V1: návrhy ke schválení**, zatím bez napojení na reálné nástroje.
 
 ## 8. Udržování dokumentu a Obsidian
 
