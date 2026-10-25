@@ -378,7 +378,7 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 
 ### Gradient Ring · tenčí prstenec (25. 10. 2026)
 
-- Na přání uživatelky zúžena pouze tloušťka Gradient Ring: v jediné kanonické definici `.axo-loader-ring::after` změna `inset:15%` na `inset:22%`. Barevný gradient, rychlost animace, velikosti a další dva loadery beze změn. Žádné CSS override vrstvy.
+- Na přání uživatelky zúžena pouze tloušťka Gradient Ring: v jediné kanonické definici `.axo-loader-ring::after` původní pokus `15%` → `22%` byl chybný (prstenec zesílil). Opraveno na `inset:8%`, což skutečně vytváří tenčí okraj. Barevný gradient, rychlost animace, velikosti a další dva loadery beze změn. Žádné CSS override vrstvy.
 
 ## Loaders V1 (25. 10. 2026)
 
