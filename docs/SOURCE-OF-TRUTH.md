@@ -436,3 +436,12 @@ Aby nevznikly dva soupeřící zdroje pravdy, **nekopírovat jej jako samostatn�
 - Dashboard zachovává schválené rozmístění Office + widgety 1–4 vpravo 2 × 2 + widgety 5–6 dole, s využitím dostupné výšky. Pod 720 px se karty přeskupí pro mobil. V záhlaví je ukazatel skutečné velikosti CSS viewportu a tlačítko návratu do katalogu.
 - Header V4 zůstává **jen označenou rezervou**, není zde duplicitní implementace. Skutečný header je nadále v sekci Navigace. Nevyvozovat z placeholderu vizuální schválení kompozice pravého ovládání.
 - Změny pouze v kanonických `components/composition-lab.css/js`, přepnutí režimu v `index.html` a v tomto dokumentu; žádné CSS override vrstvy, závislosti ani změny ostatních komponent. Stav: návrh k vizuální kontrole.
+
+### Composition Lab · Dashboard Widgets V1 (26. 10. 2026)
+
+- **Schválený obsahový plán:** Widget 1 Find Phrase, 2 Mini QR, 3 Screenshot, 4 Metadata, 5 Konverze obrázků, 6 Můj workspace. Office se v tomto kroku nemění a zůstává prázdnou rezervovanou plochou.
+- **Implementováno jako vizuální návrh ke schválení:** šest karet využívá zachovaný desktop grid a skutečný viewport Composition Labu. Karty mají sjednocené nadpisy, SVG ikony, pracovní obsah a dark/light barvy z existujících Foundations.
+- **Lokální demonstrace bez nástrojů:** Find Phrase změní ukázkový stav na fiktivních 12 výskytů, volba formátu konverze mění selected stav, demonstrační upload zobrazí dva ukázkové soubory a stav fronty. Ostatní akce ukazují vysvětlující lokální oznámení. QR motiv je **dekorativní**, ne skenovatelný QR. Screenshot je statický náhled, Metadata a úkoly jsou fiktivní.
+- Neexistuje skutečné vyhledávání, generování QR, screenshotování, čtení metadat, nahrávání souborů ani ukládání poznámek. Neuvádět demo jako funkční nástroje.
+- Změněny pouze kanonické `components/composition-lab.js/css`, verze assetů v `index.html` a tento dokument. Bez nových závislostí, kopírování aplikačních tool modulů nebo CSS override vrstev.
+- **Stav:** Widget Design V1 · návrh ke schválení; rozmístění Dashboardu zůstává schválené, vizuál karet ještě ne.
