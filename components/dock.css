@@ -7,7 +7,7 @@
 .axo-dock{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;align-items:flex-end;gap:var(--dock-gap,10px);height:var(--dock-panel-height,68px);padding:var(--dock-pad,9px);border-radius:calc(var(--dock-base,50px)*var(--dock-round,.5)*.5 + var(--dock-pad,9px));background:color-mix(in srgb,var(--surface) 90%,transparent);box-shadow:inset 0 0 0 1px var(--border),0 15px 35px rgba(0,0,0,.18)}
 .axo-dock::before{content:"";position:absolute;z-index:-1;display:none;left:0;right:0;bottom:100%;height:calc(var(--dock-reach,20px) + 8px*var(--dock-fit,1))}
 .axo-dock:hover::before{display:block}
-.axo-dock-item{position:relative;flex:none;width:var(--dock-base,50px);height:var(--dock-base,50px);margin:0;padding:0;border:0;background:none;color:var(--ink);cursor:pointer;outline:none}
+.axo-dock-item{position:relative;flex:none;width:var(--dock-base,50px);height:var(--dock-base,50px);margin:0;padding:0;border:0;background:none;color:var(--ink);cursor:pointer;outline:none;border-radius:calc(var(--dock-base,50px)*var(--dock-round,.5)*.5)}
 .axo-dock-tile{position:absolute;top:0;left:0;width:var(--dock-base,50px);height:var(--dock-base,50px);transform-origin:0 0;pointer-events:none}
 .axo-dock-face{position:absolute;inset:0;display:grid;place-items:center;border:1px solid var(--border);border-radius:calc(var(--dock-base,50px)*var(--dock-round,.5)*.5);background:var(--surface-2);box-shadow:0 5px 12px rgba(0,0,0,.09);transition:border-color 160ms,background 160ms,color 160ms}
 .axo-dock-face svg{width:calc(var(--dock-base,50px)*.48);height:calc(var(--dock-base,50px)*.48);stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
