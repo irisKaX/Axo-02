@@ -174,6 +174,8 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 
 ### Notebook Dock V2 · Primary Focus (25. 10. 2026)
 
+- **Oprava po testu:** původní úprava ovlivnila pouze `:focus-visible`, nikoliv výběr myší. Nyní také `aria-pressed="true"` používá `--primary` jako plné pozadí, `--primary-foreground` pro ikonu a fialový border. Kliknutí i klávesnicový focus mají konzistentní primární vizuál. Upraveno v původních stavových selektorech, bez override vrstev.
+
 - Klávesnicový `:focus-visible` na dlaždici Docku nyní používá plné pozadí `--primary` (primární fialová), `--primary-foreground` pro kontrast ikony a stejně fialový border/outline. Hover a active, fyzika magnification i ostatní navigační komponenty beze změn. Upraveno přímo v kanonickém pravidle `components/dock.css`, bez CSS override vrstev.
 
 ## Navigation · Notebook Dock V2 · React Bits Motion Fidelity (25. 10. 2026)
