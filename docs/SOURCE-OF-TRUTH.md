@@ -376,6 +376,10 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 - **Axo Cursor a Ambient Glow:** uživatelka je výslovně odmítla. Byly **odstraněny z katalogu i z CSS/JS**, odstraněn také nepotřebný asset `assets/axo-cursor.svg`. **Bez nového zadání je znovu nezavádět.**
 - Kanonické soubory `components/other.css` a `components/other.js`; žádné CSS override vrstvy ani nové závislosti. Cards jsou stále odloženy; Logo V1 čeká na výslovné vizuální schválení.
 
+### Gradient Ring · tenčí prstenec (25. 10. 2026)
+
+- Na přání uživatelky zúžena pouze tloušťka Gradient Ring: v jediné kanonické definici `.axo-loader-ring::after` změna `inset:15%` na `inset:22%`. Barevný gradient, rychlost animace, velikosti a další dva loadery beze změn. Žádné CSS override vrstvy.
+
 ## Loaders V1 (25. 10. 2026)
 
 - Sekce `#loaders` obsahuje první tři návrhy podle kódu dodaného uživatelkou: **Dot Spinner** (8 pulzujících teček), **Blade Spinner** (12 paprsků s opacitou) a **Gradient Ring** (rotační gradientní mezikruží). Barevně upraveno podle Foundations, nepřebírat pevné barvy původních ukázek.
