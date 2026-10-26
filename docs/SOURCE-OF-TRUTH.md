@@ -453,3 +453,10 @@ Aby nevznikly dva soupeřící zdroje pravdy, **nekopírovat jej jako samostatn�
 - Celoobrazovkový Composition Lab nyní vykresluje **stejnou skutečnou komponentu Main Header V4** jako sekce Navigace pomocí sdíleného `renderHeaderNav(host, true)`. Nejde o napodobení nebo duplikaci HTML/CSS. Vložená varianta pouze skrývá katalogové ovladače preview a používá Auto podle šířky dostupné plochy. Desktopová menu, přepínač tématu, URL pole i responzivní kompaktní navigace zůstávají řízeny původním Header V4.
 - Header navigace se nadále testuje samostatně v `#navigation`. V Composition Labu není nová implementace Headeru, pouze druhé místo vykreslení; aktuální návrh je stále vizuálně k posouzení.
 - Implementace: `components/composition-lab.js/css`, minimální možnost vloženého renderingu v `components/header-nav.js`, aktualizace verzí assetů v `index.html`. Sdílené komponentové CSS Header V4 nezměněno, bez nových závislostí a CSS override vrstev.
+
+### Composition Lab · Widget 6 Find Phrase (26. 10. 2026)
+
+- Widget 6 ve fullscreen Dashboardu nyní obsahuje návrh **Find Phrase**. Má skutečné CSS/HTML schváleného Search Inputu (`input-search-shell`, `input-search-inner`, ikona přes `inputIcon('search')`), přepínač režimu **Fráze / Asset** a drobný semaforový dot pro ukázkový stav webu **Web ready** (zelená) / **Web unavailable** (červená). Klepnutím na status lze stav v demu přepnout; nejde o reálnou dostupnost webu. Přepnutí režimu mění placeholder; hledání nic neskenuje.
+- Widgety 1–5 a Axolotl Office zůstávají prázdné, jejich pozice a celé rozložení beze změn. Header V4 zůstává sdílená komponenta.
+- Styly vlastní pouze kanonický `components/composition-lab.css` a interakce `components/composition-lab.js`; samotný Search Input není kopírován ani redesignován, pouze znovu použit. Žádné nové závislosti, `!important` nebo přepisovací CSS vrstvy.
+- **Stav: vizuální návrh ke schválení, nikoliv funkční nástroj.**
