@@ -16,6 +16,7 @@
 .composition-lab-header .header-lab{display:block;margin:0}
 .composition-lab-header .header-lab-stage{padding:0;border:0;border-radius:0;min-height:0;overflow:visible;background:transparent}
 .composition-lab-header .header-preview-surface{width:100%;min-width:0}
+.composition-lab-header .header-demo-feedback{display:none}
 .composition-lab-grid{display:grid;flex:1;min-height:620px;grid-template-columns:repeat(14,minmax(0,1fr));grid-template-rows:1fr 1fr 1.45fr;gap:clamp(10px,1.2vw,20px)}
 .composition-lab-tile{min-width:0;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);padding:clamp(15px,1.8vw,30px)}
 .composition-lab-tile svg{width:20px;height:20px;stroke:var(--muted);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
