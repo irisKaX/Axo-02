@@ -460,3 +460,9 @@ Aby nevznikly dva soupeřící zdroje pravdy, **nekopírovat jej jako samostatn�
 - Widgety 1–5 a Axolotl Office zůstávají prázdné, jejich pozice a celé rozložení beze změn. Header V4 zůstává sdílená komponenta.
 - Styly vlastní pouze kanonický `components/composition-lab.css` a interakce `components/composition-lab.js`; samotný Search Input není kopírován ani redesignován, pouze znovu použit. Žádné nové závislosti, `!important` nebo přepisovací CSS vrstvy.
 - **Stav: vizuální návrh ke schválení, nikoliv funkční nástroj.**
+
+### Widget 6 · kompaktní oprava (26. 10. 2026)
+
+- Na zpětnou vazbu „vypadá rozbitě“ odstraněn nadbytečný popisek nad Search Inputem a spodní demonstrativní disclaimer. Header Find Phrase, přepínač Fráze/Asset a Search Input jsou seskupené do kompaktního bloku.
+- Přirozená výška obsahu bez roztažení k dolnímu okraji; mobilní poslední řada mřížky má výšku min. 205 px místo původních fixních 190 px, aby se ovládání nepřekrývalo. Sdílené CSS Search Inputu se nemění.
+- Widget 6 je stále pouze designové demo; status zelená/červená je přepínaný lokálně, nikoliv kontrola webu. Ostatní karty a Office beze změn. Změny přímo v kanonických composition souborech bez CSS override vrstvy. Živé vizuální ověření v browseru zatím neproběhlo.
