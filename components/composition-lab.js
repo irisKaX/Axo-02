@@ -16,5 +16,5 @@ function renderCompositionLab(){
   ready.dataset.ready=String(next);
   ready.querySelector(".composition-find-ready-label").textContent=next?"Web ready":"Web unavailable";
   ready.setAttribute("aria-label","Stav webu: "+(next?"připraveno":"nedostupné")+", ukázkový stav. Kliknutím přepnout");
- }));
+ });
 }
