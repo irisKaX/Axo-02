@@ -466,3 +466,9 @@ Aby nevznikly dva soupeřící zdroje pravdy, **nekopírovat jej jako samostatn�
 - Na zpětnou vazbu „vypadá rozbitě“ odstraněn nadbytečný popisek nad Search Inputem a spodní demonstrativní disclaimer. Header Find Phrase, přepínač Fráze/Asset a Search Input jsou seskupené do kompaktního bloku.
 - Přirozená výška obsahu bez roztažení k dolnímu okraji; mobilní poslední řada mřížky má výšku min. 205 px místo původních fixních 190 px, aby se ovládání nepřekrývalo. Sdílené CSS Search Inputu se nemění.
 - Widget 6 je stále pouze designové demo; status zelená/červená je přepínaný lokálně, nikoliv kontrola webu. Ostatní karty a Office beze změn. Změny přímo v kanonických composition souborech bez CSS override vrstvy. Živé vizuální ověření v browseru zatím neproběhlo.
+
+### Hotfix Composition Lab · prázdná stránka (26. 10. 2026)
+
+- Opravena konkrétní syntaktická chyba `Unexpected token ')'` ve `components/composition-lab.js` (nadbytečná uzavírací závorka v posluchači kliknutí na demo ready indikátor). Kvůli chybě se JavaScript soubor vůbec nevyhodnotil a sekce `#composition` zobrazovala jen výchozí „Zatím prázdno“.
+- Cache verze `composition-lab.js` v `index.html` změněna. Ověřeno parsování `composition-lab.js` a `header-nav.js` v JavaScript runtime bez syntaktických chyb; plný browser render nebyl nezávisle ověřen.
+- Žádné změny vzhledu, komponent ani CSS; Widget 6 nadále pouze designové demo.
