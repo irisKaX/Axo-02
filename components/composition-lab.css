@@ -46,16 +46,14 @@
 .composition-qr-url input::placeholder{color:var(--muted)}
 .composition-qr-action{height:40px;width:40px;flex:none;border-radius:50%;border:1px solid var(--border);background:var(--accent);color:var(--primary-foreground);display:grid;place-items:center;cursor:pointer}
 .composition-qr-action:disabled{background:var(--surface-2);color:var(--muted);cursor:default}
-.composition-qr-action:focus-visible,.composition-qr-download:focus-visible,.composition-qr-reset:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.composition-qr-action:focus-visible,.composition-qr-reset:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 .composition-qr-action svg{stroke:currentColor;width:17px;height:17px;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.composition-qr-message{font-size:10px;color:var(--muted);margin:0}
 .composition-qr-result{display:flex;align-items:center;gap:10px;min-width:0}
 .composition-qr-pattern{width:58px;height:58px;display:grid;grid-template-columns:repeat(9,1fr);gap:1px;padding:5px;flex:none;border-radius:7px;background:#fff}
 .composition-qr-pattern i{background:#fff}.composition-qr-pattern i.is-dark{background:#202032}
 .composition-qr-result-actions{min-width:0;display:grid;gap:5px}
 .composition-qr-result-actions>span{font-size:10px;color:var(--muted)}
-.composition-qr-download,.composition-qr-reset{width:max-content;max-width:100%;padding:5px 10px;border-radius:var(--radius-full);border:1px solid var(--border);background:var(--surface-2);color:var(--ink);font:550 10px Geist,sans-serif;cursor:pointer}
-.composition-qr-download{background:var(--accent);border-color:var(--accent);color:var(--primary-foreground)}
+.composition-qr-reset{width:max-content;max-width:100%;padding:5px 10px;border-radius:var(--radius-full);border:1px solid var(--border);background:var(--surface-2);color:var(--ink);font:550 10px Geist,sans-serif;cursor:pointer}
 .composition-qr-reset{background:transparent}
 @media(max-width:720px){.composition-lab-tile .composition-qr-heading h3{font-size:17px}.composition-qr-heading p{font-size:10px}.composition-qr{gap:7px}.composition-qr-url{height:36px;padding:0 9px}.composition-qr-action{height:36px;width:36px}.composition-qr-pattern{height:45px;width:45px}.composition-qr-result{gap:6px}}
 /* Widget 6 · Figma reference. Search Input appearance remains owned by inputs.css. */
