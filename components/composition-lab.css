@@ -10,14 +10,14 @@
 :root[data-catalog-view="composition"] .content{max-width:none;margin:0;padding:0}
 :root[data-catalog-view="composition"] #sectionContent{display:block;width:100%;min-height:100dvh;max-width:none;margin:0;padding:0;border:0;border-radius:0;box-shadow:none;background:var(--bg);text-align:left}
 .composition-lab{min-height:100dvh;padding:clamp(10px,1.25vw,24px);background:var(--bg)}
-.composition-lab-screen{display:flex;flex-direction:column;width:100%;min-height:calc(100dvh - 2 * clamp(10px,1.25vw,24px));gap:clamp(10px,1.2vw,20px)}
+.composition-lab-screen{display:flex;flex-direction:column;width:100%;height:calc(100dvh - 2 * clamp(10px,1.25vw,24px));min-height:0;gap:clamp(10px,1.2vw,20px)}
 .composition-lab-header{flex:none;min-width:0}
 .composition-lab-header #header-nav-catalog{width:100%;min-width:0}
 .composition-lab-header .header-lab{display:block;margin:0}
 .composition-lab-header .header-lab-stage{padding:0;border:0;border-radius:0;min-height:0;overflow:visible;background:transparent}
 .composition-lab-header .header-preview-surface{width:100%;min-width:0}
 .composition-lab-header .header-demo-feedback{display:none}
-.composition-lab-grid{display:grid;flex:1;min-height:620px;grid-template-columns:repeat(14,minmax(0,1fr));grid-template-rows:1fr 1fr 1.45fr;gap:clamp(10px,1.2vw,20px)}
+.composition-lab-grid{display:grid;flex:1;min-height:0;grid-template-columns:repeat(14,minmax(0,1fr));grid-template-rows:minmax(0,1fr) minmax(0,1fr) minmax(0,1.45fr);gap:clamp(10px,1.2vw,20px)}
 .composition-lab-tile{min-width:0;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);padding:clamp(15px,1.8vw,30px)}
 .composition-lab-tile svg{width:20px;height:20px;stroke:var(--muted);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .composition-lab-tile h3{font-size:clamp(18px,1.7vw,24px);margin:0;font-weight:620;letter-spacing:-.04em}
@@ -86,6 +86,7 @@
  .composition-find-search-row{gap:8px}
 }
 @media(max-width:720px){
+ .composition-lab-screen{height:auto;min-height:calc(100dvh - 20px)}
  .composition-lab-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:250px 150px 150px 190px minmax(205px,auto);flex:none;min-height:0}
  .composition-lab-tile{padding:16px}
  .composition-lab-tile.office{grid-area:1/1/2/3}
