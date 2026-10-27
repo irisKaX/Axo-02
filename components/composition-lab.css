@@ -30,6 +30,34 @@
 .composition-lab-tile.w6{grid-column:8/span 7;grid-row:3}
 .composition-lab-tile:not(.office)::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(115deg,transparent 12%,var(--accent) 49%,var(--o2-blue) 70%,transparent 85%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.42}
 .composition-lab-tile.office h3{font-size:clamp(25px,2.5vw,42px)}
+/* Widget 2 · QR generator, small-card states. Design tokens shared with Axo 02. */
+.composition-lab-tile.w2{justify-content:flex-start;padding:clamp(12px,1.1vw,20px)}
+.composition-qr{display:flex;flex-direction:column;width:100%;height:100%;gap:clamp(7px,.7vh,12px);min-width:0}
+.composition-qr-heading{display:grid;gap:clamp(2px,.3vh,5px);min-width:0}
+.composition-qr-eyebrow{color:var(--accent);letter-spacing:.13em;font-weight:750;font-size:clamp(9px,.7vw,12px)}
+.composition-lab-tile .composition-qr-heading h3{font-size:clamp(17px,1.38vw,24px);line-height:1.12;letter-spacing:-.04em;font-weight:670;margin:0;color:var(--ink)}
+.composition-qr-heading p{font-size:clamp(10px,.77vw,12px);color:var(--muted);line-height:1.4;margin:0}
+.composition-qr-controls{margin-top:auto;display:grid;gap:7px;min-width:0}
+.composition-qr-entry{display:flex;gap:8px;align-items:center;min-width:0}
+.composition-qr-entry[hidden],.composition-qr-result[hidden]{display:none}
+.composition-qr-url{display:flex;align-items:center;flex:1;min-width:0;height:40px;border:2px solid var(--accent);border-radius:var(--radius-full);background:var(--surface);padding:0 13px}
+.composition-qr-url:focus-within{box-shadow:0 0 0 2px var(--accent-bg)}
+.composition-qr-url input{width:100%;min-width:0;background:transparent;border:0;outline:0;color:var(--ink);font:500 11px Geist,sans-serif}
+.composition-qr-url input::placeholder{color:var(--muted)}
+.composition-qr-action{height:40px;width:40px;flex:none;border-radius:50%;border:1px solid var(--border);background:var(--accent);color:var(--primary-foreground);display:grid;place-items:center;cursor:pointer}
+.composition-qr-action:disabled{background:var(--surface-2);color:var(--muted);cursor:default}
+.composition-qr-action:focus-visible,.composition-qr-download:focus-visible,.composition-qr-reset:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.composition-qr-action svg{stroke:currentColor;width:17px;height:17px;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.composition-qr-message{font-size:10px;color:var(--muted);margin:0}
+.composition-qr-result{display:flex;align-items:center;gap:10px;min-width:0}
+.composition-qr-pattern{width:58px;height:58px;display:grid;grid-template-columns:repeat(9,1fr);gap:1px;padding:5px;flex:none;border-radius:7px;background:#fff}
+.composition-qr-pattern i{background:#fff}.composition-qr-pattern i.is-dark{background:#202032}
+.composition-qr-result-actions{min-width:0;display:grid;gap:5px}
+.composition-qr-result-actions>span{font-size:10px;color:var(--muted)}
+.composition-qr-download,.composition-qr-reset{width:max-content;max-width:100%;padding:5px 10px;border-radius:var(--radius-full);border:1px solid var(--border);background:var(--surface-2);color:var(--ink);font:550 10px Geist,sans-serif;cursor:pointer}
+.composition-qr-download{background:var(--accent);border-color:var(--accent);color:var(--primary-foreground)}
+.composition-qr-reset{background:transparent}
+@media(max-width:720px){.composition-lab-tile .composition-qr-heading h3{font-size:17px}.composition-qr-heading p{font-size:10px}.composition-qr{gap:7px}.composition-qr-url{height:36px;padding:0 9px}.composition-qr-action{height:36px;width:36px}.composition-qr-pattern{height:45px;width:45px}.composition-qr-result{gap:6px}}
 /* Widget 6 · Figma reference. Search Input appearance remains owned by inputs.css. */
 .composition-lab-tile.w6{justify-content:flex-start}
 .composition-find{width:100%;height:100%;min-width:0;display:flex;flex-direction:column;gap:clamp(12px,1.5vh,19px)}
