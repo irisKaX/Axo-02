@@ -490,3 +490,10 @@ Aby nevznikly dva soupeřící zdroje pravdy, **nekopírovat jej jako samostatn�
 - Odstraněny viditelné pomocné kroky `1 · Vložte URL`, `2 · Generovat QR kód`, `3 · Stáhnout QR kód` i doplňkové `QR připraven · demo`. Stavová změna zůstává vyjádřena pouze ovládacími prvky.
 - V QR widgetu se pro stažení vykresluje kanonické kulaté `renderButton({format:'icon-only',variant:'secondary',icon:actionIcon('download'),motion:'download',tooltip:'Stáhnout PNG'})` ze stávajícího Button Systemu. Původní vlastní download tlačítko a související CSS byly odstraněny. Demo neexportuje PNG a QR vzorek není skenovatelný.
 - Změněny pouze kanonické `composition-lab.js/css`, cache verze v `index.html` a dokumentace. Ověřena JS syntaxe a absence původních krokových hlášek v JS. Browser screenshot dosud neověřen.
+
+### QR Widget · redesign výsledného stavu (27. 10. 2026)
+
+- Na základě screenshotů opraven Widget 2: čitelnější, vzdušnější typografie a přirozené využití malé karty; výsledný QR náhled a dvě akce jsou **vodorovně** vedle sebe, nikoli pod sebou.
+- Odstraněna falešná 9×9 mozaika. Widget nyní vytváří skutečný **skenovatelný QR kód** z lokálně zadané HTTP(S) URL a exportuje reálné PNG do prohlížeče. Použita offline MIT knihovna `components/vendor/qrcode.js` (Kazuhiko Arase; její licence v `components/vendor/LICENSE-qrcode.txt`), bez externí služby a odesílání URL mimo prohlížeč.
+- Vstupní tlačítko **Generovat** používá existující Primary `renderButton`, výsledné akce **Stáhnout PNG** (Secondary Circle) a **Nová URL** (Ghost Circle) používají tentýž katalogový Button System a tooltipy. Žádné vlastní CSS varianty akčních tlačítek. Stavy jsou vložení URL → aktivní generování → QR + vodorovné akce, bez textových hlášek o pořadí kroků.
+- CSS pouze v kanonickém `composition-lab.css`, JS v `composition-lab.js`; asset verze aktualizované v `index.html`. Ověřena JS syntaxe knihovny i widgetu a testovací generování QR matice pro URL. Vizuální browser kontrola zatím není doložena; stav: návrh ke schválení.
