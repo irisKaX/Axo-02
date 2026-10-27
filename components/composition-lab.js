@@ -41,7 +41,7 @@ function renderCompositionLab(){
   qrRoot.querySelector(".composition-qr-entry").hidden=true;
   qrResult.hidden=false;
   qrRoot.querySelector(".composition-qr-pattern").innerHTML=Array.from({length:81},(_,i)=>'<i class="'+((i*17+i*i*3)%11<5?"is-dark":"")+'"></i>').join("");
-  qrMessage.textContent="3 · Stáhnout QR kód";
+  qrMessage.textContent="";
  });
  qrRoot.querySelector('[data-qr-action="download"]').addEventListener("click",()=>{qrMessage.textContent="Designové demo: stažení PNG není implementované."});
  qrRoot.querySelector('[data-qr-action="reset"]').addEventListener("click",()=>{
