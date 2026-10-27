@@ -478,3 +478,9 @@ Aby nevznikly dva soupeřící zdroje pravdy, **nekopírovat jej jako samostatn�
 - Uživatelka dodala vlastní návrh: malý fialový eyebrow `FIND PHRASE`, velké `Hledání na webu`, dvouřádkový popis, přepínací kapsle `Asset / Fráze`, pod nimi schválený Search Input a samostatný drobný zelený stavový dot napravo. Převzata tato hierarchie, bez změny globálního theme, Office, Headeru V4 a ostatních widgetů.
 - V `components/composition-lab.js` je vizuální ukázka s volbou režimu měnící placeholder a klikacím demo dot indikátorem. Není napojena na backend ani vyhledávání. Ve `components/composition-lab.css` jsou jediné kanonické definice kompozice Widgetu 6; Search Input samotný stále používá `components/inputs.css`, bez kopírování jeho vzhledu.
 - Typografie je responsivně zmenšená do skutečné výšky widgetu. Jde o návrh k vizuálnímu schválení. Žádné CSS override vrstvy, `!important` ani nové závislosti. Vizuální kontrola browser renderu zatím není doložena.
+
+### Composition Lab · QR Widget 2 · tři stavy (27. 10. 2026)
+
+- Podle uživatelského screenshotu z Figmy navržen QR widget pro malou kartu (`w2`), se zachovaným Foundations/theme a adaptivní typografií. Nadpisy `QR GENERÁTOR` / `Generování QR kódu`, krátký popis, URL input a akce.
+- Tři vizuální stavy: **1 Vložení URL** (prázdný input), **2 Generovat** (platná HTTP(S) URL aktivuje generovací tlačítko), **3 Stažení** (ilustrační QR pattern a tlačítko `Stáhnout PNG`, možnost Nová URL). Vše pouze lokální demonstrační UI: pattern není skenovatelný, PNG se nestahuje a žádný reálný QR se negeneruje. Tlačítko stažení vypíše vysvětlující hlášení.
+- Změny pouze v kanonických `components/composition-lab.js/css`, cache verzích `index.html` a Source of Truth. Žádné nové závislosti ani CSS override vrstvy. Office, Header V4, Widget 6 a ostatní karty beze změn. Vizuální návrh ke schválení.
