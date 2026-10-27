@@ -472,3 +472,9 @@ Aby nevznikly dva soupeřící zdroje pravdy, **nekopírovat jej jako samostatn�
 - Opravena konkrétní syntaktická chyba `Unexpected token ')'` ve `components/composition-lab.js` (nadbytečná uzavírací závorka v posluchači kliknutí na demo ready indikátor). Kvůli chybě se JavaScript soubor vůbec nevyhodnotil a sekce `#composition` zobrazovala jen výchozí „Zatím prázdno“.
 - Cache verze `composition-lab.js` v `index.html` změněna. Ověřeno parsování `composition-lab.js` a `header-nav.js` v JavaScript runtime bez syntaktických chyb; plný browser render nebyl nezávisle ověřen.
 - Žádné změny vzhledu, komponent ani CSS; Widget 6 nadále pouze designové demo.
+
+### Composition Lab · Widget 6 podle Figmy (27. 10. 2026)
+
+- Uživatelka dodala vlastní návrh: malý fialový eyebrow `FIND PHRASE`, velké `Hledání na webu`, dvouřádkový popis, přepínací kapsle `Asset / Fráze`, pod nimi schválený Search Input a samostatný drobný zelený stavový dot napravo. Převzata tato hierarchie, bez změny globálního theme, Office, Headeru V4 a ostatních widgetů.
+- V `components/composition-lab.js` je vizuální ukázka s volbou režimu měnící placeholder a klikacím demo dot indikátorem. Není napojena na backend ani vyhledávání. Ve `components/composition-lab.css` jsou jediné kanonické definice kompozice Widgetu 6; Search Input samotný stále používá `components/inputs.css`, bez kopírování jeho vzhledu.
+- Typografie je responsivně zmenšená do skutečné výšky widgetu. Jde o návrh k vizuálnímu schválení. Žádné CSS override vrstvy, `!important` ani nové závislosti. Vizuální kontrola browser renderu zatím není doložena.
