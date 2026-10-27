@@ -497,3 +497,9 @@ Aby nevznikly dva soupeřící zdroje pravdy, **nekopírovat jej jako samostatn�
 - Odstraněna falešná 9×9 mozaika. Widget nyní vytváří skutečný **skenovatelný QR kód** z lokálně zadané HTTP(S) URL a exportuje reálné PNG do prohlížeče. Použita offline MIT knihovna `components/vendor/qrcode.js` (Kazuhiko Arase; její licence v `components/vendor/LICENSE-qrcode.txt`), bez externí služby a odesílání URL mimo prohlížeč.
 - Vstupní tlačítko **Generovat** používá existující Primary `renderButton`, výsledné akce **Stáhnout PNG** (Secondary Circle) a **Nová URL** (Ghost Circle) používají tentýž katalogový Button System a tooltipy. Žádné vlastní CSS varianty akčních tlačítek. Stavy jsou vložení URL → aktivní generování → QR + vodorovné akce, bez textových hlášek o pořadí kroků.
 - CSS pouze v kanonickém `composition-lab.css`, JS v `composition-lab.js`; asset verze aktualizované v `index.html`. Ověřena JS syntaxe knihovny i widgetu a testovací generování QR matice pro URL. Vizuální browser kontrola zatím není doložena; stav: návrh ke schválení.
+
+### QR výsledný stav · stabilní rozměry Dashboardu (27. 10. 2026)
+
+- Opraveno nežádoucí zvětšení celé kompozice po generování QR. Desktop Composition Lab má pevnou výšku plátna dle aktuálního viewportu, grid používá `minmax(0, …)` řádky a nepřebírá výšku od obsahu QR karty. Mobil zůstává vertikálně posuvný.
+- Widget 2 při `data-qr-stage="download"` **nahrazuje obsah celé karty**: skryje titulkový blok s popisem, skryje vstupní řádek a místo něj vystředí QR + kulaté akce. Nezvyšuje výšku karty, ostatní widgety se nepohybují. Ve stavu před generováním je původní nadpis, popis a URL pole.
+- Úpravy pouze přímo v kanonickém `components/composition-lab.css` a verzi CSS v `index.html`, bez override vrstvy či `!important`. Ověření veřejné stránky v prohlížeči zatím neprovedeno.
