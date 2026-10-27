@@ -484,3 +484,9 @@ Aby nevznikly dva soupeřící zdroje pravdy, **nekopírovat jej jako samostatn�
 - Podle uživatelského screenshotu z Figmy navržen QR widget pro malou kartu (`w2`), se zachovaným Foundations/theme a adaptivní typografií. Nadpisy `QR GENERÁTOR` / `Generování QR kódu`, krátký popis, URL input a akce.
 - Tři vizuální stavy: **1 Vložení URL** (prázdný input), **2 Generovat** (platná HTTP(S) URL aktivuje generovací tlačítko), **3 Stažení** (ilustrační QR pattern a tlačítko `Stáhnout PNG`, možnost Nová URL). Vše pouze lokální demonstrační UI: pattern není skenovatelný, PNG se nestahuje a žádný reálný QR se negeneruje. Tlačítko stažení vypíše vysvětlující hlášení.
 - Změny pouze v kanonických `components/composition-lab.js/css`, cache verzích `index.html` a Source of Truth. Žádné nové závislosti ani CSS override vrstvy. Office, Header V4, Widget 6 a ostatní karty beze změn. Vizuální návrh ke schválení.
+
+### QR widget · oprava podle Button Systemu (27. 10. 2026)
+
+- Odstraněny viditelné pomocné kroky `1 · Vložte URL`, `2 · Generovat QR kód`, `3 · Stáhnout QR kód` i doplňkové `QR připraven · demo`. Stavová změna zůstává vyjádřena pouze ovládacími prvky.
+- V QR widgetu se pro stažení vykresluje kanonické kulaté `renderButton({format:'icon-only',variant:'secondary',icon:actionIcon('download'),motion:'download',tooltip:'Stáhnout PNG'})` ze stávajícího Button Systemu. Původní vlastní download tlačítko a související CSS byly odstraněny. Demo neexportuje PNG a QR vzorek není skenovatelný.
+- Změněny pouze kanonické `composition-lab.js/css`, cache verze v `index.html` a dokumentace. Ověřena JS syntaxe a absence původních krokových hlášek v JS. Browser screenshot dosud neověřen.
