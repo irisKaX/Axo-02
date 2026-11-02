@@ -1,0 +1,366 @@
+{
+  "scope": "Complete Widget System review evidence, not user approval",
+  "viewport": {
+    "width": 1366,
+    "height": 768
+  },
+  "browser": "Chromium 154.0.8037.57",
+  "playwright": "1.64.1",
+  "fontFixtures": "tests/design/fonts-lock.json",
+  "review": "Both complete library sheets visually inspected; corrected Screenshot Small, WebP Large and QR Small also inspected individually before seeding result references.",
+  "userVisualApproval": "pending",
+  "files": [
+    {
+      "path": "docs/widget-system/screenshots/dark/find-large.png",
+      "size": [
+        640,
+        321
+      ],
+      "sha256": "bb30176ce6e13ee14cabdc76480aba516a790411b7395b07d1091953f2f2f332"
+    },
+    {
+      "path": "docs/widget-system/screenshots/dark/find-small.png",
+      "size": [
+        320,
+        281
+      ],
+      "sha256": "9a1ac756f2e1e0c57838b92e375e0527f400b00871e2c061e57c9023c0d0f57b"
+    },
+    {
+      "path": "docs/widget-system/screenshots/dark/headings-large.png",
+      "size": [
+        640,
+        321
+      ],
+      "sha256": "1e78f8498bebce2ceaacb61b68e7fd9777ef00105c622947dde9e26bbe0c4eee"
+    },
+    {
+      "path": "docs/widget-system/screenshots/dark/headings-small.png",
+      "size": [
+        320,
+        281
+      ],
+      "sha256": "3d763cd48cd64141f95a7b0a5eb8cd4529fbe07721c2b0adae654e8e76d98e0a"
+    },
+    {
+      "path": "docs/widget-system/screenshots/dark/images-large.png",
+      "size": [
+        640,
+        321
+      ],
+      "sha256": "82a3525c6294d00221e0367ae9a9782d78474b2f74cf3e08019dc36fba19e03e"
+    },
+    {
+      "path": "docs/widget-system/screenshots/dark/images-small.png",
+      "size": [
+        320,
+        281
+      ],
+      "sha256": "1db5b1f52eb1a3737f912b43a7e681f4cce58d8e0ac2138a7ba9604ead7c76dd"
+    },
+    {
+      "path": "docs/widget-system/screenshots/dark/library.png",
+      "size": [
+        1024,
+        3999
+      ],
+      "sha256": "ac7195bf95a7ac15bfb49da4884854d8356a8de43dc8806cec3e38fc3bb956b7"
+    },
+    {
+      "path": "docs/widget-system/screenshots/dark/metadata-large.png",
+      "size": [
+        640,
+        321
+      ],
+      "sha256": "44968b914f2743c7f8cdb53d7022b47953e52bd06a121a52548defe5f97632b0"
+    },
+    {
+      "path": "docs/widget-system/screenshots/dark/metadata-small.png",
+      "size": [
+        320,
+        281
+      ],
+      "sha256": "a7ad754b58f71b5d9a179405aad888cce820bffb8f0bfc043e208be8543d9985"
+    },
+    {
+      "path": "docs/widget-system/screenshots/dark/pdf-large.png",
+      "size": [
+        640,
+        321
+      ],
+      "sha256": "8bfd8012975d7bd72cb89c0ff1a4aa722f4836aa0f57c3a0f7bc784b8a3180e4"
+    },
+    {
+      "path": "docs/widget-system/screenshots/dark/pdf-small.png",
+      "size": [
+        320,
+        281
+      ],
+      "sha256": "6acd6c790226851578f10f9632bf253c6963cbcc28c2de21436d719e4d2e19c1"
+    },
+    {
+      "path": "docs/widget-system/screenshots/dark/qr-large.png",
+      "size": [
+        640,
+        321
+      ],
+      "sha256": "8558198f95af2e96f676f1c8ace1b1c85c48ba490d730737d415d0396654f766"
+    },
+    {
+      "path": "docs/widget-system/screenshots/dark/qr-small.png",
+      "size": [
+        320,
+        281
+      ],
+      "sha256": "7980448e465f73659a6e46bf2719166361e7aac53ac5f952b81e5f66c3b2a42a"
+    },
+    {
+      "path": "docs/widget-system/screenshots/dark/screenshot-large.png",
+      "size": [
+        640,
+        321
+      ],
+      "sha256": "4e3840b11de29378a28ded3e4998681aeaa4b6a77110622a380f58d3f139e5a5"
+    },
+    {
+      "path": "docs/widget-system/screenshots/dark/screenshot-small.png",
+      "size": [
+        320,
+        281
+      ],
+      "sha256": "d2cb8f0f4970385afcc0125f8690ac1f31c18a7032d8890fb1e1edf8f8bee662"
+    },
+    {
+      "path": "docs/widget-system/screenshots/dark/structured-large.png",
+      "size": [
+        640,
+        321
+      ],
+      "sha256": "c5e01d65d20a2241fd419dbd33f5e6e2dd070dae26d1396ec8904ce4c1f5fbc0"
+    },
+    {
+      "path": "docs/widget-system/screenshots/dark/structured-small.png",
+      "size": [
+        320,
+        281
+      ],
+      "sha256": "a8d74296c0b14081dc813ca354c47e1e1d1f636232e94a91ec408a2cccf12cf3"
+    },
+    {
+      "path": "docs/widget-system/screenshots/dark/studio-1366x768.png",
+      "size": [
+        1366,
+        768
+      ],
+      "sha256": "b8f18a9b4ac832cd0f0ef904a44040db780e4e6ccc7c420d8362a93f95efa8d5"
+    },
+    {
+      "path": "docs/widget-system/screenshots/dark/trends-large.png",
+      "size": [
+        640,
+        321
+      ],
+      "sha256": "9d86b910ed06aaeae81756a3fa5b2ecaff5fef77481df7183deadc8b7116f499"
+    },
+    {
+      "path": "docs/widget-system/screenshots/dark/trends-small.png",
+      "size": [
+        320,
+        281
+      ],
+      "sha256": "a13c913354b5c8873731d0ab79dcc0bf7f0794235cfffaff86fa6e0c6b90e999"
+    },
+    {
+      "path": "docs/widget-system/screenshots/dark/webp-large.png",
+      "size": [
+        640,
+        321
+      ],
+      "sha256": "f3cca5fc4c47720baf6788c315404dd013cae474a3d4fc6c590819ddb6831f5f"
+    },
+    {
+      "path": "docs/widget-system/screenshots/dark/webp-small.png",
+      "size": [
+        320,
+        281
+      ],
+      "sha256": "bc54ba35a76969dfefc2775aebdbfaee8e242928872e8ea16992afc2b2160249"
+    },
+    {
+      "path": "docs/widget-system/screenshots/light/find-large.png",
+      "size": [
+        640,
+        321
+      ],
+      "sha256": "70225d9862b43982db254b22aad3476498ef7100aa381004a79d8d131805100c"
+    },
+    {
+      "path": "docs/widget-system/screenshots/light/find-small.png",
+      "size": [
+        320,
+        281
+      ],
+      "sha256": "4289c47b613d4e0a938d6f594892d20b75c115a033b0c58eafc7fa82d27fd29c"
+    },
+    {
+      "path": "docs/widget-system/screenshots/light/headings-large.png",
+      "size": [
+        640,
+        321
+      ],
+      "sha256": "ab2b94e33957b3ec9107af90d2b8df32365a04d5f058106d2125a95c5b745eda"
+    },
+    {
+      "path": "docs/widget-system/screenshots/light/headings-small.png",
+      "size": [
+        320,
+        281
+      ],
+      "sha256": "b306974e00c4301aa63d0c6ec56f4f05b4a4bd6029a616eb1cb3d8e6ef78864c"
+    },
+    {
+      "path": "docs/widget-system/screenshots/light/images-large.png",
+      "size": [
+        640,
+        321
+      ],
+      "sha256": "bd4c18e5b1f31a8c0480ae4e1675865f218da7fc61f0a45c2e5becc23bd37128"
+    },
+    {
+      "path": "docs/widget-system/screenshots/light/images-small.png",
+      "size": [
+        320,
+        281
+      ],
+      "sha256": "d65109a272b8c9c9906d6486dfaa3be68f736535d3ceef35a5b590579c4857f6"
+    },
+    {
+      "path": "docs/widget-system/screenshots/light/library.png",
+      "size": [
+        1024,
+        3999
+      ],
+      "sha256": "8fad852bd0abd7772f68db05cf5767c47b388df85ddb54eb8a0f3b4451cf0aa6"
+    },
+    {
+      "path": "docs/widget-system/screenshots/light/metadata-large.png",
+      "size": [
+        640,
+        321
+      ],
+      "sha256": "f9f8b951ff4f5b58161a9ad082962e69c7b481a7dff9e4d38b6ed4aafc5e8f9c"
+    },
+    {
+      "path": "docs/widget-system/screenshots/light/metadata-small.png",
+      "size": [
+        320,
+        281
+      ],
+      "sha256": "584ea62a603f2c34d0fb827d6f2679d252c46781a04ed3e027cd2bb3fde702ab"
+    },
+    {
+      "path": "docs/widget-system/screenshots/light/pdf-large.png",
+      "size": [
+        640,
+        321
+      ],
+      "sha256": "331cc3e6dc7f9d7fbead1869e112d3131ac0cb9eded660fe423023d8e5ea99ba"
+    },
+    {
+      "path": "docs/widget-system/screenshots/light/pdf-small.png",
+      "size": [
+        320,
+        281
+      ],
+      "sha256": "2706a089c11163eedee40348f72e56065d64124f886014a7cd4747448d786179"
+    },
+    {
+      "path": "docs/widget-system/screenshots/light/qr-large.png",
+      "size": [
+        640,
+        321
+      ],
+      "sha256": "4ecde8e292b6e4a51f6bcd77635a2c124cfef61051937891cd2a7267d4299e7a"
+    },
+    {
+      "path": "docs/widget-system/screenshots/light/qr-small.png",
+      "size": [
+        320,
+        281
+      ],
+      "sha256": "d0313a43d5b3d14b6cb638210c272ce77bc01dea18fc6941b0ffb687efbc6563"
+    },
+    {
+      "path": "docs/widget-system/screenshots/light/screenshot-large.png",
+      "size": [
+        640,
+        321
+      ],
+      "sha256": "769307fafd8821c7e1849c15a9856109cc53eb760d1f326f3759321ae0062096"
+    },
+    {
+      "path": "docs/widget-system/screenshots/light/screenshot-small.png",
+      "size": [
+        320,
+        281
+      ],
+      "sha256": "1b92467d1794e3aa0a94d2c91732fe7f35e8d7141eb27fa1f6ab5253fe98ddc3"
+    },
+    {
+      "path": "docs/widget-system/screenshots/light/structured-large.png",
+      "size": [
+        640,
+        321
+      ],
+      "sha256": "c9012d6fa47a749b4553d605b1cb235301537bd352b1eed4023f4616ee44ce4b"
+    },
+    {
+      "path": "docs/widget-system/screenshots/light/structured-small.png",
+      "size": [
+        320,
+        281
+      ],
+      "sha256": "59f1c91dba20fbb74093517c1756e4f9ac297f50aa71b04e47cf552cd14160a2"
+    },
+    {
+      "path": "docs/widget-system/screenshots/light/studio-1366x768.png",
+      "size": [
+        1366,
+        768
+      ],
+      "sha256": "c3cfa9a34c2112251de3e62e49e4d0e501d29790e1013a267d9614b027b73ba5"
+    },
+    {
+      "path": "docs/widget-system/screenshots/light/trends-large.png",
+      "size": [
+        640,
+        321
+      ],
+      "sha256": "cb620f950f07b1a68692f891354b330f7ae9d4aa76f6bdcc34828e4c701abd8a"
+    },
+    {
+      "path": "docs/widget-system/screenshots/light/trends-small.png",
+      "size": [
+        320,
+        281
+      ],
+      "sha256": "8007e7f219d7534865d777f064c49b2d9de87fb405e2a64703906fc7c38ad73f"
+    },
+    {
+      "path": "docs/widget-system/screenshots/light/webp-large.png",
+      "size": [
+        640,
+        321
+      ],
+      "sha256": "93da3c52fedc5bdeb32451adc108034c41a75b83751ded3d3cf200f9394970ff"
+    },
+    {
+      "path": "docs/widget-system/screenshots/light/webp-small.png",
+      "size": [
+        320,
+        281
+      ],
+      "sha256": "20dcae8665619061cd33770bb0b117487ce480f207411882ac513cf4360f1b43"
+    }
+  ]
+}

@@ -1,14 +1,16 @@
-import { test,expect } from './fixtures.mjs';
-import { openWidget,scenario,stableSize,widgetScenarios } from './widget-studio-helpers.mjs';
-
-// Fixed-size widgets have desktop references; mobile interaction/geometry runs in widget-studio.spec.mjs.
-for(const widget of ['find','qr'])for(const size of ['small','large']){
- test(`@visual @capture Widget Studio ${widget} ${size} content states`,async({page},testInfo)=>{
-  const preview=await openWidget(page,widget,size);
-  for(const state of widgetScenarios[widget])await test.step(state,async()=>{
-   await scenario(page,state);await stableSize(preview,size);
-   await expect(preview).toHaveScreenshot(`widget-${widget}-${size}-${state}.png`);
-   await testInfo.attach(`${widget}-${size}-${state}`,{body:await preview.screenshot({animations:'disabled'}),contentType:'image/png'});
-  });
- });
-}
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {test,expect,catalog} from './fixtures.mjs';
+const ids=['metadata','headings','find','screenshot','webp','images','pdf','qr','structured','trends'];
+test('@visual @capture Widget System: twenty variants and complete library',async({page},testInfo)=>{
+ await catalog(page,'widget-studio');await page.locator('[data-studio-view="library"]').click();
+ const theme=testInfo.project.use.colorScheme,dir=path.resolve('docs/widget-system/screenshots',theme);await fs.mkdir(dir,{recursive:true});
+ for(const id of ids)for(const size of ['small','large']){
+  const card=page.locator(`.axo-widget[data-widget-id="${id}"][data-size="${size}"]`);await expect(card).toHaveAttribute('data-scenario','result');
+  await expect(card).toHaveScreenshot(`widget-system-${id}-${size}-result.png`);
+  await card.screenshot({path:path.join(dir,`${id}-${size}.png`),animations:'disabled'});
+ }
+ await page.locator('.widget-studio-gallery').screenshot({path:path.join(dir,'library.png'),animations:'disabled'});
+ await page.evaluate(()=>{window.scrollTo(0,0);const stage=document.querySelector('.widget-studio-stage');stage.scrollLeft=0;stage.scrollTop=0});
+ await page.screenshot({path:path.join(dir,'studio-1366x768.png'),fullPage:false,animations:'disabled'});
+});

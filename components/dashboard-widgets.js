@@ -12,30 +12,35 @@ function dashboardWidgetMarkup(type,{id="widget",size="dashboard"}={}){
  else throw new RangeError("Unknown Dashboard widget");
  return markup.replace('class="composition-'+(type==="find"?"find":"qr")+'"','class="composition-'+(type==="find"?"find":"qr")+'" data-widget-size="'+escapeButtonText(size)+'"');
 }
-function mountFindWidget(root,initial={}){
+function mountFindWidget(root,initial={},options={}){
+ const lifetime=new AbortController(),events={signal:lifetime.signal};
  const query=root.querySelector('input[type="search"]');
  root.querySelectorAll('input[type="radio"]').forEach(radio=>radio.addEventListener("change",()=>{
   if(radio.checked)query.placeholder=radio.value==="asset"?"Hledat asset…":"Hledat frázi…";
- }));
- const ready=root.querySelector(".composition-find-ready");
+ },events));
+ const ready=root.querySelector(options.readySelector||".composition-find-ready");
  function setReady(next){
   ready.dataset.ready=String(next);
   ready.setAttribute("aria-label",(next?"Web připraven":"Web není připraven")+", demonstrační stav. Kliknutím přepnout");
   ready.title=(next?"Web připraven":"Web není připraven")+" · demo";
  }
- ready.addEventListener("click",()=>setReady(ready.dataset.ready!=="true"));
+ ready.addEventListener("click",()=>setReady(ready.dataset.ready!=="true"),events);
 
  if(initial.mode){const radio=root.querySelector('input[value="'+(initial.mode==="phrase"?"phrase":"asset")+'"]');radio.checked=true;query.placeholder=initial.mode==="phrase"?"Hledat frázi…":"Hledat asset…"}
  if(initial.query!==undefined)query.value=initial.query;
  if(initial.ready===false)setReady(false);
- return {getState:()=>({mode:root.querySelector('input:checked').value,query:query.value,ready:ready.dataset.ready==="true"})};
+ return {getState:()=>({mode:root.querySelector('input:checked').value,query:query.value,ready:ready.dataset.ready==="true"}),destroy(){lifetime.abort()}};
 }
-function mountQrWidget(root,initial={}){
+function mountQrWidget(root,initial={},options={}){
+ const lifetime=new AbortController(),events={signal:lifetime.signal};
+ const select=selector=>root.querySelector(options.selectors?.[selector]||selector);
+ let disposed=false;
+ const exports=new Set();
  const qrRoot=root;
- const qrInput=qrRoot.querySelector('input[type="url"]');
- const qrEntry=qrRoot.querySelector(".composition-qr-entry");
+ const qrInput=select('input[type="url"]');
+ const qrEntry=select(".composition-qr-entry");
  const qrGenerate=qrEntry.querySelector(".axo-btn");
- const qrResult=qrRoot.querySelector(".composition-qr-result");
+ const qrResult=select(".composition-qr-result");
  const qrDownload=qrResult.querySelector(".axo-btn--secondary");
  const qrReset=qrResult.querySelector(".axo-btn--ghost");
  let currentQr=null;
@@ -44,7 +49,7 @@ function mountQrWidget(root,initial={}){
   qrGenerate.disabled=!validQrUrl();
   qrRoot.dataset.qrStage=qrGenerate.disabled?"paste":"generate";
  }
- qrInput.addEventListener("input",updateUrlState);
+ qrInput.addEventListener("input",updateUrlState,events);
  function generateQr(){
   if(!validQrUrl())return;
   try{
@@ -54,13 +59,13 @@ function mountQrWidget(root,initial={}){
    const count=currentQr.getModuleCount(),margin=4,size=count+margin*2;
    let d="";
    for(let row=0;row<count;row++)for(let col=0;col<count;col++)if(currentQr.isDark(row,col))d+="M"+(col+margin)+" "+(row+margin)+"h1v1h-1z";
-   qrRoot.querySelector(".composition-qr-pattern").innerHTML='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+size+' '+size+'" shape-rendering="crispEdges" aria-hidden="true"><rect width="'+size+'" height="'+size+'" fill="#fff"/><path fill="#161622" d="'+d+'"/></svg>';
+   select(".composition-qr-pattern").innerHTML='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+size+' '+size+'" shape-rendering="crispEdges" aria-hidden="true"><rect width="'+size+'" height="'+size+'" fill="#fff"/><path fill="#161622" d="'+d+'"/></svg>';
    qrRoot.dataset.qrStage="download";
    qrEntry.hidden=true;
    qrResult.hidden=false;
   }catch(error){currentQr=null;qrInput.setCustomValidity("QR kód nelze vytvořit, zkraťte URL.");qrInput.reportValidity();qrInput.setCustomValidity("")}
  }
- qrGenerate.addEventListener("click",generateQr);
+ qrGenerate.addEventListener("click",generateQr,events);
  qrDownload.addEventListener("click",()=>{
   if(!currentQr)return;
   const count=currentQr.getModuleCount(),margin=4,scale=12,size=(count+margin*2)*scale;
@@ -68,19 +73,19 @@ function mountQrWidget(root,initial={}){
   const ctx=canvas.getContext("2d");ctx.fillStyle="#fff";ctx.fillRect(0,0,size,size);ctx.fillStyle="#161622";
   for(let row=0;row<count;row++)for(let col=0;col<count;col++)if(currentQr.isDark(row,col))ctx.fillRect((col+margin)*scale,(row+margin)*scale,scale,scale);
   canvas.toBlob(blob=>{
-   if(!blob)return;
+   if(!blob||disposed)return;
    const url=URL.createObjectURL(blob),a=document.createElement("a");
-   a.href=url;a.download="axo-qr.png";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+   exports.add(url);a.href=url;a.download="axo-qr.png";a.click();setTimeout(()=>{URL.revokeObjectURL(url);exports.delete(url)},1000);
   },"image/png");
- });
+ },events);
  qrReset.addEventListener("click",()=>{
   currentQr=null;qrRoot.dataset.qrStage="paste";qrResult.hidden=true;qrEntry.hidden=false;
   qrInput.value="";qrGenerate.disabled=true;qrInput.focus();
- });
+ },events);
 
- qrInput.addEventListener("keydown",event=>{if(event.key==="Enter"){event.preventDefault();qrGenerate.click()}});
+ qrInput.addEventListener("keydown",event=>{if(event.key==="Enter"){event.preventDefault();qrGenerate.click()}},events);
  if(initial.query!==undefined){qrInput.value=initial.query;updateUrlState()}
  if(initial.stage==="download")generateQr();
- return {getState:()=>({query:qrInput.value,stage:qrRoot.dataset.qrStage})};
+ return {getState:()=>({query:qrInput.value,stage:qrRoot.dataset.qrStage}),destroy(){disposed=true;lifetime.abort();exports.forEach(url=>URL.revokeObjectURL(url));exports.clear();currentQr=null}};
 }
 function mountDashboardWidget(type,root,initial){return type==="find"?mountFindWidget(root,initial):mountQrWidget(root,initial)}

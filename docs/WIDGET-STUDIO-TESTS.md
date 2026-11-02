@@ -1,5 +1,7 @@
 # Widget Studio · Playwright verification
 
+> Historický výsledek Widget Studio V1. Aktuální kompletní knihovna a aktivní reference: [Widget System](WIDGET-SYSTEM.md) a [ověření](WIDGET-SYSTEM-REVIEW.md).
+
 ## Result · 2. 11. 2026
 
 **44 tests passed, 0 failed, 0 skipped** in the complete `npm run design:test` run. The required `npm ci --ignore-scripts`, `npm run design:setup` and `npm run design:doctor` also completed successfully after adding the test dependency. No catalog HTML, component JavaScript/CSS, assets or Pages workflow changed relative to `main` (`94b862c`). No merge or deployment was performed.
