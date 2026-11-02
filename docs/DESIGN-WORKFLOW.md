@@ -13,6 +13,8 @@ Projekt je **pouze Design System katalog**. Existující sekce Composition Lab a
 
 Upstream původ a SHA všech skill souborů: `tools/design/skills-lock.json`. Apache-2.0 licence a Impeccable notices jsou zachované u kopií. Upstream soubory nejsou přepsané projektovými pravidly; jejich obecná doporučení mají menší váhu než aktuální zadání, katalog a `docs/SOURCE-OF-TRUTH.md`.
 
+`.gitattributes` zachovává původní bajty těchto dvou upstream kopií včetně CRLF Windows launcheru. Výjimka z whitespace kontroly je omezená pouze na ně; vlastní Guardian, nástroje, testy a dokumentace ji nemají.
+
 ### Codex Web: přesné hranice
 
 - V tomto spravovaném prostředí funguje terminálový Playwright, původní Impeccable engine a explicitní čtení projektových `SKILL.md`. Uživatel nemusí nic instalovat na svém počítači.
