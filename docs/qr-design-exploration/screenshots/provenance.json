@@ -1,0 +1,36 @@
+{
+  "capturedAt": "2026-11-02",
+  "baseCommit": "51daf28",
+  "renderer": "Playwright1.64.1 / systemChromium154.0.8037.57 Linuxx64",
+  "fontFixtureLockSha256": "edb0ed15e987cd53ea3ad960ca95460e6163b4eda7fb92c8fdb2d83a61d98828",
+  "source": "labs/qr-design-exploration",
+  "states": [
+    "empty",
+    "filled",
+    "result"
+  ],
+  "themes": [
+    "dark",
+    "light"
+  ],
+  "variants": {
+    "a": {
+      "qrSize": 160
+    },
+    "b": {
+      "qrSize": 184
+    },
+    "c": {
+      "qrSize": 152
+    }
+  },
+  "widgetSize": {
+    "width": 320,
+    "height": 280
+  },
+  "comparisonViewport": {
+    "width": 1366,
+    "height": 768
+  },
+  "purpose": "Real rendered exploration evidence; not an approved production widget or new regression baseline."
+}

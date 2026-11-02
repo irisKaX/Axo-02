@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>QR Design Exploration Lab · AXO-02</title>
+<link rel="stylesheet" href="../../components/button.css">
+<link rel="stylesheet" href="../../components/inputs.css">
+<link rel="stylesheet" href="lab.css">
+<script src="../../components/button.js" defer></script>
+<script src="../../components/inputs.js" defer></script>
+<script src="../../components/vendor/qrcode.js" defer></script>
+<script src="../../components/dashboard-widgets.js" defer></script>
+<script src="lab.js" defer></script>
+</head>
+<body>
+<main class="qrx-lab" id="qr-exploration" hidden>
+ <header class="qrx-lab-header"><div><h1>QR Design Exploration Lab</h1><p>QR Generator Small · tři kompozice výsledku · 320 × 280 px</p></div><div id="qrx-theme"></div></header>
+ <div class="qrx-lab-intro"><p>Stejný kód. Tři způsoby předání.</p><span>Návrhy k rozhodnutí · žádná varianta není schválená</span></div>
+ <div class="qrx-comparison" id="qrx-comparison" aria-label="Porovnání variant A, B a C"></div>
+ <footer class="qrx-lab-footer"><span>Každý náhled generuje skutečný QR a stahuje PNG. Dark / Light mění všechny tři varianty.</span><a href="../../#widget-studio">Zpět do Widget Studia</a></footer>
+</main>
+<p id="qrx-error" role="alert" hidden></p>
+</body>
+</html>

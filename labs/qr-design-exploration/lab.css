@@ -1,0 +1,54 @@
+/* Standalone exploration compositions. No existing widget CSS is loaded or overridden. */
+.qrx-lab{max-width:1120px;margin:0 auto;padding:var(--space-8) var(--space-6);display:grid;gap:var(--space-8)}
+.qrx-lab[hidden],#qrx-error[hidden]{display:none}
+.qrx-lab-header{display:flex;align-items:center;justify-content:space-between;gap:var(--space-6)}
+.qrx-lab-header h1{font-size:28px;line-height:34px;letter-spacing:-.03em;margin:0 0 var(--space-2);font-weight:700}
+.qrx-lab-header p,.qrx-lab-footer{font-size:12px;line-height:20px;color:var(--ink);margin:0}
+.qrx-lab-intro{display:flex;justify-content:space-between;align-items:baseline;gap:var(--space-4);padding-top:var(--space-4);border-top:1px solid var(--border)}
+.qrx-lab-intro p{font-size:16px;line-height:24px;margin:0;font-weight:600}
+.qrx-lab-intro span{font-size:12px;line-height:16px;color:var(--ink)}
+.qrx-comparison{display:grid;grid-auto-flow:column;grid-auto-columns:320px;justify-content:space-between;gap:var(--space-8);overflow-x:auto;padding:var(--space-1) var(--space-1) var(--space-4);scroll-snap-type:x proximity;scrollbar-color:var(--accent) var(--surface-2)}
+.qrx-study{width:320px;display:grid;align-content:start;gap:var(--space-4);scroll-snap-align:start}
+.qrx-study-heading{display:grid;gap:var(--space-2)}
+.qrx-study-heading h2{font-size:18px;font-weight:650;line-height:24px;letter-spacing:-.02em;margin:0}
+.qrx-study-heading p{font-size:12px;line-height:20px;margin:0;color:var(--ink);min-height:40px}
+.qrx-state-controls{display:flex;gap:var(--space-2);flex-wrap:wrap}
+.qrx-widget{box-sizing:border-box;width:320px;height:280px;flex:none;padding:var(--qrx-padding);display:grid;position:relative;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);color:var(--ink);--qrx-padding:var(--space-4)}
+.qrx-widget[data-qrx-variant="b"][data-qr-stage="download"]{--qrx-padding:0}
+.qrx-content{display:contents}
+.qrx-entry{height:100%;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:var(--space-4)}
+.qrx-entry[hidden],.qrx-result[hidden]{display:none}
+.qrx-entry-heading{display:grid;gap:var(--space-2)}
+.qrx-entry-heading h3{font-size:22px;line-height:1.15;letter-spacing:-.03em;margin:0;font-weight:650}
+.qrx-entry-heading p{font-size:12px;line-height:1.5;color:var(--muted);margin:0}
+.qrx-entry-label{font-size:11px;font-weight:600;color:var(--muted);display:grid;gap:var(--space-2)}
+.qrx-entry>.axo-btn{align-self:flex-start}
+.qrx-result{height:100%;min-width:0;display:grid;align-content:center;gap:var(--space-2);grid-template-areas:var(--qrx-areas);grid-template-columns:var(--qrx-columns);grid-template-rows:var(--qrx-rows)}
+.qrx-result-heading{grid-area:context;min-width:0}
+.qrx-result-heading h3{margin:0;font-size:14px;font-weight:650;line-height:18px;letter-spacing:-.02em}
+.qrx-destination{font-size:11px;line-height:16px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:0;max-width:100%}
+.qrx-code{grid-area:code;width:var(--qrx-code-size);height:var(--qrx-code-size);justify-self:var(--qrx-code-align,center);background:var(--primary-foreground);border-radius:var(--radius-sm);overflow:hidden}
+.qrx-code svg{display:block;width:100%;height:100%}
+.qrx-actions{grid-area:actions;display:flex;align-items:center;justify-content:var(--qrx-actions-align,center);gap:var(--space-2);min-width:0}
+.qrx-widget[data-qrx-variant="a"]{--qrx-code-size:160px;--qrx-areas:"context" "code" "actions";--qrx-columns:minmax(0,1fr);--qrx-rows:34px 160px 34px}
+.qrx-widget[data-qrx-variant="a"] .qrx-result-heading{text-align:center}
+.qrx-widget[data-qrx-variant="b"]{--qrx-code-size:184px;--qrx-areas:"code code" "context actions";--qrx-columns:minmax(0,1fr) auto;--qrx-rows:214px 64px;--qrx-actions-align:flex-end}
+.qrx-widget[data-qrx-variant="b"] .qrx-result{gap:0;align-content:stretch;border-radius:inherit;isolation:isolate}
+.qrx-widget[data-qrx-variant="b"] .qrx-result::before{content:"";grid-area:code;align-self:stretch;justify-self:stretch;background:var(--primary-foreground);border-radius:calc(var(--radius-xl) - 1px) calc(var(--radius-xl) - 1px) 0 0;z-index:-1}
+.qrx-widget[data-qrx-variant="b"] .qrx-result::after{content:"";grid-column:1 / -1;grid-row:2;align-self:stretch;justify-self:stretch;border-top:1px solid var(--border);pointer-events:none;z-index:-1}
+.qrx-widget[data-qrx-variant="b"] .qrx-code{align-self:center;border-radius:0}
+.qrx-widget[data-qrx-variant="b"] .qrx-result-heading{align-self:center;padding-left:var(--space-4);padding-right:var(--space-2)}
+.qrx-widget[data-qrx-variant="b"] .qrx-result-heading h3{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.qrx-widget[data-qrx-variant="b"] .qrx-actions{padding-right:var(--space-4)}
+.qrx-widget[data-qrx-variant="c"]{--qrx-code-size:152px;--qrx-code-align:start;--qrx-areas:"header header" "code context" "actions actions";--qrx-columns:152px minmax(0,1fr);--qrx-rows:34px 152px 34px}
+.qrx-widget[data-qrx-variant="c"] .qrx-result{gap:var(--space-3)}
+.qrx-result-toolbar{grid-area:header;display:flex;justify-content:space-between;align-items:center;gap:var(--space-2)}
+.qrx-result-toolbar h3{font-size:14px;font-weight:650;margin:0;letter-spacing:-.02em}
+.qrx-widget[data-qrx-variant="c"] .qrx-result-heading{align-self:center}
+.qrx-widget[data-qrx-variant="c"] .qrx-result-heading h3{font-size:12px;line-height:18px;overflow-wrap:anywhere;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}
+.qrx-widget[data-qrx-variant="c"] .qrx-destination{white-space:normal;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;margin-top:var(--space-2)}
+.qrx-widget[data-qrx-variant="c"] .qrx-actions>.axo-btn{width:100%}
+.qrx-lab-footer{display:flex;justify-content:space-between;gap:var(--space-4);align-items:start}
+.qrx-lab-footer a{color:var(--ink);white-space:nowrap;text-decoration:underline;text-underline-offset:3px}
+#qrx-error{margin:var(--space-8);font-size:14px;color:var(--error)}
+@media(max-width:720px){.qrx-lab{padding:var(--space-6) var(--space-4);gap:var(--space-6)}.qrx-lab-header{align-items:flex-start}.qrx-lab-header h1{font-size:24px}.qrx-lab-intro,.qrx-lab-footer{flex-direction:column;gap:var(--space-2)}.qrx-comparison{justify-content:start}}

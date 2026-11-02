@@ -38,6 +38,7 @@
 | Další prvky | **Rozpracováno** | Primary Violet Scrollbar a izolované Cursor Studio (Glow, Click Burst), návrhy ke schválení |
 | Composition Lab | **Katalogový kompoziční experiment** | Celoobrazovková kompozice, nikoli hotový Dashboard nebo aplikační prototyp; existující obsah se tímto setupem nemění |
 | Widget Studio | **Implementováno, varianty ke schválení** | Samostatné prostředí pro Find Phrase a QR Generator, Small / Large, stavy obsahu a interakcí, dark/light, zachované lokální funkce |
+| QR Design Exploration Lab | **A/B/C · návrhy k rozhodnutí** | Samostatná stránka pro tři kompozice výsledného QR Small320×280; původní widgety beze změn |
 
 **Navigace samotného katalogu již funguje.** To neznamená, že máme navrženou budoucí komponentu pro navigaci celé aplikace.
 
@@ -537,3 +538,16 @@ Aby nevznikly dva soupeřící zdroje pravdy, **nekopírovat jej jako samostatn�
 - **8 nových vizuálních testů /32widgetových PNG referencí** na desktopu: Find empty/asset/phrase/unavailable, QR empty/valid/invalid/result; každá kombinace Small/Large a dark/light. Původních8 referencí se nezměnilo (celkem40). Mobilní funkční a geometrická kontrola používá existující interní scroll, netvoří duplicitní obrázky stejně velkých widgetů. Reference současného stavu nejsou nové vizuální schválení.
 - Find Phrase nemá backend ani výsledkovou obrazovku; žádný takový stav nebyl vymyšlen. Ostatní prohlížeče a plná dynamika animací neověřené. Stávající nález overflow skrytého URL tooltipu v jiné katalogové sekci zůstává zaznamenaný, bez opravy.
 - `index.html`, všechny komponenty, CSS, assety a Pages workflow beze změn. Výsledky a odkazy na reference: `docs/WIDGET-STUDIO-TESTS.md`. Vytvoření PR vyžaduje dostupné GitHub API; blokace403 je hlášená samostatně, nikoli vydávaná za vytvořený PR nebo problém testů.
+
+
+## QR Generator Small · Design Exploration (2. 11. 2026)
+
+- Výchozí `main` obsahoval Design Workflow a Widget Studio testy v commitu `51daf28` (PR#1). Toto zadání má vlastní větev `design/qr-small-exploration`; žádný merge ani produkční deployment se neprovádí.
+- **Implementovaný samostatný lab**, nikoli finální komponenta: `labs/qr-design-exploration/index.html`, `lab.js`, `lab.css`. Tři kompozice se zobrazují vedle sebe a každá má Výchozí/Vyplněno/Výsledek. Katalogový Dark/Light přepínač mění všechny stejně pro férové porovnání. Na úzkém viewportu se porovnání posouvá vodorovně, karty mají stále přesně320×280CSSpx.
+- **A · Klidný střed:**160px QR uprostřed, kontext nad ním a dvě čitelné spodní akce. **B · Velký formát:**184px QR v souvislé bílé ploše, kontext a ikonové akce v64px footeru. **C · Kontext po ruce:**152px QR vedle cílové adresy, restart nahoře a plnošířkové stažení dole. Všechny černobílé QR jsou skutečně generované, nikoli ilustrační vzorek.
+- Použit AXO-02 Design Guardian, původní Frontend Design a Impeccable context/audit/critique/layout/polish. Dvě nezávislé kontroly rozlišily vizuální úsudek a mechanická data; po vykreslení následoval polish a review. Detailní záznam: `docs/qr-design-exploration/REVIEW.md`.
+- Lab načítá původní inline Foundations/fontlink/theme button z kanonického `index.html`; netvoří novou paletu. Používá existující inputs/button CSS a renderery. **Sdílený `dashboardWidgetMarkup` a `mountQrWidget`** dál vlastní encoder, validaci, PNG a reset. Lab pouze přeskupuje svou instanci. Původní widgetové CSS se do Labu nenačítá; nové kompozice mají jediné kanonické definice ve vlastním souboru. Žádné nové barvy, gradienty, vlastní varianty tlačítek, override vrstvy nebo `!important`.
+- `index.html`, `components/`, `assets/`, Widget Studio, Composition Lab a všech40stávajících referencí beze změn. Upraven pouze lokální testovací server pro explicitní cestu Labu (včetně přesměrování bez koncového lomítka) a přidány cílené testy/screenshoty/dokumentace.
+- **14 nových Playwright kontrol:** A/B/C × dark/light × desktop1366×768 a mobil390×844, plus dva desktopové capture testy. Ověřují tři stavy, pevné rozměry, skutečné SVG/PNG a nezávislé dekódování na přesnou URL, Enter, focus, reset, validaci a dlouhé adresy. Pořízeno24skutečných screenshotů:18karet přesně320×280 a6společných porovnání1366×768. Nejde o nově schválené regresní baseline.
+- **Závěrečné ověření:58 prošlých testů,0selhání a0přeskočených (44původních +14nových).** Statický layout scan bez nálezů; vykreslený scan po opravě lokálního kontrastu/chrome-caption ponechal pouze obecnou heuristiku proti výslovně zvolenému Geist. Testováno v Chromium154/Playwright1.64.1 se skutečným Geist. Firefox/WebKit, fyzické skenování a screen readery neověřeny.
+- **Doporučení A** pro nejvyváženější poměr QR, kontextu a čitelných akcí; C při důrazu na kontrolu cíle a B pro největší artefakt. **Žádná varianta není automaticky schválená a původní QR widget se tímto nenahrazuje.** Návod, porovnání a všechny screenshoty: `docs/qr-design-exploration/README.md`.
