@@ -113,3 +113,8 @@ Větev `chore/design-workflow-setup` je oddělená od `main`. Setup nemění `in
 - Impeccable `context` načetl oba projektové adaptéry; statický sken `index.html components` vrátil **10 nálezů, z toho 8 primárních** (exit 2). Browser/CDP sken Buttons vrátil **35 nálezů, z toho 28 primárních** (exit 2). Nálezy zahrnují i obecné estetické heuristiky a záměrné katalogové ukázky; neznamenají automaticky potvrzené chyby. Katalog nebyl označen za bezchybný ani redesignován.
 - Read-only agentní kontrola s původními skills a Guardianem zachovala původní renderer, Geist, tokeny, oddělení návrhu/implementace a zákaz deploymentu. Kontrolní scénář bez Guardianu také respektoval existující pravidla; není tvrzeno, že jediný scénář prokazuje zvýšení bezpečnosti nebo garantuje budoucí chování modelu.
 - `git diff` potvrzuje nezměněný `index.html`, všechny `components/`, `assets/` a Pages workflow vůči výchozímu commitu `94b862c`.
+
+
+## Widget Studio · rozšíření testů
+
+Find Phrase a QR Generator používají stejnou infrastrukturu bez změny UI. `npx --no-install playwright test widget-studio` spustí jejich funkční a vizuální testy. Samostatné reference jsou pro Small/Large v dark/light na desktopu1366×768; mobil390×844 ověřuje funkce a pevné rozměry bez duplikování identických referencí. QR SVG i stažené PNG čte nezávislý testovací dekodér jsQR1.4.0 (pouze devDependency). Kompletní sada má44 testů a40 referencí (8původních +32widgetových). [Výsledky, přesné pokrytí a seznam všech widgetových referencí](WIDGET-STUDIO-TESTS.md).

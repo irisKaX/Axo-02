@@ -22,5 +22,39 @@
     "light"
   ],
   "fontFixturesSha256": "edb0ed15e987cd53ea3ad960ca95460e6163b4eda7fb92c8fdb2d83a61d98828",
-  "purpose": "Records existing unchanged catalog appearance; not a new design approval."
+  "purpose": "Records existing unchanged catalog appearance; not a new design approval.",
+  "widgetStudio": {
+    "sourceCommit": "94b862ccdef67040e19b7b5a18d8af2d8f133d2d",
+    "capturedAt": "2026-11-02",
+    "snapshotViewport": {
+      "width": 1366,
+      "height": 768
+    },
+    "sizes": {
+      "small": {
+        "width": 320,
+        "height": 280
+      },
+      "large": {
+        "width": 640,
+        "height": 320
+      }
+    },
+    "scenarios": {
+      "find": [
+        "empty",
+        "asset",
+        "phrase",
+        "unavailable"
+      ],
+      "qr": [
+        "empty",
+        "valid",
+        "invalid",
+        "result"
+      ]
+    },
+    "newReferenceCount": 32,
+    "mobileCoverage": "Functional and fixed-size geometry at390x844; no duplicate fixed-widget pixel references."
+  }
 }
