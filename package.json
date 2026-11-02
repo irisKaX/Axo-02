@@ -1,0 +1,24 @@
+{
+  "name": "axo-02-design-workflow",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Development tools for the existing AXO-02 Design System catalog; no application runtime or build.",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "design:setup": "node tools/design/setup.mjs",
+    "design:doctor": "node tools/design/doctor.mjs",
+    "design:skills:check": "node tools/design/check-skills.mjs",
+    "design:context": "node tools/design/impeccable.mjs context",
+    "design:detect": "node tools/design/impeccable.mjs detect",
+    "design:test": "playwright test",
+    "design:screenshots": "playwright test --grep @capture",
+    "design:visual": "playwright test --grep @visual",
+    "design:visual:update": "node tools/design/update-baselines.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1",
+    "impeccable": "4.8.0"
+  }
+}

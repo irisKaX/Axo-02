@@ -8,14 +8,14 @@
 - **Název:** Axo 02.
 - **Repozitář:** https://github.com/irisKaX/Axo-02 (public, hlavní větev `main`).
 - **Katalog:** https://iriskax.github.io/Axo-02/ (GitHub Pages).
-- **Účel nyní:** kreativní designový katalog; **není to ještě produkční aplikace**.
+- **Účel nyní:** výhradně Design System katalog; **neexistuje hotová aplikace, Dashboard ani aplikační prototyp**. Existující Composition Lab a Widget Studio jsou katalogové experimenty, nikoli aplikační obrazovky.
 - **Starý projekt:** Axolotl 2.0 a jeho repozitáře zůstávají nedotčené. Žádný starý kód sem nebyl migrován.
 - **Publikování:** jeden jednoduchý GitHub Actions workflow `.github/workflows/pages.yml`. Push do `main` publikuje statický katalog; bez screenshotových/produkčních release bran.
 
 ## 2. Skutečná technologie (nyní)
 
 - **HTML + CSS + vanilla JavaScript**. `index.html` skládá katalog; Button má kanonické zdroje v `components/button.js` a `components/button.css`. Navigační komponenty mají své malé samostatné soubory.
-- **Bez Reactu, Vite, TypeScriptu, npm závislostí a bundleru.** React ekosystém **není nainstalovaný**.
+- **Runtime bez Reactu, Vite, TypeScriptu, npm závislostí a bundleru.** Od 2. 11. 2026 jsou odděleně přidané výhradně vývojové npm nástroje Playwright a Impeccable (viz Design Workflow níže); katalog je nenačítá a nepotřebuje build. React ekosystém **není nainstalovaný**.
 - **Globální dark/light:** proměnné v `:root` a `:root[data-theme="light"]`; změna režimu přepíná katalog i jeho komponenty; volba se ukládá do `localStorage`.
 - **Písmo:** Geist načítaný přes Google Fonts, systémové fallbacky.
 - **Ikony dnes:** jednoduchá **inline SVG napsaná přímo ve zdroji** (např. v akčních tlačítkách a jejich ukázkách ve Foundations). **Nejde o import Hugeicons**. Žádný icon package, žádný React wrapper.
@@ -36,7 +36,7 @@
 | Brand | **Prázdná sekce** | Návrh teprve vznikne |
 | Loaders | **Rozpracováno** | Dot Spinner, Blade Spinner, Gradient Ring, varianty S/M/L a Playground |
 | Další prvky | **Rozpracováno** | Primary Violet Scrollbar a izolované Cursor Studio (Glow, Click Burst), návrhy ke schválení |
-| Composition Lab | **Schválená kompozice, obsah rozpracován** | Fullscreen Dashboard: Office, čtyři placeholdery, QR ve Widgetu 2 a Find Phrase ve Widgetu 6 |
+| Composition Lab | **Katalogový kompoziční experiment** | Celoobrazovková kompozice, nikoli hotový Dashboard nebo aplikační prototyp; existující obsah se tímto setupem nemění |
 | Widget Studio | **Implementováno, varianty ke schválení** | Samostatné prostředí pro Find Phrase a QR Generator, Small / Large, stavy obsahu a interakcí, dark/light, zachované lokální funkce |
 
 **Navigace samotného katalogu již funguje.** To neznamená, že máme navrženou budoucí komponentu pro navigaci celé aplikace.
@@ -516,3 +516,14 @@ Aby nevznikly dva soupeřící zdroje pravdy, **nekopírovat jej jako samostatn�
 - **Zachovaná funkčnost a omezení:** QR vytváří skutečnou matici a PNG pomocí již existující lokální MIT knihovny; validuje HTTP(S) URL, umí generování klávesou Enter a reset s návratem fokusu. Bez služby třetí strany či nové závislosti. Find Phrase zachovává editaci, Asset/Fráze a přepínaný zelený/červený demo dot. **Reálné vyhledávání, skenování webu ani backend v repozitáři neexistují a nebyly zde domýšleny.** Obsah widgetů se nyní neredesignoval.
 - **Ověření:** cílený Chromium browser test se skutečným Geist: oba widgety, Small/Large, dark/light, všechny obsahové náhledy, Hover/Focus/Pressed, stabilní rozměry a obsah uvnitř karty; klávesnice, QR generování, skutečný PNG download/reset, oddělené rozepsané hodnoty, návrat do Studia, reduced motion a unikátní ID. Dashboard před/po porovnán na 1366 × 768 a 390 × 844 v obou tématech, ve výchozím i výsledném QR stavu; sledované rozměry a styly shodné. Ověřen skutečný hover/pressed, disabled bez efektů, opakované změny sekce bez hromadění listenerů a interní scroll náhledů na úzké ploše; bez chyb konzole. Screenshoty obou widgetů a velikostí pořízeny na desktopovém viewportu **1366 × 768** v dark/light. Nejde o screenshotovou baseline ani novou testovací infrastrukturu.
 - **CSS:** původní widgetové definice přesunuty, nikoli kopírovány. Nové velikostní a stavové rozdíly jsou součástí kanonických pravidel; žádné override vrstvy, duplicitní opravné selektory, `!important`, globální změny Foundations, nový framework nebo úpravy jiných sekcí. **Stav: prostředí připraveno; Small a Large zatím nejsou vizuálně schválené.**
+
+
+## AXO-02 · Design Workflow Setup (2. 11. 2026)
+
+- **Rozsah:** pouze profesionální vývojové prostředí existujícího Design System katalogu. Samostatná větev `chore/design-workflow-setup`; runtime HTML/CSS/JS, assety, vzhled, tokeny a Pages workflow beze změn. Žádná nová aplikace, Dashboard, obrazovka, backend, merge do `main` nebo nasazení.
+- **Projektové skills:** původní Anthropic **Frontend Design** a Codex distribuce **Impeccable 4.8.0** v `.agents/skills/`, přesné upstream commity a kontrolní součty v `tools/design/skills-lock.json`, zachované licence/notices. Vlastní **AXO-02 Design Guardian** určuje fázi návrh/implementace/review, ověření existujících komponent před novou definicí, reuse, katalog jako jedinou designovou autoritu a cílenou vizuální kontrolu. Root `AGENTS.md` zajišťuje explicitní instrukce; upstream estetické preference nepřepisují schválený design.
+- **Skutečně spuštěné nástroje:** npm devDependencies **Playwright Test 1.64.1**, **Impeccable CLI 4.8.0 / původní engine 0.1.18**. Ověřen npm install, engine SHA, `context`, skutečný statický i renderovaný `detect`, Playwright browser launch, screenshoty, interakce a porovnání. Impeccable skeny nahlásily nálezy (exit 2), nikoli čistý katalog; setup kvůli nim nic neredesignuje. Guardian společně s původními skills ověřen read-only agentním scénářem; není tvrzeno, že procesní skill garantuje budoucí chování každého modelu.
+- **Codex Web limity:** automatické objevení projektových skills není ověřené (executor seznam skills prázdný); explicitní čtení funguje, není však nativní plugin. Automatický Impeccable hook není nainstalovaný/aktivní a tento runtime nenabízí jeho schvalování; platí manuální detektor. Live editor ani browser extension se neinstalovaly. `PRODUCT.md`/`DESIGN.md` jsou odkazové adaptéry do tohoto souboru, nikoli nový master; plný Impeccable init neproběhl a engine hlásí product-record schema upozornění. Vzdálená setup konfigurace Codex Web nebyla měněna, příkazy jsou připravené v dokumentaci.
+- **Browser:** skutečný systémový Chromium **154.0.8037.57** přes Playwright `executablePath`. Download Playwright Chromia 156 / revision 1248 skončil **403 Domain forbidden** na `cdn.playwright.dev`; přibalený browser není instalovaný. Ověřená systémová varianta není vydávána za tento bundle. Setup používá pouze projektovou npm cache a uzamčené testovací Geist fixtures; produkční fonty beze změn.
+- **Vizuální workflow:** čtyři projekty dark/light × 1366×768 / 390×844; screenshoty, HTML report, traces a konkrétní interakční kontroly. Osm počátečních referencí Primary a Search Inputu zaznamenává současný stav, nikoli nové vizuální schválení. Chybějící reference selhává; aktualizace vyžaduje explicitní `--approve` po prohlídce diffu. Dočasně v browseru změněná barva prokazatelně vyvolala selhání pixelového porovnání; zdrojové UI se neměnilo. Tato počáteční sada není audit celého katalogu. Existující mobilní overflow skrytého URL tooltipu v Inputs je připojen jako diagnostický nález; vlastní Search Input se do viewportu vejde.
+- **Návod a status:** `docs/DESIGN-WORKFLOW.md`, `npm ci --ignore-scripts`, `npm run design:setup`, `npm run design:doctor`, `npm run design:test`. Jde o výslovně vyžádanou výjimku z dřívějšího nepřidávání testovací infrastruktury bez zadání. Nástroje nejsou součástí runtime ani nové release/deployment brány.

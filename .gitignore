@@ -147,3 +147,11 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# AXO-02 design workflow (development only)
+playwright-report/
+test-results/
+artifacts/design/
+.agents/skills/impeccable/scripts/bin/
+.impeccable/*
+!.impeccable/config.json

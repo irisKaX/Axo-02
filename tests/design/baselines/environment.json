@@ -1,0 +1,26 @@
+{
+  "capturedAt": "2026-11-02",
+  "sourceCommit": "94b862ccdef67040e19b7b5a18d8af2d8f133d2d",
+  "playwright": "1.64.1",
+  "browser": {
+    "source": "system",
+    "version": "Chromium 154.0.8037.57 built on Debian GNU/Linux 13 (trixie)",
+    "platform": "linux-x64"
+  },
+  "viewports": [
+    {
+      "width": 1366,
+      "height": 768
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "themes": [
+    "dark",
+    "light"
+  ],
+  "fontFixturesSha256": "edb0ed15e987cd53ea3ad960ca95460e6163b4eda7fb92c8fdb2d83a61d98828",
+  "purpose": "Records existing unchanged catalog appearance; not a new design approval."
+}
