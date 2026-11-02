@@ -1,0 +1,57 @@
+/* Canonical widget content shared by Dashboard and Widget Studio. Small/Large are independent compositions. */
+:is(.composition-find,.composition-qr)[data-widget-size="small"]{--widget-display:flex;--widget-gap:12px;--widget-heading-size:24px;--widget-copy-size:12px;--widget-eyebrow-size:10px;--widget-heading-gap:6px;--widget-form-gap:12px;--widget-form-margin:auto;--widget-entry-direction:column;--widget-url-flex:0 0 43px;--widget-entry-align:stretch;--widget-pattern-size:120px}
+:is(.composition-find,.composition-qr)[data-widget-size="large"]{--widget-display:grid;--widget-align:center;--widget-columns:minmax(0,1fr) minmax(0,1fr);--widget-gap:24px;--widget-heading-size:30px;--widget-copy-size:14px;--widget-eyebrow-size:11px;--widget-heading-gap:8px;--widget-form-gap:16px;--widget-form-margin:0;--widget-pattern-size:168px;--widget-result-column:1 / -1}
+.composition-lab-tile:not(.office)::after,.widget-studio-preview::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(115deg,transparent 12%,var(--accent) 49%,var(--o2-blue) 70%,transparent 85%);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;opacity:.42}
+/* Widget 2 · Figma-inspired QR card; all actions use the shared Button System. */
+.composition-qr{display:var(--widget-display,flex);grid-template-columns:var(--widget-columns,none);align-items:var(--widget-align,stretch);flex-direction:column;width:100%;height:100%;min-height:0;min-width:0;gap:var(--widget-gap,clamp(10px,1.15vh,16px))}
+.composition-qr-heading{display:grid;align-content:start;gap:var(--widget-heading-gap,clamp(4px,.65vh,9px));min-width:0}
+.composition-qr-eyebrow{color:var(--accent);letter-spacing:.13em;font-weight:750;font-size:var(--widget-eyebrow-size,clamp(10px,.78vw,12px))}
+:is(.composition-lab-tile,.widget-studio-preview) .composition-qr-heading h3{font-size:var(--widget-heading-size,clamp(18px,1.55vw,26px));line-height:1.16;letter-spacing:-.04em;font-weight:680;margin:0;color:var(--ink)}
+.composition-qr-heading p{font-size:var(--widget-copy-size,clamp(11px,.87vw,13px));color:var(--muted);line-height:1.55;margin:0}
+.composition-qr-controls{margin-top:var(--widget-form-margin,auto);min-width:0;min-height:0}
+.composition-qr-entry{display:flex;flex-direction:var(--widget-entry-direction,row);gap:10px;align-items:var(--widget-entry-align,center);min-width:0}
+.composition-qr-entry[hidden],.composition-qr-result[hidden]{display:none}
+.composition-qr-url{display:flex;align-items:center;flex:var(--widget-url-flex,1);min-width:0;height:43px;border:2px solid var(--accent);border-radius:var(--radius-full);background:var(--surface);padding:0 14px}
+.composition-qr-url:is(:focus-within,[data-preview-state="focus"]){box-shadow:0 0 0 2px var(--accent-bg)}
+.composition-qr-url input{width:100%;min-width:0;background:transparent;border:0;outline:0;color:var(--ink);font:500 12px Geist,sans-serif}
+.composition-qr-url input::placeholder{color:var(--muted)}
+.composition-qr-entry>.axo-btn{flex:none}
+.composition-qr-result{display:flex;align-items:center;justify-content:center;gap:clamp(12px,1.1vw,18px);min-width:0;min-height:0}
+.composition-qr-pattern{display:grid;place-items:center;flex:none;width:clamp(72px,7vw,112px);max-height:100%;aspect-ratio:1;background:#fff;border-radius:var(--radius-sm);overflow:hidden}
+.composition-qr-pattern svg{display:block;width:100%;height:100%;fill:none;stroke:none}
+.composition-qr-result-actions{display:flex;flex-direction:row;align-items:center;gap:12px;flex-wrap:nowrap}
+.composition-qr[data-qr-stage="download"]{justify-content:center}
+.composition-qr[data-qr-stage="download"] .composition-qr-heading{display:none}
+.composition-qr[data-qr-stage="download"] .composition-qr-controls{grid-column:var(--widget-result-column,auto);margin-top:0}
+.composition-qr[data-qr-stage="download"] .composition-qr-pattern{width:var(--widget-pattern-size,min(104px,28cqw,17vh))}
+@media(max-width:720px){.composition-qr:where([data-widget-size="dashboard"]) .composition-qr-heading h3{font-size:20px}.composition-qr:where([data-widget-size="dashboard"]) .composition-qr-heading p{font-size:11px}.composition-qr:where([data-widget-size="dashboard"]){gap:10px}.composition-qr:where([data-widget-size="dashboard"]) .composition-qr-url{height:40px;padding:0 10px}.composition-qr:where([data-widget-size="dashboard"]) .composition-qr-result{gap:10px}.composition-qr:where([data-widget-size="dashboard"]) .composition-qr-pattern{width:78px}.composition-qr:where([data-widget-size="dashboard"]) .composition-qr-result-actions{gap:8px}}
+/* Widget 6 · Figma reference. Search Input appearance remains owned by inputs.css. */
+.composition-find{width:100%;height:100%;min-width:0;display:var(--widget-display,flex);grid-template-columns:var(--widget-columns,none);align-items:var(--widget-align,stretch);flex-direction:column;gap:var(--widget-gap,clamp(12px,1.5vh,19px))}
+.composition-find-heading{min-width:0;display:grid;align-content:start;gap:var(--widget-heading-gap,clamp(3px,.65vh,8px))}
+.composition-find-eyebrow{color:var(--accent);font-size:var(--widget-eyebrow-size,clamp(10px,.85vw,13px));font-weight:750;letter-spacing:.13em}
+:is(.composition-lab-tile,.widget-studio-preview) .composition-find-heading h3{margin:0;font-size:var(--widget-heading-size,clamp(25px,2.25vw,38px));line-height:1.08;font-weight:700;letter-spacing:-.055em;color:var(--ink)}
+.composition-find-heading p{margin:0;color:var(--muted);font-size:var(--widget-copy-size,clamp(11px,1.04vw,15px));line-height:1.5}
+.composition-find-form{width:100%;max-width:560px;min-width:0;display:grid;gap:var(--widget-form-gap,clamp(10px,1.4vh,16px));margin-top:var(--widget-form-margin,auto)}
+.composition-find-modes{display:flex;align-items:center;gap:8px;border:0;padding:0;margin:0;min-width:0}
+.composition-find-modes legend{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.composition-find-modes label{position:relative;cursor:pointer;flex:0 1 148px;min-width:0}
+.composition-find-modes input{position:absolute;opacity:0;width:1px;height:1px}
+.composition-find-modes label span{display:grid;place-items:center;min-height:35px;padding:6px 15px;border:1px solid transparent;border-radius:var(--radius-full);background:var(--surface-2);color:var(--ink);font:550 12px Geist,sans-serif;transition:background var(--duration-fast),color var(--duration-fast)}
+.composition-find-modes input:checked+span{background:var(--accent);color:var(--primary-foreground)}
+.composition-find-modes input:focus-visible+span{outline:2px solid var(--focus);outline-offset:3px}
+.composition-find-modes label:hover span{border-color:var(--border)}
+.composition-find-search-row{display:flex;align-items:center;gap:12px;min-width:0}
+.composition-find .input-search-shell{max-width:none;flex:1;min-width:0}
+.composition-find .input-search-shell .input-icon svg{width:17px;height:17px}
+.composition-find-ready{display:grid;place-items:center;flex:none;width:22px;height:36px;border:0;padding:0;background:transparent;cursor:pointer}
+.composition-find-ready:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:8px}
+.composition-find-dot{width:10px;height:10px;border-radius:50%;background:var(--success)}
+.composition-find-ready[data-ready="false"] .composition-find-dot{background:var(--error)}
+@media(max-width:720px){
+ .composition-find:where([data-widget-size="dashboard"]){gap:12px}
+ .composition-find:where([data-widget-size="dashboard"]) .composition-find-heading h3{font-size:clamp(24px,6vw,32px)}
+ .composition-find:where([data-widget-size="dashboard"]) .composition-find-heading p{font-size:12px}
+ .composition-find:where([data-widget-size="dashboard"]) .composition-find-form{margin-top:8px;gap:10px}
+ .composition-find:where([data-widget-size="dashboard"]) .composition-find-modes label{flex-basis:120px}
+ .composition-find:where([data-widget-size="dashboard"]) .composition-find-search-row{gap:8px}
+}

@@ -1,6 +1,6 @@
 # Axo 02 · Source of Truth
 
-> **Stav:** aktivní designový katalog. **Aktualizováno:** 25. 10. 2026.
+> **Stav:** aktivní designový katalog. **Aktualizováno:** 2. 11. 2026.
 > **Závaznost:** Tento soubor je průběžný zdroj pravdy pro Axo 02. Po každé funkční, designové nebo architektonické změně aktualizovat příslušnou část ve stejném zadání a commitu, nebo bezprostředně navazujícím commitu. GitHub historie zachovává minulost; zde je vždy pouze aktuální stav.
 
 ## 1. Projekt a odkazy
@@ -36,6 +36,8 @@
 | Brand | **Prázdná sekce** | Návrh teprve vznikne |
 | Loaders | **Rozpracováno** | Dot Spinner, Blade Spinner, Gradient Ring, varianty S/M/L a Playground |
 | Další prvky | **Rozpracováno** | Primary Violet Scrollbar a izolované Cursor Studio (Glow, Click Burst), návrhy ke schválení |
+| Composition Lab | **Schválená kompozice, obsah rozpracován** | Fullscreen Dashboard: Office, čtyři placeholdery, QR ve Widgetu 2 a Find Phrase ve Widgetu 6 |
+| Widget Studio | **Implementováno, varianty ke schválení** | Samostatné prostředí pro Find Phrase a QR Generator, Small / Large, stavy obsahu a interakcí, dark/light, zachované lokální funkce |
 
 **Navigace samotného katalogu již funguje.** To neznamená, že máme navrženou budoucí komponentu pro navigaci celé aplikace.
 
@@ -364,7 +366,7 @@ Ověření prvního úklidu (před cílenou opravou výše): dočasné porovnán
 ## 6. Pravidla spolupráce a vývoje
 
 1. **Design-first:** nejdřív konkrétní zadání, rychlá vizuální úprava, publikace katalogu, zpětná vazba.
-2. **Žádný Playground, nové laboratoře ani paralelní katalogy.**
+2. **Žádný nevyžádaný Playground, nové laboratoře ani paralelní katalogy.** Výslovné výjimky uživatelky: Composition Lab a Widget Studio v tomto katalogu.
 3. **Žádné pixel-perfect baseline, 96 screenshotů, production-grade QA či schvalovací release gate pro designové experimenty.** Kontrolovat základní funkčnost, příslušnou komponentu a dostupnost náhledu.
 4. **Čisté úpravy, trvalé pravidlo:** měnit původní CSS/JS definici, **nikdy nepřidávat nové přepisovací CSS bloky na konec**. Legitimizované hover/focus, varianty a @media zůstávají v místě vlastníka. Žádné patchové vrstvy nebo kopie komponent.
 5. **Jednotný dark/light:** nové komponenty používají existující role; globální toggle mění vše.
@@ -425,7 +427,7 @@ Aby nevznikly dva soupeřící zdroje pravdy, **nekopírovat jej jako samostatn�
 
 - **Uživatelkou odsouhlasená kompozice** podle screenshotu: nahoře jedna lišta; dominantní **Axolotl Office** vlevo, čtyři malé widgety vpravo v uspořádání 2 × 2, dva široké widgety pod horní částí, každý na polovinu šířky. Toto rozložení nenahrazovat dalšími experimentálními variantami.
 - **Implementováno jako návrh ke kontrole:** sekce `#composition` v existujícím katalogu, `components/composition-lab.css/js`, napojení v `index.html`. Aktuálně používá fullscreen CSS viewport bez voliče pevných rozměrů (viz níže); mobil skládá dva sloupce malých widgetů a široké karty pod sebe.
-- **Záměrná omezení:** Office zůstává prázdným layoutovým placeholderem; šest dashboard widgetů má vizuální ukázkový obsah bez skutečných nástrojů. Header má pouze prostorový placeholder s odkazem na skutečnou interaktivní V4 v sekci Navigace. Nejde o duplikovaný header ani o plně funkční aplikaci.
+- **Aktuální obsah:** Office a Widgety 1, 3, 4, 5 jsou placeholdery. Widget 2 obsahuje skutečný lokální QR generátor s exportem PNG; Widget 6 obsahuje Find Phrase s režimy a demo stavem webu, bez vyhledávacího backendu. Header používá sdílený Main Header V4. Nejde o plně funkční aplikaci.
 - **Výjimka z původního zákazu laboratoří:** pouze uživatelkou výslovně vyžádaný Composition Lab pro zkoušení kompozice; nepovoluje další paralelní katalogy. Ostatní komponenty zůstávají nezměněné. Žádné nové závislosti, framework ani CSS override vrstvy.
 - **Stav:** implementovaný návrh k vizuálnímu schválení, nikoli schválený finální dashboard.
 
@@ -503,3 +505,14 @@ Aby nevznikly dva soupeřící zdroje pravdy, **nekopírovat jej jako samostatn�
 - Opraveno nežádoucí zvětšení celé kompozice po generování QR. Desktop Composition Lab má pevnou výšku plátna dle aktuálního viewportu, grid používá `minmax(0, …)` řádky a nepřebírá výšku od obsahu QR karty. Mobil zůstává vertikálně posuvný.
 - Widget 2 při `data-qr-stage="download"` **nahrazuje obsah celé karty**: skryje titulkový blok s popisem, skryje vstupní řádek a místo něj vystředí QR + kulaté akce. Nezvyšuje výšku karty, ostatní widgety se nepohybují. Ve stavu před generováním je původní nadpis, popis a URL pole.
 - Úpravy pouze přímo v kanonickém `components/composition-lab.css` a verzi CSS v `index.html`, bez override vrstvy či `!important`. Ověření veřejné stránky v prohlížeči zatím neprovedeno.
+
+
+## Widget Studio · prostředí V1 (2. 11. 2026)
+
+- **IMPLEMENTOVÁNO:** samostatná položka **Widget Studio** a route `#widget-studio` ve stávajícím katalogu. Vlastní pracovní prostor pro **Find Phrase** a **QR Generator**, přepínání Small / Large, přehled stavů obsahu a ovládání. Globální katalogový Dark / Light přepínač zůstává jediným vlastníkem tématu; bez kopie palety nebo přepínače.
+- **Varianty k samostatnému vizuálnímu schválení:** Small **320 × 280 CSS px**, Large **640 × 320 CSS px**. Small skládá obsah svisle (QR vstup a akci pod sebou); Large má dvě obsahové oblasti vedle sebe. Sdílejí texty, schválený Search Input, Button System a funkce; nejde o CSS `scale`. Výsledný QR používá celou plochu a vodorovné akce jako původní widget. Rozměry karty jsou pevné ve všech stavech. Úzký pracovní prostor dovoluje interní vodorovné rolování, nikoli deformaci náhledu.
+- **Jediná implementace:** `components/dashboard-widgets.js` vlastní společný `dashboardWidgetMarkup(type,{id,size})` a `mountDashboardWidget(type,root,initial)`; `components/dashboard-widgets.css` obsahuje původní přesunuté styly widgetů a explicitní velikostní parametry/kompozice. Composition Lab pouze vkládá stejné widgety s velikostí `dashboard`; jeho původní rozměry, obsah a schválené rozmístění se nemění. Office, Header a ostatní placeholdery beze změn. `components/composition-lab.css/js` vlastní nadále pouze Dashboard layout a integraci.
+- **Studio ovládání:** `components/widget-studio.css/js` obsahuje pouze prostředí Studia a přípravu náhledů. Find: prázdné pole, vyplněný asset/fráze a nedostupný web; QR: prázdná URL se skutečně disabled akcí, platná/neplatná URL a skutečný QR výsledek. Default / Hover / Focus a u QR Pressed používají kanonické stavové styly; původní pravidla Search Inputu v `inputs.css` přijímají také explicitní atribut náhledu. Reálný hover, focus přes Tab, nativní radio šipky a stisk zůstávají funkční. Widgetové záložky podporují šipky a Home/End. Každá kombinace widget/velikost uchovává svůj rozepsaný obsah při přepínání i při návratu z jiné sekce v rámci otevřené stránky.
+- **Zachovaná funkčnost a omezení:** QR vytváří skutečnou matici a PNG pomocí již existující lokální MIT knihovny; validuje HTTP(S) URL, umí generování klávesou Enter a reset s návratem fokusu. Bez služby třetí strany či nové závislosti. Find Phrase zachovává editaci, Asset/Fráze a přepínaný zelený/červený demo dot. **Reálné vyhledávání, skenování webu ani backend v repozitáři neexistují a nebyly zde domýšleny.** Obsah widgetů se nyní neredesignoval.
+- **Ověření:** cílený Chromium browser test se skutečným Geist: oba widgety, Small/Large, dark/light, všechny obsahové náhledy, Hover/Focus/Pressed, stabilní rozměry a obsah uvnitř karty; klávesnice, QR generování, skutečný PNG download/reset, oddělené rozepsané hodnoty, návrat do Studia, reduced motion a unikátní ID. Dashboard před/po porovnán na 1366 × 768 a 390 × 844 v obou tématech, ve výchozím i výsledném QR stavu; sledované rozměry a styly shodné. Ověřen skutečný hover/pressed, disabled bez efektů, opakované změny sekce bez hromadění listenerů a interní scroll náhledů na úzké ploše; bez chyb konzole. Screenshoty obou widgetů a velikostí pořízeny na desktopovém viewportu **1366 × 768** v dark/light. Nejde o screenshotovou baseline ani novou testovací infrastrukturu.
+- **CSS:** původní widgetové definice přesunuty, nikoli kopírovány. Nové velikostní a stavové rozdíly jsou součástí kanonických pravidel; žádné override vrstvy, duplicitní opravné selektory, `!important`, globální změny Foundations, nový framework nebo úpravy jiných sekcí. **Stav: prostředí připraveno; Small a Large zatím nejsou vizuálně schválené.**

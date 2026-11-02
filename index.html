@@ -19,7 +19,7 @@
 .fdn-scale-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:12px}.fdn-token-card{border:1px solid var(--border);background:var(--surface);border-radius:14px;padding:16px;min-width:0}.fdn-token-card svg{width:100%;height:100%}.fdn-token-name{font-weight:650;font-size:12px}.fdn-token-value{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11px;color:var(--muted);margin-top:8px;overflow-wrap:anywhere}.fdn-interactions{display:flex;gap:12px;flex-wrap:wrap}.fdn-demo{border:1px solid var(--border);border-radius:11px;background:var(--surface-2);color:var(--ink);min-height:42px;padding:10px 16px;cursor:pointer;transition:background var(--duration-normal) var(--ease-standard),transform var(--duration-normal) var(--ease-standard)}.fdn-demo:not(:disabled):hover{background:var(--accent-bg);transform:translateY(-1px)}.fdn-demo:not(:disabled):active{transform:translateY(1px)}.fdn-demo:focus-visible,.fdn-demo.demo-focus{outline:2px solid var(--demo-focus,var(--focus));outline-offset:3px}.fdn-demo.demo-error{--demo-focus:var(--focus-error);color:var(--error)}.fdn-demo.demo-selected{background:var(--active);color:var(--primary)}.fdn-demo:disabled{opacity:var(--opacity-disabled);cursor:not-allowed;transform:none}.fdn-grid-lines{min-height:110px;border:1px solid var(--border);border-radius:13px;background:repeating-linear-gradient(90deg,var(--accent-bg) 0,var(--accent-bg) 1px,transparent 1px,transparent 24px),var(--surface);display:grid;place-items:center;font-size:12px;color:var(--muted)}.fdn-motion{height:10px;width:70px;border-radius:999px;background:var(--accent);margin:12px 0;transition:transform var(--duration-normal) var(--ease-standard)}.fdn-token-card:hover .fdn-motion{transform:translateX(30px)}@media(prefers-reduced-motion:reduce){.fdn-motion,.fdn-demo{transition:none}}
 
 </style>
-<link rel="stylesheet" href="components/inputs.css?v=d2e310b">
+<link rel="stylesheet" href="components/inputs.css?v=widget-studio-v1">
 <link rel="stylesheet" href="components/form-controls.css?v=0a1a9c3">
 <link rel="stylesheet" href="components/button.css?v=51742ea">
 <link rel="stylesheet" href="components/pagination.css?v=78c8ba6">
@@ -33,7 +33,9 @@
 <link rel="stylesheet" href="components/loaders.css?v=564b446">
 <link rel="stylesheet" href="components/cards.css?v=e53d6a8">
 <link rel="stylesheet" href="components/header-nav.css?v=header-v4-visual">
-<link rel="stylesheet" href="components/composition-lab.css?v=qr-layout-fixed-v3">
+<link rel="stylesheet" href="components/composition-lab.css?v=widget-studio-v1">
+<link rel="stylesheet" href="components/dashboard-widgets.css?v=widget-studio-v1">
+<link rel="stylesheet" href="components/widget-studio.css?v=widget-studio-v1">
 </head>
 <body>
 <div class="sidebar-overlay" id="overlay"></div>
@@ -54,6 +56,7 @@
 <a href="#loaders" data-section="loaders"><span class="symbol">◌</span> Loaders</a>
 <a href="#other" data-section="other"><span class="symbol">⊞</span> Další prvky</a>
 <a href="#composition" data-section="composition"><span class="symbol">▦</span> Composition Lab</a>
+<a href="#widget-studio" data-section="widget-studio"><span class="symbol">▧</span> Widget Studio</a>
 </nav><div class="sidebar-bottom">AXO 02 · Design first, build later.</div>
 </aside>
 <main class="main"><header class="topbar"><div class="left-top"><button class="mobile-menu" id="menu" aria-label="Otevřít navigaci">☰</button><span class="crumb">Katalog <span aria-hidden="true"> / </span> <b id="crumb">Foundations</b></span></div><div class="controls"><span class="mode-label" id="modeLabel">Tmavý režim</span><button class="theme-toggle" id="themeToggle" type="button" aria-label="Přepnout světlý a tmavý režim" aria-pressed="false"><span class="option" id="lightIcon" aria-hidden="true">☀</span><span class="option" id="darkIcon" aria-hidden="true">☾</span></button></div></header>
@@ -74,7 +77,9 @@
 <script src="components/dock.js?v=notebook-v2"></script>
 <script src="components/header-nav.js?v=shared-composition-v1"></script>
 <script src="components/vendor/qrcode.js?v=mit-1"></script>
-<script src="components/composition-lab.js?v=qr-real-v2"></script>
+<script src="components/dashboard-widgets.js?v=widget-studio-v1"></script>
+<script src="components/composition-lab.js?v=widget-studio-v1"></script>
+<script src="components/widget-studio.js?v=widget-studio-v1"></script>
 <script>
 const sections=[
 ["foundations","Foundations","Základní stavební prvky designu: barvy, typografie, rozestupy, radius, stíny, povrchy a jejich role."],
@@ -88,7 +93,8 @@ const sections=[
 ["brand","Brand","Prostor pro vizuální identitu, značkové motivy, výrazové principy a grafické prvky."],
 ["loaders","Loaders","Prostor pro indikátory načítání, skeletony a přechodové stavy."],
 ["other","Další prvky","Prostor pro další komponenty, které v průběhu návrhu doplníme."],
-["composition","Composition Lab","Dashboard Layout V1: schválené rozložení Office a šesti widgetů v různých šířkách."]
+["composition","Composition Lab","Dashboard Layout V1: schválené rozložení Office a šesti widgetů v různých šířkách."],
+["widget-studio","Widget Studio","Samostatný prostor pro Find Phrase a QR Generator · Small / Large · stavy a živé ovládání."]
 ];
 
 const emptyHTML=document.getElementById("sectionContent").innerHTML;
@@ -137,7 +143,7 @@ function setTheme(theme){root.dataset.theme=theme;document.getElementById("light
 let saved;try{saved=localStorage.getItem("axo02-theme")}catch(e){}
 setTheme(saved==="light"||saved==="dark"?saved:(matchMedia("(prefers-color-scheme:light)").matches?"light":"dark"));
 toggle.addEventListener("click",()=>setTheme(root.dataset.theme==="dark"?"light":"dark"));
-function render(){let key=decodeURIComponent(location.hash.slice(1));document.documentElement.dataset.catalogView=key==="composition"?"composition":"catalog";let index=sections.findIndex(s=>s[0]===key);if(index<0)index=0;let s=sections[index];document.getElementById("heading").textContent=s[1];document.getElementById("desc").textContent=s[2];document.getElementById("crumb").textContent=s[1];document.getElementById("footerSection").textContent=s[1];const panel=document.getElementById("sectionContent");if(s[0]==="foundations"){panel.classList.remove("canvas");panel.innerHTML=foundationHTML;refreshFoundationTokens()}else if(s[0]==="buttons"){panel.classList.remove("canvas");panel.innerHTML=buttonsHTML;}else if(s[0]==="navigation"){panel.classList.remove("canvas");renderPagination();panel.insertAdjacentHTML("beforeend", '<div id="navigation-extras"></div>');renderNavigationExtras();panel.insertAdjacentHTML("beforeend", '<div id="stepper-catalog"></div>');renderStepper();panel.insertAdjacentHTML("beforeend", '<div id="dock-catalog"></div>');renderDock();panel.insertAdjacentHTML("beforeend", '<div id="header-nav-catalog"></div>');renderHeaderNav();}else if(s[0]==="inputs"){panel.classList.remove("canvas");renderInputs();panel.insertAdjacentHTML("beforeend", '<div id="form-controls"></div>');renderFormControls();}else if(s[0]==="overlays"){panel.classList.remove("canvas");renderOverlays();}else if(s[0]==="feedback"){panel.classList.remove("canvas");renderFeedback();}else if(s[0]==="logo"){panel.classList.remove("canvas");renderLogoCatalog();}else if(s[0]==="other"){panel.classList.remove("canvas");renderOther();}else if(s[0]==="loaders"){panel.classList.remove("canvas");renderLoaders();}else if(s[0]==="cards"){panel.classList.remove("canvas");renderCards();}else if(s[0]==="composition"){panel.classList.remove("canvas");renderCompositionLab();}else{panel.classList.add("canvas");panel.innerHTML=emptyHTML;}document.getElementById("count").textContent=String(index+1).padStart(2,"0")+" / "+sections.length+" · Design Catalog";document.querySelectorAll("[data-section]").forEach(a=>{let current=a.dataset.section===s[0];a.classList.toggle("active",current);current?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current")});document.getElementById("sidebar").classList.remove("open");document.getElementById("overlay").classList.remove("show");document.title=s[1]+" · Axo 02"}
+function render(){let key=decodeURIComponent(location.hash.slice(1));document.documentElement.dataset.catalogView=key==="composition"?"composition":key==="widget-studio"?"widget-studio":"catalog";let index=sections.findIndex(s=>s[0]===key);if(index<0)index=0;let s=sections[index];document.getElementById("heading").textContent=s[1];document.getElementById("desc").textContent=s[2];document.getElementById("crumb").textContent=s[1];document.getElementById("footerSection").textContent=s[1];const panel=document.getElementById("sectionContent");if(s[0]==="foundations"){panel.classList.remove("canvas");panel.innerHTML=foundationHTML;refreshFoundationTokens()}else if(s[0]==="buttons"){panel.classList.remove("canvas");panel.innerHTML=buttonsHTML;}else if(s[0]==="navigation"){panel.classList.remove("canvas");renderPagination();panel.insertAdjacentHTML("beforeend", '<div id="navigation-extras"></div>');renderNavigationExtras();panel.insertAdjacentHTML("beforeend", '<div id="stepper-catalog"></div>');renderStepper();panel.insertAdjacentHTML("beforeend", '<div id="dock-catalog"></div>');renderDock();panel.insertAdjacentHTML("beforeend", '<div id="header-nav-catalog"></div>');renderHeaderNav();}else if(s[0]==="inputs"){panel.classList.remove("canvas");renderInputs();panel.insertAdjacentHTML("beforeend", '<div id="form-controls"></div>');renderFormControls();}else if(s[0]==="overlays"){panel.classList.remove("canvas");renderOverlays();}else if(s[0]==="feedback"){panel.classList.remove("canvas");renderFeedback();}else if(s[0]==="logo"){panel.classList.remove("canvas");renderLogoCatalog();}else if(s[0]==="other"){panel.classList.remove("canvas");renderOther();}else if(s[0]==="loaders"){panel.classList.remove("canvas");renderLoaders();}else if(s[0]==="cards"){panel.classList.remove("canvas");renderCards();}else if(s[0]==="widget-studio"){panel.classList.remove("canvas");renderWidgetStudio();}else if(s[0]==="composition"){panel.classList.remove("canvas");renderCompositionLab();}else{panel.classList.add("canvas");panel.innerHTML=emptyHTML;}document.getElementById("count").textContent=String(index+1).padStart(2,"0")+" / "+sections.length+" · Design Catalog";document.querySelectorAll("[data-section]").forEach(a=>{let current=a.dataset.section===s[0];a.classList.toggle("active",current);current?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current")});document.getElementById("sidebar").classList.remove("open");document.getElementById("overlay").classList.remove("show");document.title=s[1]+" · Axo 02"}
 addEventListener("hashchange",render);render();
 const sidebar=document.getElementById("sidebar"),overlay=document.getElementById("overlay");document.getElementById("menu").onclick=()=>{sidebar.classList.add("open");overlay.classList.add("show")};overlay.onclick=()=>{sidebar.classList.remove("open");overlay.classList.remove("show")};document.addEventListener("keydown",e=>{if(e.key==="Escape")overlay.click()});
 </script>
