@@ -1,0 +1,4 @@
+# Keep upstream skill bytes (including the Windows launcher's CRLF) unchanged.
+# Whitespace exceptions apply only to these integrity-locked third-party copies.
+.agents/skills/frontend-design/** -text -whitespace
+.agents/skills/impeccable/** -text -whitespace
