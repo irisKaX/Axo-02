@@ -65,7 +65,7 @@ function build(){
   }
   if(b.dataset.action==="download"){
    const blob=new Blob(["AXO Design Catalog · Button System\nUkázkový soubor pro otestování tlačítka Stáhnout.\n"],{type:"text/plain;charset=utf-8"});
-   const url=URL.createObjectURL(blob),link=document.createElement("a");link.href=url;link.download="axo-button-demo.txt";document.body.append(link);link.click();link.remove();URL.revokeObjectURL(url);message.textContent="Ukázkový TXT soubor připraven ke stažení.";
+   const url=URL.createObjectURL(blob),link=document.createElement("a");link.href=url;link.download="axo-button-demo.txt";document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);message.textContent="Ukázkový TXT soubor připraven ke stažení.";
   }
  });
  return root;
