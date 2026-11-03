@@ -1,0 +1,56 @@
+/* Button Studio · shared component primitives; Foundations tokens are the only palette. */
+:root[data-section="buttons"] .content{max-width:none}
+:root[data-section="buttons"] .canvas{display:block;padding:clamp(18px,2vw,32px);background:var(--background)}
+.button-studio{width:100%;display:grid;gap:24px;text-align:left;color:var(--foreground)}
+.button-studio *{box-sizing:border-box}
+.bs-heading{display:flex;align-items:start;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.bs-heading h2{font-size:24px;letter-spacing:-.035em;margin:0 0 6px}
+.bs-heading p{margin:0;color:var(--muted-foreground);font-size:12px;max-width:640px}
+.bs-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.bs-controls button{background:var(--card);border:1px solid var(--border);border-radius:999px;color:var(--foreground);padding:8px 13px;cursor:pointer;font-size:12px}
+.bs-controls button[aria-pressed=true]{background:var(--primary);color:var(--primary-foreground);border-color:var(--primary)}
+.bs-panel{padding:clamp(16px,2.5vw,30px);background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow-sm);min-width:0}
+.bs-panel-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+.bs-panel-head h3{font-size:15px;letter-spacing:-.02em;margin:0;font-weight:700}
+.bs-panel-head p{margin:0;color:var(--muted-foreground);font-size:11px}
+.bs-demo-row{display:flex;align-items:center;flex-wrap:wrap;gap:14px}
+.bs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.bs-family{padding:19px 17px;min-width:0;border:1px solid var(--border);border-radius:calc(var(--radius) - 8px);background:var(--background);display:flex;flex-direction:column;gap:17px}
+.bs-family-title{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:13px;font-weight:650}
+.bs-family-title small{font-weight:400;color:var(--muted-foreground);font-size:10px}
+.bs-family .bs-demo-row{min-height:62px}
+.bs-sample-caption{font-size:11px;color:var(--muted-foreground);margin:0}
+.axo-action{--action-bg:var(--primary);--action-fg:var(--primary-foreground);--action-border:transparent;--action-shadow:var(--shadow-sm);position:relative;display:inline-flex;justify-content:center;align-items:center;gap:9px;vertical-align:middle;max-width:100%;min-width:0;min-height:44px;padding:0 21px;white-space:nowrap;border:1px solid var(--action-border);border-radius:var(--radius);background:var(--action-bg);color:var(--action-fg);box-shadow:var(--action-shadow);font:600 12px/1.2 var(--font-sans);letter-spacing:0;cursor:pointer;transition:background-color .16s,border-color .16s,color .16s,box-shadow .16s,transform .16s;user-select:none}
+.axo-action svg{display:block;width:18px;height:18px;flex:none;stroke:currentColor;stroke-width:1.9;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.axo-action:hover:not(:disabled):not([aria-disabled=true]){background:color-mix(in oklch,var(--action-bg) 85%,var(--foreground) 15%);box-shadow:var(--shadow-md);transform:translateY(-1px)}
+.axo-action:active:not(:disabled){transform:translateY(1px);box-shadow:var(--shadow-xs)}
+.axo-action:focus-visible{outline:3px solid var(--ring);outline-offset:3px}
+.axo-action:disabled,.axo-action[aria-disabled=true]{opacity:.46;cursor:not-allowed;box-shadow:none;transform:none}
+.axo-action[data-variant=secondary]{--action-bg:var(--secondary);--action-fg:var(--secondary-foreground)}
+.axo-action[data-variant=outline]{--action-bg:var(--card);--action-fg:var(--foreground);--action-border:var(--border);--action-shadow:none}
+.axo-action[data-variant=outline]:hover:not(:disabled){--action-bg:var(--muted)}
+.axo-action[data-variant=ghost]{--action-bg:transparent;--action-fg:var(--foreground);--action-shadow:none}
+.axo-action[data-variant=ghost]:hover:not(:disabled){--action-bg:var(--muted)}
+.axo-action[data-variant=destructive]{--action-bg:var(--destructive);--action-fg:var(--destructive-foreground)}
+.axo-action[data-size=sm]{min-height:36px;padding:0 14px;font-size:11px;gap:7px}
+.axo-action[data-size=lg]{min-height:52px;padding:0 26px;font-size:14px}
+.axo-action[data-size=icon]{width:44px;height:44px;padding:0;border-radius:50%;flex:none}
+.axo-action[data-size=icon-sm]{width:36px;height:36px;min-height:36px;padding:0;border-radius:50%;flex:none}
+.axo-action[data-size=icon-lg]{width:52px;height:52px;min-height:52px;padding:0;border-radius:50%;flex:none}
+.axo-action[data-preview=hover]:not(:disabled){background:color-mix(in oklch,var(--action-bg) 85%,var(--foreground) 15%);transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.axo-action[data-preview=focus]:not(:disabled){outline:3px solid var(--ring);outline-offset:3px}
+.axo-action[data-preview=pressed]:not(:disabled){transform:translateY(1px);box-shadow:var(--shadow-xs)}
+.axo-action[data-loading=true]{cursor:progress}
+.axo-action .bs-spinner{width:16px;height:16px;flex:none;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:bs-spin .8s linear infinite}
+@keyframes bs-spin{to{transform:rotate(360deg)}}
+.bs-state-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.bs-state-cell{display:flex;flex-direction:column;align-items:start;justify-content:center;gap:10px;min-width:0}
+.bs-state-cell>span{font-size:11px;color:var(--muted-foreground)}
+.bs-copy-output{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.bs-copy-output code{padding:13px 16px;max-width:100%;overflow-wrap:anywhere;background:var(--muted);border:1px solid var(--border);border-radius:13px;color:var(--foreground);font-size:12px}
+.bs-message{font-size:12px;color:var(--muted-foreground);min-height:20px}
+.bs-spec{display:flex;flex-wrap:wrap;gap:7px}
+.bs-spec span{border:1px solid var(--border);background:var(--muted);border-radius:999px;font-size:10px;padding:5px 9px;color:var(--foreground)}
+.bs-grid .axo-action{align-self:flex-start}
+@media(max-width:680px){.bs-state-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.bs-grid{grid-template-columns:1fr}.bs-panel{padding:17px}.bs-heading h2{font-size:21px}}
+@media(prefers-reduced-motion:reduce){.axo-action,.axo-action .bs-spinner{transition:none;animation:none}}
